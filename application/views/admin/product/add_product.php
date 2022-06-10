@@ -44,7 +44,7 @@
                       <td> <strong>Category</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
                         <select name="category_id" id="category_id" class="form-control">
-                          <option value="">=========select category==============</option>
+                          <!-- <option value=""</option> -->
                           <?php $i=1; foreach ($category_data->result() as $category) { ?>
                           <option value="<?=$category->id?>"><?=$category->name?></option>
                           <?php $i++; } ?>
@@ -55,7 +55,7 @@
                       <td> <strong>Subcategory</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
                         <select name="subcategory_id" id="subcategory_id" class="form-control">
-                          <option value="">=========select subcategory==============</option>
+                          <!-- <option value="">=========select subcategory==============</option> -->
                           <?php $i=1; foreach ($subcategory_data->result() as $subcategory) { ?>
                           <option value="<?=$subcategory->id?>"><?=$subcategory->name?></option>
                           <?php $i++; } ?>
@@ -63,15 +63,15 @@
                     </tr>
 
                     <tr>
-                      <td> <strong>Name</strong> <span style="color:red;"></span></strong> </td>
+                      <td> <strong>Name</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
                         <input type="text" name="name" class="form-control" placeholder="" required value="" />
                       </td>
                     </tr>
                     <tr>
-                      <td> <strong>Image1</strong> <span style="color:red;"></span></strong> </td>
+                      <td> <strong>Image1</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
-                        <input type="file" name="image1" class="form-control" placeholder="" value="" />
+                        <input type="file" name="image1" class="form-control" placeholder="" required value="" />
                       </td>
                     </tr>
                     <tr>
@@ -130,7 +130,8 @@
       } else {
         // alert(vf)
         $('#subcategory_id option').remove();
-        var opton = "<option value=''>Please Select </option>";
+        // var opton = "<option value=''>Please Select </option>";
+        var opton = '';
         $.ajax({
           url: base_url + "dcadmin/Product/get_subcategory?cat_id=" + vf,
           data: '',

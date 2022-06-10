@@ -80,7 +80,7 @@ class Testimonials extends CI_finecontrol
 
                         $last_id=$this->base_model->insert_table("tbl_testimonials", $data_insert, 1) ;
                         if ($last_id!=0) {
-                            $this->session->set_flashdata('smessage', 'Data inserted successfully');
+                            $this->session->set_flashdata('smessage', 'Data updated successfully');
 
                             redirect("dcadmin/testimonials/view_testimonials", "refresh");
                         } else {

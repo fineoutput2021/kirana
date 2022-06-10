@@ -74,7 +74,7 @@ class Users extends CI_finecontrol
 
                 $this->db->where('id', $id);
                 $zapak=$this->db->update('tbl_users', $data_update);
-                $this->session->set_flashdata('smessage', 'Data inserted successfully');
+                $this->session->set_flashdata('smessage', 'Data updated successfully');
 
                 if ($zapak!=0) {
                     redirect("dcadmin/users/view_users", "refresh");
@@ -91,7 +91,7 @@ class Users extends CI_finecontrol
 
                 $this->db->where('id', $id);
                 $zapak=$this->db->update('tbl_users', $data_update);
-                $this->session->set_flashdata('smessage', 'Data inserted successfully');
+                $this->session->set_flashdata('smessage', 'Data updated successfully');
 
                 if ($zapak!=0) {
                     redirect("dcadmin/users/view_users", "refresh");

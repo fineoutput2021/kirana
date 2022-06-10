@@ -207,7 +207,7 @@ class Promocode extends CI_finecontrol
 
                 $this->db->where('id', $id);
                 $zapak=$this->db->update('tbl_promocode', $data_update);
-                $this->session->set_flashdata('smessage', 'Data inserted successfully');
+                $this->session->set_flashdata('smessage', 'Data updated successfully');
 
                 if ($zapak!=0) {
                     redirect("dcadmin/promocode/view_promocode", "refresh");
@@ -224,7 +224,7 @@ class Promocode extends CI_finecontrol
 
                 $this->db->where('id', $id);
                 $zapak=$this->db->update('tbl_promocode', $data_update);
-                $this->session->set_flashdata('smessage', 'Data inserted successfully');
+                $this->session->set_flashdata('smessage', 'Data updated successfully');
 
                 if ($zapak!=0) {
                     redirect("dcadmin/promocode/view_promocode", "refresh");

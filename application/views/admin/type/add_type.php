@@ -44,7 +44,7 @@
                       <td> <strong>Product</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
                         <select name="product_id" id="product_id" class="form-control">
-                          <option value="">>=================select product=======================<<</option>
+                          <!-- <option value="">>=================select product=======================<<</option> -->
                               <?php $i=1; foreach ($product_data->result() as $product) { ?>
                           <option value="<?=$product->id?>"><?=$product->name?></option>
                           <?php $i++; } ?>
@@ -52,33 +52,33 @@
                       </td>
                     </tr>
                     <tr>
-                      <td> <strong>Name</strong> <span style="color:red;"></span></strong> </td>
+                      <td> <strong>Name</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
-                        <input type="text" name="name" class="form-control" placeholder="" value="" />
+                        <input type="text" name="name" class="form-control" placeholder="" required value="" />
                       </td>
                     </tr>
                     <tr>
-                      <td> <strong>MRP</strong> <span style="color:red;"></span></strong> </td>
+                      <td> <strong>MRP</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
-                        <input type="number" name="mrp" class="form-control" placeholder="" value="" />
+                        <input type="number" name="mrp" class="form-control" placeholder="" required value="" />
                       </td>
                     </tr>
                     <tr>
-                      <td> <strong>Selling Price</strong> <span style="color:red;"></span></strong> </td>
+                      <td> <strong>Selling Price</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
-                        <input type="number" name="sp" id="sp" class="form-control" placeholder="" value="" />
+                        <input type="number" name="sp" id="sp" class="form-control" placeholder="" required value="" />
                       </td>
                     </tr>
                     <tr>
-                      <td> <strong>GST(%)</strong> <span style="color:red;"></span></strong> </td>
+                      <td> <strong>GST(%)</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
-                        <input type="number" name="gst" id="gst" class="form-control" placeholder="" value="" />
+                        <input type="number" name="gst" id="gst" class="form-control" placeholder="" required value="" />
                       </td>
                     </tr>
                     <tr>
-                      <td> <strong>Selling price with(GST)</strong> <span style="color:red;"></span></strong> </td>
+                      <td> <strong>Selling price with(GST)</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
-                        <input type="number" readonly id="spgst" name="spgst" class="form-control" placeholder="" value="" />
+                        <input type="number" readonly id="spgst" name="spgst" class="form-control" placeholder="" required value="" />
                       </td>
                     </tr>
 

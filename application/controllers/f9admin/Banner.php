@@ -92,7 +92,8 @@ class Banner extends CI_finecontrol
                           if (!$this->upload->do_upload($img1)) {
                               $upload_error = $this->upload->display_errors();
                               // echo json_encode($upload_error);
-                              echo $upload_error;
+                              $this->session->set_flashdata('emessage', $upload_error);
+                              redirect($_SERVER['HTTP_REFERER']);
                           } else {
                               $file_info = $this->upload->data();
 
@@ -278,7 +279,7 @@ class Banner extends CI_finecontrol
 
                 $this->db->where('id', $id);
                 $zapak=$this->db->update('tbl_banner', $data_update);
-                $this->session->set_flashdata('smessage', 'Data inserted successfully');
+                $this->session->set_flashdata('smessage', 'Status updated successfully');
 
                 if ($zapak!=0) {
                     redirect("dcadmin/banner/view_banner", "refresh");
@@ -295,7 +296,7 @@ class Banner extends CI_finecontrol
 
                 $this->db->where('id', $id);
                 $zapak=$this->db->update('tbl_banner', $data_update);
-                $this->session->set_flashdata('smessage', 'Data inserted successfully');
+                $this->session->set_flashdata('smessage', 'Status updated successfully');
 
                 if ($zapak!=0) {
                     redirect("dcadmin/banner/view_banner", "refresh");

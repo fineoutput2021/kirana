@@ -90,7 +90,8 @@ class Slider extends CI_finecontrol
                         if (!$this->upload->do_upload($img1)) {
                             $upload_error = $this->upload->display_errors();
                             // echo json_encode($upload_error);
-                            echo $upload_error;
+                            $this->session->set_flashdata('emessage', $upload_error);
+                            redirect($_SERVER['HTTP_REFERER']);
                         } else {
                             $file_info = $this->upload->data();
 
@@ -118,7 +119,7 @@ class Slider extends CI_finecontrol
 
                         $last_id=$this->base_model->insert_table("tbl_slider", $data_insert, 1) ;
                         if ($last_id!=0) {
-                            $this->session->set_flashdata('smessage', 'Data inserted successfully');
+                            $this->session->set_flashdata('smessage', 'Data updated successfully');
 
                             redirect("dcadmin/slider/view_slider", "refresh");
                         } else {
@@ -206,7 +207,7 @@ class Slider extends CI_finecontrol
                 if ($zapak!=0) {
                     // $path = FCPATH . "assets/public/slider/".$img;
                     // unlink($path);
-    
+
                     redirect("dcadmin/slider/view_slider", "refresh");
                 } else {
                     echo "Error";

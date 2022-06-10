@@ -4,8 +4,8 @@
           Add New Team
           </h1>
           <ol class="breadcrumb">
-           <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="<?php echo base_url() ?>admin/college"><i class="fa fa-dashboard"></i> All Team </a></li>
+           <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="<?php echo base_url() ?>dcadmin/System/view_team"><i class="fa fa-dashboard"></i> View Team </a></li>
 
           </ol>
         </section>
@@ -29,7 +29,7 @@
                       </div>
                     <? } ?>
                                 <div class="col-lg-10">
-                                   <form action="<?php echo base_url() ?>dcadmin/system/add_team_data" method="POST" id="slide_frm" enctype="multipart/form-data">
+                                   <form action="<?php echo base_url() ?>dcadmin/System/add_team_data" method="POST" id="slide_frm" enctype="multipart/form-data">
                                 <div class="table-responsive">
                                     <table class="table table-hover">
 

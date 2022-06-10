@@ -182,7 +182,7 @@ class Category extends CI_finecontrol
 
                 $this->db->where('id', $id);
                 $zapak=$this->db->update('tbl_category', $data_update);
-                $this->session->set_flashdata('smessage', 'Data inserted successfully');
+                $this->session->set_flashdata('smessage', 'Status updated successfully');
 
                 if ($zapak!=0) {
                     redirect("dcadmin/category/view_category", "refresh");
@@ -199,7 +199,7 @@ class Category extends CI_finecontrol
 
                 $this->db->where('id', $id);
                 $zapak=$this->db->update('tbl_category', $data_update);
-                $this->session->set_flashdata('smessage', 'Data inserted successfully');
+                $this->session->set_flashdata('smessage', 'Status updated successfully');
 
                 if ($zapak!=0) {
                     redirect("dcadmin/category/view_category", "refresh");

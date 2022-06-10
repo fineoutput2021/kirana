@@ -55,7 +55,7 @@
                                               <tr>
                                                 <td> <strong>Expiry_date</strong> <span style="color:red;"></span></strong> </td>
                                                 <td>
-                                                  <input type="date" name="expiry" class="form-control" placeholder="" required value="" />
+                                                  <input type="date" id="expdate" name="expiry" class="form-control" placeholder="" required value="" />
                                                 </td>
                                               </tr>
                                               <tr>
@@ -92,6 +92,24 @@
                               </div>
                             </section>
                           </div>
+<script>
+$(function(){
+    var dtToday = new Date();
+
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+       month = '0' + month.toString();
+   if(day < 10)
+       day = '0' + day.toString();
+
+   var maxDate = year + '-' + month + '-' + day;
+   // alert(maxDate);
+
+    $('#expdate').attr('min', maxDate);
+});
+</script>
 
 
                           <script type="text/javascript" src="<?php echo base_url() ?>assets/slider/ajaxupload.3.5.js"></script>

@@ -164,7 +164,7 @@ class Subcategory extends CI_finecontrol
             $id=base64_decode($idd);
 
             if ($this->load->get_var('position')=="Super Admin") {
-                $zapak=$this->db->delete('tbl_category', array('id' => $id));
+                $zapak=$this->db->delete('tbl_subcategory', array('id' => $id));
                 if ($zapak!=0) {
                     redirect("dcadmin/subcategory/view_subcategory", "refresh");
                 } else {
@@ -197,7 +197,7 @@ class Subcategory extends CI_finecontrol
 
                 $this->db->where('id', $id);
                 $zapak=$this->db->update('tbl_subcategory', $data_update);
-                $this->session->set_flashdata('smessage', 'Data inserted successfully');
+                $this->session->set_flashdata('smessage', 'Data updated successfully');
 
                 if ($zapak!=0) {
                     redirect("dcadmin/subcategory/view_subcategory", "refresh");
@@ -214,7 +214,7 @@ class Subcategory extends CI_finecontrol
 
                 $this->db->where('id', $id);
                 $zapak=$this->db->update('tbl_subcategory', $data_update);
-                $this->session->set_flashdata('smessage', 'Data inserted successfully');
+                $this->session->set_flashdata('smessage', 'Data updated successfully');
 
                 if ($zapak!=0) {
                     redirect("dcadmin/subcategory/view_subcategory", "refresh");

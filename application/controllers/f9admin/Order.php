@@ -179,9 +179,10 @@ class Order extends CI_finecontrol
                 $zapak=$this->db->update('tbl_order1', $data_update);
 
                 if ($zapak!=0) {
+                  $this->session->set_flashdata('smessage', 'Status updated successfully');
                     redirect($_SERVER['HTTP_REFERER']);
                 } else {
-                    echo "Error";
+                  $this->session->set_flashdata('emessage', $upload_error);
                     exit;
                 }
             }
@@ -195,9 +196,10 @@ class Order extends CI_finecontrol
                 $zapak=$this->db->update('tbl_order1', $data_update);
 
                 if ($zapak!=0) {
+                    $this->session->set_flashdata('smessage', 'Status updated successfully');
                     redirect($_SERVER['HTTP_REFERER']);
                 } else {
-                    echo "Error";
+                    $this->session->set_flashdata('emessage', $upload_error);
                     exit;
                 }
             }
@@ -211,9 +213,10 @@ class Order extends CI_finecontrol
                 $zapak=$this->db->update('tbl_order1', $data_update);
 
                 if ($zapak!=0) {
+                    $this->session->set_flashdata('smessage', 'Status updated successfully');
                     redirect($_SERVER['HTTP_REFERER']);
                 } else {
-                    echo "Error";
+                      $this->session->set_flashdata('emessage', $upload_error);
                     exit;
                 }
             }
@@ -227,6 +230,7 @@ class Order extends CI_finecontrol
                 $zapak=$this->db->update('tbl_order1', $data_update);
 
                 if ($zapak!=0) {
+                    $this->session->set_flashdata('smessage', 'Status updated successfully');
                     redirect($_SERVER['HTTP_REFERER']);
                 } else {
                     $data['e']="Error Occured";
