@@ -41,17 +41,6 @@
                   <table class="table table-hover">
 
                     <tr>
-                      <td> <strong>Product</strong> <span style="color:red;">*</span></strong> </td>
-                      <td>
-                        <select name="product_id" id="product_id" class="form-control">
-                          <!-- <option value="">>=================select product=======================<<</option> -->
-                              <?php $i=1; foreach ($product_data->result() as $product) { ?>
-                          <option value="<?=$product->id?>"><?=$product->name?></option>
-                          <?php $i++; } ?>
-                        </select>
-                      </td>
-                    </tr>
-                    <tr>
                       <td> <strong>Name</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
                         <input type="text" name="name" class="form-control" placeholder="" required value="" />
