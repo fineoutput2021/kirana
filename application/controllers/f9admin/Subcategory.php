@@ -165,12 +165,12 @@ class Subcategory extends CI_finecontrol
 
             if ($this->load->get_var('position')=="Super Admin") {
                 $zapak=$this->db->delete('tbl_subcategory', array('id' => $id));
-                if ($zapak!=0) {
-                    redirect("dcadmin/subcategory/view_subcategory", "refresh");
-                } else {
-                    echo "Error";
-                    exit;
-                }
+                $zapak2=$this->db->delete('tbl_product', array('subcategory_id' => $id));
+                $this->session->set_flashdata('smessage', 'Data Deleted successfully');
+                redirect($_SERVER['HTTP_REFERER']);
+                
+
+
             } else {
                 $data['e']="Sorry You Don't Have Permission To Delete Anything.";
                 // exit;

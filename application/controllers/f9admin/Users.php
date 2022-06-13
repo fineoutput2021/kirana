@@ -42,8 +42,9 @@ class Users extends CI_finecontrol
             if ($this->load->get_var('position')=="Super Admin") {
                 $zapak=$this->db->delete('tbl_users', array('id' => $id));
                 if ($zapak!=0) {
-                    $path = FCPATH . "assets/public/users/".$img;
-                    unlink($path);
+                    // $path = FCPATH . "assets/public/users/".$img;
+                    // unlink($path);
+                    $this->session->set_flashdata('smessage', 'Data deleted successfully');
                     redirect("dcadmin/users/view_users", "refresh");
                 } else {
                     echo "Error";

@@ -175,6 +175,7 @@ class Promocode extends CI_finecontrol
                 if ($zapak!=0) {
                     $path = FCPATH . "assets/public/promocode/".$img;
                     unlink($path);
+                      $this->session->set_flashdata('smessage', 'Data deleted successfully');
                     redirect("dcadmin/promocode/view_promocode", "refresh");
                 } else {
                     echo "Error";

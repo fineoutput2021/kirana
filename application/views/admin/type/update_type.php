@@ -40,17 +40,18 @@
                 <div class="table-responsive">
                   <table class="table table-hover">
 
-                    <tr>
-                      <td> <strong>Product</strong> <span style="color:red;"></span></strong> </td>
-                      <td>
-                        <select name="product_id" id="product_id" class="form-control">
-                          <option value="">>========select product===========<</option>
+                    <!-- <tr> -->
+                      <!-- <td> <strong>Product</strong> <span style="color:red;"></span></strong> </td> -->
+                      <!-- <td> -->
+                        <!-- <select name="product_id" id="product_id" class="form-control"> -->
+                          <!-- <option value="">>========select product===========<</option> -->
                               <?php $i=1; foreach ($product_data->result() as $product) { ?>
-                          <option value="<?=$product->id?>" <?if($product->id==$type->product_id){echo "selected";}?>><?=$product->name?></option>
+                          <!-- <option value="<?=$product->id?>" <?if($product->id==$type->product_id){echo "selected";}?>><?=$product->name?></option> -->
                           <?php $i++; } ?>
-                        </select>
-                      </td>
-                    </tr>
+                        <!-- </select> -->
+                      <!-- </td>
+                    </tr> -->
+                    <input type="hidden" name="product_id" value="<?=$type->product_id?>">
                     <tr>
                       <td> <strong>Name</strong> <span style="color:red;"></span></strong> </td>
                       <td>

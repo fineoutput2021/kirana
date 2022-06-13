@@ -72,6 +72,7 @@ class Product extends CI_finecontrol
                     $subcategory_id=$this->input->post('subcategory_id');
                     $description=$this->input->post('description');
 
+
                     $ip = $this->input->ip_address();
                     date_default_timezone_set("Asia/Calcutta");
                     $cur_date=date("Y-m-d H:i:s");
@@ -341,12 +342,15 @@ class Product extends CI_finecontrol
             if ($this->load->get_var('position')=="Super Admin") {
                 $zapak=$this->db->delete('tbl_product', array('id' => $id));
                 if ($zapak!=0) {
+                    $this->session->set_flashdata('smessage', 'Data deleted successfully');
                     redirect("dcadmin/product/view_product", "refresh");
                 } else {
                     echo "Error";
                     exit;
                 }
-            } else {
+            }
+
+            else {
                 $data['e']="Sorry You Don't Have Permission To Delete Anything.";
                 // exit;
                 $this->load->view('errors/error500admin', $data);

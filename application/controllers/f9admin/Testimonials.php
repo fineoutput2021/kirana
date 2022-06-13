@@ -156,6 +156,7 @@ class Testimonials extends CI_finecontrol
             if ($this->load->get_var('position')=="Super Admin") {
                 $zapak=$this->db->delete('tbl_testimonials', array('id' => $id));
                 if ($zapak!=0) {
+                    $this->session->set_flashdata('smessage', 'Data deleted successfully');
                     redirect("dcadmin/testimonials/view_testimonials", "refresh");
                 } else {
                     echo "Error";

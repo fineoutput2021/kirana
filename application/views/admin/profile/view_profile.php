@@ -6,7 +6,7 @@
             </h1>
             <ol class="breadcrumb">
              <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Home</a></li>
-              <li><a href="<?php echo base_url() ?>admin/college"><i class="fa fa-dashboard"></i> All Profile </a></li>
+              <li><a href="<?php echo base_url() ?>dcadmin/System/profile"><i class="fa fa-dashboard"></i> Profile</a></li>
 
             </ol>
           </section>
@@ -140,7 +140,7 @@
             // var posting = $.post( url, { s: term } );
             $.ajax({
                        type: "POST",
-                       url: "<?php echo base_url(); ?>admin/system/change_pass",
+                       url: "<?php echo base_url(); ?>dcadmin/System/change_pass",
                        data: {
                           'old': old,
                           'new': newpass

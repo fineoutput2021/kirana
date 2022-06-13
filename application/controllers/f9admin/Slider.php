@@ -207,6 +207,7 @@ class Slider extends CI_finecontrol
                 if ($zapak!=0) {
                     // $path = FCPATH . "assets/public/slider/".$img;
                     // unlink($path);
+                      $this->session->set_flashdata('smessage', 'Data deleted successfully');
 
                     redirect("dcadmin/slider/view_slider", "refresh");
                 } else {

@@ -29,7 +29,7 @@ class CI_finecontrol extends CI_Controller
                     $this->db->select('*');
                     $this->db->from('tbl_admin_sidebar');
                     // $this->db->where('id',$ss);
-                    // $this->db->order_by('sequence', 'asc');
+                    $this->db->order_by('sequence', 'asc');
                     $dsa= $this->db->get();
                     foreach ($dsa->result() as $dda) {
                         $ss=$dda->id;
@@ -43,7 +43,7 @@ class CI_finecontrol extends CI_Controller
                     $this->db->select('*');
                     $this->db->from('tbl_admin_sidebar');
                     $this->db->where('id', $ss);
-                    // $this->db->order_by('sequence', 'asc');
+                    $this->db->order_by('sequence', 'asc');
                     $dda= $this->db->get()->row();
                     // $da=$dsa->row();
                     $ss=$dda->id;

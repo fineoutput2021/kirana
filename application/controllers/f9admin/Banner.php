@@ -245,9 +245,8 @@ class Banner extends CI_finecontrol
 
                 $zapak=$this->db->delete('tbl_banner', array('id' => $id));
                 if ($zapak!=0) {
-                    // $path = FCPATH . "assets/public/banner/".$img;
-                    // unlink($path);
-                    redirect("dcadmin/banner/view_banner", "refresh");
+                    $this->session->set_flashdata('smessage', 'Data deleted successfully');
+                                      redirect("dcadmin/banner/view_banner", "refresh");
                 } else {
                     echo "Error";
                     exit;

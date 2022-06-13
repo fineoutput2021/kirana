@@ -33,10 +33,12 @@ class Type extends CI_finecontrol
         }
     }
     //=============================add_type=============================\\
-    public function add_type()
+    public function add_type($product_id)
     {
         if (!empty($this->session->userdata('admin_data'))) {
             $data['user_name']=$this->load->get_var('user_name');
+            $id=base64_decode($product_id);
+           $data['id']=$product_id;
 
             $this->db->select('*');
             $this->db->from('tbl_product');
@@ -68,7 +70,7 @@ class Type extends CI_finecontrol
 
 
                 if ($this->form_validation->run()== true) {
-                    $product_id=$this->input->post('product_id');
+                    $product_id=base64_decode($this->input->post('product_id'));
                     $name=$this->input->post('name');
                     $mrp=$this->input->post('mrp');
                     $sp=$this->input->post('sp');
@@ -192,6 +194,7 @@ class Type extends CI_finecontrol
             if ($this->load->get_var('position')=="Super Admin") {
                 $zapak=$this->db->delete('tbl_type', array('id' => $id));
                 if ($zapak!=0) {
+                  $this->session->set_flashdata('smessage', 'Data deleted successfully');
                     redirect("dcadmin/type/view_type", "refresh");
                 } else {
                     echo "Error";
