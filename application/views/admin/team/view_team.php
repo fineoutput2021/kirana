@@ -115,9 +115,9 @@
 													  <ul class="dropdown-menu" role="menu">
 
 														<?php if($data->is_active==1){ ?>
-														<li><a href="<?php echo base_url() ?>admin/system/updateteamStatus/<?php echo base64_encode($data->id) ?>/inactive">Inactive</a></li>
+														<li><a href="<?php echo base_url() ?>dcadmin/system/updateteamStatus/<?php echo base64_encode($data->id) ?>/inactive">Inactive</a></li>
 														<?php } else { ?>
-														<li><a href="<?php echo base_url() ?>admin/system/updateteamStatus/<?php echo base64_encode($data->id) ?>/active">Active</a></li>
+														<li><a href="<?php echo base_url() ?>dcadmin/system/updateteamStatus/<?php echo base64_encode($data->id) ?>/active">Active</a></li>
 														<?php		}   ?>
 
 														<li><a href="javascript:;" class="dCnf" mydata="<?php echo $i ?>">Delete User</a></li>

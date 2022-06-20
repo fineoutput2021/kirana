@@ -5,8 +5,8 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="<?php echo base_url() ?>dcadmin/subcategory/view_subcategory"><i class="fa fa-dashboard"></i> view subcategory </a></li>
-      <li class="active"></li>
+      <li><a href="<?php echo base_url() ?>dcadmin/subcategory/view_subcategory"><i class="fa fa-dashboard"></i> view Subcategory </a></li>
+      <!-- <li class="active"></li> -->
     </ol>
   </section>
   <section class="content">
@@ -124,7 +124,7 @@
 <script src="<?php echo base_url() ?>assets/admin/plugins/datatables/dataTables.bootstrap.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
-    
+
 
     $(document.body).on('click', '.dCnf', function() {
       var i = $(this).attr("mydata");

@@ -226,11 +226,12 @@
                   }
                   ?>
 
+
                   <span class="hidden-xs">  <? print_r($user_name); ?> </span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
-                  <li class="user-header">
+                  <li class="user-header custom_header">
 <?
                     if(!empty($imgr)){
 ?>

@@ -1,11 +1,11 @@
 <div class="content-wrapper">
   <section class="content-header">
     <h1>
-      Contact_us
+      Contact us
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li class="active"></li>
+      <!-- <li class="active"></li> -->
     </ol>
   </section>
   <section class="content">
@@ -14,7 +14,7 @@
         <!-- <a class="btn custom_btn" href="<?php echo base_url() ?>dcadmin/contact_us/add_contact_us" role="button" style="margin-bottom:12px;"> Add contact_us</a> -->
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>View contact_us</h3>
+            <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>View contact us</h3>
           </div>
           <div class="panel panel-default">
 
@@ -119,7 +119,7 @@
 <script src="<?php echo base_url() ?>assets/admin/plugins/datatables/jquery.dataTables.js"></script>
 <script src="<?php echo base_url() ?>assets/admin/plugins/datatables/dataTables.bootstrap.js"></script>
 <script type="text/javascript">
-  
+
 
     $(document.body).on('click', '.dCnf', function() {
       var i = $(this).attr("mydata");
