@@ -41,33 +41,33 @@
                   <table class="table table-hover">
 
                     <tr>
-                      <td> <strong>Promocode</strong> <span style="color:red;"></span></strong> </td>
+                      <td> <strong>Promocode</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
-                        <input type="text" name="promocode" class="form-control" placeholder="" value="<?=$promocode->promocode?>" />
+                        <input type="text" name="promocode" class="form-control" placeholder=""required value="<?=$promocode->promocode?>" />
                       </td>
                     </tr>
                     <tr>
-                      <td> <strong>Gift(%)</strong> <span style="color:red;"></span></strong> </td>
+                      <td> <strong>Gift(%)</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
-                        <input type="number" name="giftpercent" class="form-control" placeholder="" value="<?=$promocode->giftpercent?>" />
+                        <input type="number" name="giftpercent" class="form-control" placeholder=""required value="<?=$promocode->giftpercent?>" />
                       </td>
                     </tr>
                     <tr>
-                      <td> <strong>Expiry_date</strong> <span style="color:red;"></span></strong> </td>
+                      <td> <strong>Expiry_date</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
-                        <input type="date" name="expiry" class="form-control" placeholder="" value="<?=$promocode->expiry?>" />
+                        <input type="date" name="expiry" class="form-control" placeholder=""required value="<?=$promocode->expiry?>" />
                       </td>
                     </tr>
                     <tr>
-                      <td> <strong>Minimum Order Amount</strong> <span style="color:red;"></span></strong> </td>
+                      <td> <strong>Minimum Order Amount</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
-                        <input type="number" name="minorder" class="form-control" placeholder="" value="<?=$promocode->minorder?>" />
+                        <input type="number" name="minorder" class="form-control" placeholder=""required value="<?=$promocode->minorder?>" />
                       </td>
                     </tr>
                     <tr>
-                      <td> <strong>Maximum discount</strong> <span style="color:red;"></span></strong> </td>
+                      <td> <strong>Maximum discount</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
-                        <input type="number" name="max" class="form-control" placeholder="" value="<?=$promocode->max?>" />
+                        <input type="number" name="max" class="form-control" placeholder=""required value="<?=$promocode->max?>" />
                       </td>
                     </tr>
                     <tr>

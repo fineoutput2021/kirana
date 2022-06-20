@@ -54,7 +54,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <td> <strong>Name</strong> <span style="color:red;"></span></strong> </td>
+                      <td> <strong>Name</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
                         <input type="text" name="name" class="form-control" placeholder="" required value="<?=$subcategory->name?>" />
                       </td>

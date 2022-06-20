@@ -67,7 +67,7 @@
                     </tr>
 
                     <tr>
-                      <td> <strong>Name</strong> <span style="color:red;"></span></strong> </td>
+                      <td> <strong>Name</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
                         <input type="text" name="name" class="form-control" placeholder="" required value="<?=$product->name?>" />
                       </td>
@@ -117,9 +117,9 @@
                       </td>
                     </tr>
                     <tr>
-                      <td> <strong>Description</strong> <span style="color:red;"></span></strong> </td>
+                      <td> <strong>Description</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
-                        <input type="text" name="description" class="form-control" placeholder="" value="<?=$product->description?>" />
+                        <input type="text" name="description" class="form-control" placeholder=""required value="<?=$product->description?>" />
                       </td>
                     </tr>
                     <tr>

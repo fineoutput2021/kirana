@@ -5,7 +5,7 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="<?php echo base_url() ?>admin/college"><i class="fa fa-dashboard"></i> All type </a></li>
+      <li><a href="<?php echo base_url() ?>dcadmin/type/view_type"><i class="fa fa-dashboard"></i> view Type </a></li>
 
     </ol>
   </section>
@@ -61,25 +61,25 @@
                     <tr>
                       <td> <strong>MRP</strong> <span style="color:red;"></span></strong> </td>
                       <td>
-                        <input type="number" name="mrp" class="form-control" placeholder="" value="<?=$type->mrp?>" />
+                        <input type="number" name="mrp" class="form-control" placeholder=""required value="<?=$type->mrp?>" />
                       </td>
                     </tr>
                     <tr>
                       <td> <strong>Selling Price</strong> <span style="color:red;"></span></strong> </td>
                       <td>
-                        <input type="number" name="sp" id="sp" class="form-control" placeholder="" value="<?=$type->sp?>" />
+                        <input type="number" name="sp" id="sp" class="form-control" placeholder=""required value="<?=$type->sp?>" />
                       </td>
                     </tr>
                     <tr>
                       <td> <strong>GST(%)</strong> <span style="color:red;"></span></strong> </td>
                       <td>
-                        <input type="number" name="gst" id="gst" class="form-control" placeholder="" value="<?=$type->gst?>" />
+                        <input type="number" name="gst" id="gst" class="form-control" placeholder=""required value="<?=$type->gst?>" />
                       </td>
                     </tr>
                     <tr>
                       <td> <strong>Selling price with(GST)</strong> <span style="color:red;"></span></strong> </td>
                       <td>
-                        <input type="number" readonly id="spgst" name="spgst" class="form-control" placeholder="" value="<?=$type->spgst?>" />
+                        <input type="number" readonly id="spgst" name="spgst" class="form-control" placeholder=""required value="<?=$type->spgst?>" />
                       </td>
                     </tr>
 

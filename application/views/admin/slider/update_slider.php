@@ -53,10 +53,10 @@
                       </td>
                     </tr>
                     <tr>
-                      <td> <strong>Link</strong> <span style="color:red;"></span></ strong>
+                      <td> <strong>Link</strong> <span style="color:red;">*</span></ strong>
                       </td>
                       <td>
-                        <input type="url" name="link" class="form-control" placeholder="" value="<?=$slider->link?>" />
+                        <input type="url" name="link" class="form-control" placeholder="" required value="<?=$slider->link?>" />
                       </td>
                     </tr>
                     <tr>
