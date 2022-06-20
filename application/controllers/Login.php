@@ -48,7 +48,7 @@ public function admin_login_process()
 												$da_teacher= $this->db->get();
 												$da=$da_teacher->row();
 												if(!empty($da)){
-
+	if($da->is_active==1){
 															$nnn1=$da->name;
 															$nnn2=$da->password;
 
@@ -100,8 +100,12 @@ public function admin_login_process()
 
 												}
 												else{
-
-													//echo $pass;
+													$this->session->set_flashdata('emessage','Your account is inactive');
+																							// redirect("auth/login","refresh");
+																							redirect($_SERVER['HTTP_REFERER']);
+												}
+}													//echo $pass;
+												else{
 												$this->session->set_flashdata('emessage','Wrong Details Entered');
 												redirect($_SERVER['HTTP_REFERER']);
 												}
