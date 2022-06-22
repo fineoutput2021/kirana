@@ -15,7 +15,7 @@
    <link rel="stylesheet" href="css/plugins.css">
    
    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- Responsive css -->
     <link rel="stylesheet" href="css/responsive.css">
@@ -41,62 +41,75 @@
     <!-- Body main wrapper start -->
 <div class="body-wrapper">
 
-         <!-- HEADER AREA START (header-5) -->
+        <!-- HEADER AREA START (header-5) -->
     <header class="ltn__header-area ltn__header-5 ltn__header-transparent-- gradient-color-4---">
+        <!-- ltn__header-top-area start -->
     
+        <!-- ltn__header-top-area end -->
+
         <!-- ltn__header-middle-area start -->
         <div class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white sticky-active-into-mobile plr--9---">
             <div class="container">
                 <div class="row">
-                    <div class="col">
+                    <div class="col" style="display:flex;">
+                        
                         <div class="site-logo-wrap">
+                            
                             <div class="site-logo">
-                                <a href="index.html"><img src="img/logo.png" alt="Logo"></a>
+                                <a href="index.html"><img src="img\brand-logo\kirana_logo.png" alt="Logo"></a>
                             </div>
-                        </div>
+                            <a href="cart.html" title="Shoping Cart" class="d-xl-none" style="margin-left:70px;padding-top: 5px;">
+                                <span class="utilize-btn-icon">
+                                     <i class="fas fa-shopping-cart cart1" style="font-size:30px;text-align:right;"></i>
+                               </span>
+                            </a>
                     </div>
+
                     <div class="col header-menu-column menu-color-white---">
                         <div class="header-menu d-none d-xl-block">
                             <nav>
-                                <div class="ltn__main-menu">
+                                <div class="ltn__main-menu" style="margin-left:160px;">
                                     <ul>
-                                        <li class="menu-icon"><a href="#">Shop By All Categories<i class="fa fa-caret-down"></i></a>
+                                        <li class="menu-icon"><a href="#">Home</a>
+                                            
+                                        </li>
+                                        <li class="ltn__category-menu-item ltn__category-menu-drop"><a href="#">Shop By All Categories<i class="fa fa-caret-down"></i></a>
                                             <ul class="mega-menu">
-                                                <li><a href="about.html">About</a>
+                                                <li><b><a href="about.html">About</a></b>
                                                     <ul>
                                                         <li><a href="portfolio.html">Gallery</a></li>
                                                         <li><a href="portfolio-2.html">Gallery - 02</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="service.html">Services</a>
+                                                <li><b><a href="service.html">Services</a></b>
                                                      <ul>
                                                         <li><a href="service-details.html">Service Details</a></li>
                                                         <li><a href="portfolio.html">Gallery</a></li>
                                                         <li><a href="portfolio-2.html">Gallery - 02</a></li>
                                                      </ul>
                                                 </li>   
-                                                <li><a href="service-details.html">Service Details</a>
+                                                <li><b><a href="service-details.html">Service Details</a></b>
                                                     <ul>
                                                         <li><a href="portfolio.html">Gallery</a></li>
                                                         <li><a href="portfolio-2.html">Gallery - 02</a></li>
                                                         <li><a href="portfolio-details.html">Gallery Details</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="team.html">Team</a>
+                                                <li><b><a href="team.html">Team</a></b>
                                                     <ul>
                                                         <li><a href="team-details.html">Team Details</a></li>
                                                         <li><a href="faq.html">FAQ</a></li>
                                                         <li><a href="locations.html">Google Map Locations</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="team-details.html">Team Details</a>
+                                                <li><b><a href="team-details.html">Team Details</a></b>
                                                     <ul>
                                                         <li><a href="faq.html">FAQ</a></li>
                                                         <li><a href="locations.html">Google Map Locations</a></li>
                                                         <li><a href="locations.html">Google Map Locations</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="team-details.html">Team Details</a>
+                                                <li><b><a href="team-details.html">Team Details</a></b>
                                                     <ul>
                                                         <li><a href="faq.html">FAQ</a></li>
                                                         <li><a href="locations.html">Google Map Locations</a></li>
@@ -105,13 +118,8 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li class="menu-icon"><a href="index.html">Home</a>
-                                            
-                                        </li>
-                                        <li class="menu-icon"><a href="about.html">About</a>
-                                           
-                                        </li>
-                                        <li class="menu-icon"><a href="shop.html">Shop</a>
+                                        
+                                        <li class="menu-icon"><a href="shop.html">All Products</a>
                                             
                                         </li>
                                         
@@ -156,8 +164,9 @@
                                                 </a>
                                             </div>
                                             <div class="mini-cart-icon">
-                                                <a href="wishlist.html" class="ltn__utilize-toggle">
-                                                    <i class="far fa-heart"></i>
+                                                <a href="wishlist.html" class="">
+                                                    <i class="fa fa-heart"></i>
+                                                    <sup>2</sup>
                                                     
                                                 </a>
                                             </div>
@@ -169,7 +178,8 @@
                 
                         <!-- Mobile Menu Button -->
                         <div class="mobile-menu-toggle d-xl-none">
-                            <a href="#ltn__utilize-mobile-menu" class="ltn__utilize-toggle">
+                        
+                            <a href="#ltn__utilize-mobile-menu" class="ltn__utilize-toggle" style="margin-top: 15px;">
                                 <svg viewBox="0 0 800 600">
                                     <path d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200" id="top"></path>
                                     <path d="M300,320 L540,320" id="middle"></path>
@@ -179,6 +189,7 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
         <!-- ltn__header-middle-area end -->
@@ -357,10 +368,10 @@
 
             <div class="text-center mt-2">
                 <img src="img/product/1.png" width="300px" class="img-fluid text-center"></a> 
-                <h1 style="text-center mt-2">Product Name</h1>
+                <h1 class="text-center mt-2">Product Name</h1>
             </div>
             <div class="row">
-                <div class="col-6 text-center" style="justify-content-center;">
+                <div class="col-6 text-center" color="justify-content-center">
                     <p style="font-size: 25px;text-align: right;">Type:-</p>
                 </div>
                 <div class="col-6">
@@ -477,7 +488,8 @@
 
  
 <div class="shoping-cart col-lg-5 col-md-12 col-sm-12" style="width:500px;position: sticky;top: 0;">
-<table class="table" style="position:sticky;top:0;">
+    <div style="position:sticky;top:0;">
+<table class="table">
     <thead class="text-center">
         <th>Cart Summery</th>
         <th></th>
@@ -488,7 +500,7 @@
             <td>₹ 100</td>
         </tr>
         <tr>
-            <td>Shipping And Handing</td>
+            <td>Shipping</td>
             <td>₹ 50</td>
         </tr>
         <tr style="border-bottom:opx;">
@@ -500,7 +512,7 @@
 <div class="btn-wrapper text-center" style="position:sticky;top:o;">
     <a href="checkout.html" class="theme-btn-1 btn btn-effect-1">Proceed to checkout</a>
 </div>                   
-
+</div>
 </div>
     </div>
     </div>
@@ -508,137 +520,139 @@
 
 
 
-<!-- FOOTER AREA START -->
-<footer class="ltn__footer-area mt-5">
-    <div class="footer-top-area  section-bg-1 plr--5">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xl-3 col-md-6 col-6 col-12">
-                    <div class="footer-widget footer-about-widget">
-                        <div class="footer-logo">
-                            <div class="site-logo">
-                                <a href="index.html"><img src="img/logo.png" alt="Logo"></a>
+
+     <!-- FOOTER AREA START -->
+     <footer class="ltn__footer-area">
+        <div class="footer-top-area  section-bg-1 plr--5">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget footer-about-widget">
+                            <div class="footer-logo">
+                                <div class="site-logo">
+                                    <a href="index.html"><img src="img\brand-logo\kirana_logo.png" alt="Logo"></a>
+                                </div>
+                            </div>
+                            <p>Lorem Ipsum is simply dummy text of the and typesetting industry. Lorem Ipsum is dummy text of the printing.</p>
+                            <div class="footer-address">
+                                <ul>
+                                    <li>
+                                        <div class="footer-address-icon">
+                                            <i class="icon-placeholder"></i>
+                                        </div>
+                                        <div class="footer-address-info">
+                                            <p>Brooklyn, New York, United States</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="footer-address-icon">
+                                            <i class="icon-call"></i>
+                                        </div>
+                                        <div class="footer-address-info">
+                                            <p><a href="tel:+0123-456789">+0123-456789</a></p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="footer-address-icon">
+                                            <i class="icon-mail"></i>
+                                        </div>
+                                        <div class="footer-address-info">
+                                            <p><a href="mailto:example@example.com">example@example.com</a></p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="ltn__social-media mt-20">
+                                <ul>
+                                    <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+                                    <li><a href="#" title="Youtube"><i class="fab fa-youtube"></i></a></li>
+                                </ul>
                             </div>
                         </div>
-                        <p>Lorem Ipsum is simply dummy text of the and typesetting industry. Lorem Ipsum is dummy text of the printing.</p>
-                        <div class="footer-address">
-                            <ul>
-                                <li>
-                                    <div class="footer-address-icon">
-                                        <i class="icon-placeholder"></i>
-                                    </div>
-                                    <div class="footer-address-info">
-                                        <p>Brooklyn, New York, United States</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="footer-address-icon">
-                                        <i class="icon-call"></i>
-                                    </div>
-                                    <div class="footer-address-info">
-                                        <p><a href="tel:+0123-456789">+0123-456789</a></p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="footer-address-icon">
-                                        <i class="icon-mail"></i>
-                                    </div>
-                                    <div class="footer-address-info">
-                                        <p><a href="mailto:example@example.com">example@example.com</a></p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="ltn__social-media mt-20">
-                            <ul>
-                                <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
-                                <li><a href="#" title="Youtube"><i class="fab fa-youtube"></i></a></li>
-                            </ul>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget footer-menu-widget clearfix">
+                            <h4 class="footer-title">Company</h4>
+                            <div class="footer-menu">
+                                <ul>
+                                    <li><a href="#">About</a></li> <br>
+                                    <li><a href="#">Contact us</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-md-6 col-sm-6 col-12">
-                    <div class="footer-widget footer-menu-widget clearfix">
-                        <h4 class="footer-title">Company</h4>
-                        <div class="footer-menu">
-                            <ul>
-                                <li><a href="about.html">About</a></li><br>
-                                <li><a href="contact.html">Contact us</a></li>
-                            </ul>
+                    <div class="col-xl-3 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget footer-menu-widget clearfix">
+                            <h4 class="footer-title">Services.</h4>
+                            <div class="footer-menu">
+                                <ul>
+                                    
+                                    <li><a href="#">Terms & Conditions</a></li><br>
+                                    <li><a href="#">Privacy & Policy</a></li>
+                                    
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-md-6 col-sm-6 col-12">
-                    <div class="footer-widget footer-menu-widget clearfix">
-                        <h4 class="footer-title">Services.</h4>
-                        <div class="footer-menu">
-                            <ul>
-                                
-                                <li><a href="about.html">Terms & Conditions</a></li><br>
-                                <li><a href="about.html">Privacy & Policy</a></li>
-                                
-                            </ul>
+                    <!-- <div class="col-xl-2 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget footer-menu-widget clearfix">
+                            <h4 class="footer-title">Customer Care</h4>
+                            <div class="footer-menu">
+                                <ul>
+                                    <li><a href="login.html">Login</a></li>
+                                    <li><a href="account.html">My account</a></li>
+                                    <li><a href="wishlist.html">Wish List</a></li>
+                                    <li><a href="order-tracking.html">Order tracking</a></li>
+                                    <li><a href="faq.html">FAQ</a></li>
+                                    <li><a href="contact.html">Contact us</a></li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <!-- <div class="col-xl-2 col-md-6 col-sm-6 col-12">
-                    <div class="footer-widget footer-menu-widget clearfix">
-                        <h4 class="footer-title">Customer Care</h4>
-                        <div class="footer-menu">
-                            <ul>
-                                <li><a href="login.html">Login</a></li>
-                                <li><a href="account.html">My account</a></li>
-                                <li><a href="wishlist.html">Wish List</a></li>
-                                <li><a href="order-tracking.html">Order tracking</a></li>
-                                <li><a href="faq.html">FAQ</a></li>
-                                <li><a href="contact.html">Contact us</a></li>
-                            </ul>
+                    </div> -->
+                    <div class="col-xl-3 col-md-6 col-sm-12 col-12">
+                        <div class="footer-widget footer-newsletter-widget">
+                            <h4 class="footer-title">Newsletter</h4>
+                            <p>Subscribe to our weekly Newsletter and receive updates via email.</p>
+                            <div class="footer-newsletter">
+                                <form action="#">
+                                    <input type="email" name="email" placeholder="Email*">
+                                    <div class="btn-wrapper">
+                                        <button class="theme-btn-1 btn" type="submit"><i class="fas fa-location-arrow"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- <h5 class="mt-30">We Accept</h5>
+                            <img src="img/icons/payment-4.png" alt="Payment Image"> -->
                         </div>
-                    </div>
-                </div> -->
-                <div class="col-xl-3 col-md-6 col-sm-12 col-12">
-                    <div class="footer-widget footer-newsletter-widget">
-                        <h4 class="footer-title">Newsletter</h4>
-                        <p>Subscribe to our weekly Newsletter and receive updates via email.</p>
-                        <div class="footer-newsletter">
-                            <form action="#">
-                                <input type="email" name="email" placeholder="Email*">
-                                <div class="btn-wrapper">
-                                    <button class="theme-btn-1 btn" type="submit"><i class="fas fa-location-arrow"></i></button>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- <h5 class="mt-30">We Accept</h5>
-                        <img src="img/icons/payment-4.png" alt="Payment Image"> -->
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="ltn__copyright-area ltn__copyright-2 section-bg-2  ltn__border-top-2--- plr--5">
-        <div class="container-fluid">
-            <div class="row text-center">
-                <div class="col-md-12 col-12">
-                    <div class="ltn__copyright-design clearfix">
-                        <p>All Rights Reserved @ Company <span class="current-year"></span></p>
+        <div class="ltn__copyright-area ltn__copyright-2 section-bg-2  ltn__border-top-2--- plr--5">
+            <div class="container-fluid">
+                <div class="row text-center">
+                    <div class="col-md-12 col-12">
+                        <div class="ltn__copyright-design clearfix">
+                            <p>All Rights Reserved @ Company <span class="current-year"></span></p>
+                        </div>
                     </div>
+                    <!-- <div class="col-md-6 col-12 align-self-center">
+                        <div class="ltn__copyright-menu text-right">
+                            <ul>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Claim</a></li>
+                                <li><a href="#">Privacy & Policy</a></li>
+                            </ul>
+                        </div>
+                    </div> -->
                 </div>
-                <!-- <div class="col-md-6 col-12 align-self-center">
-                    <div class="ltn__copyright-menu text-right">
-                        <ul>
-                            <li><a href="#">Terms & Conditions</a></li>
-                            <li><a href="#">Claim</a></li>
-                            <li><a href="#">Privacy & Policy</a></li>
-                        </ul>
-                    </div>
-                </div> -->
             </div>
         </div>
-    </div>
-</footer>
-<!-- FOOTER AREA END -->
+    </footer>
+    <!-- FOOTER AREA END -->
+    
 
     </div>
     <!-- Body main wrapper end -->
