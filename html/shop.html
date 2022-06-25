@@ -45,23 +45,39 @@
     <div class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white sticky-active-into-mobile plr--9---">
         <div class="container">
             <div class="row">
-                <div class="col" style="display:flex;">
-                    
-                    <div class="site-logo-wrap">
-                        
-                        <div class="site-logo">
-                            <a href="index.html"><img src="img\brand-logo\kirana_logo.png" alt="Logo"></a>
-                        </div>
-                        <a href="cart.html" title="Shoping Cart" class="d-xl-none" style="margin-left:70px;padding-top: 5px;">
-                            <span class="utilize-btn-icon">
-                                 <i class="fas fa-shopping-cart cart1" style="font-size:30px;text-align:right;"></i>
-                           </span>
+                <div class="row">
+                    <div class="mobile-menu-toggle d-xl-none col-3 col-md-3 col-lg-3 mob1 mob2">
+                        <a href="#ltn__utilize-mobile-menu" class="ltn__utilize-toggle" >
+                            <svg viewBox="0 0 800 600">
+                                <path d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200" id="top"></path>
+                                <path d="M300,320 L540,320" id="middle"></path>
+                                <path d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190" id="bottom" transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
+                            </svg>
                         </a>
+                    </div> 
+                    <div class="col-6 col-md-6 col-lg-6 text-center d-lg-none mob1">
+                        <a href="index.html"><img src="img\brand-logo\kirana_logo.png" alt="Logo" style="text-align:center;"></a>
+                    </div> 
+                    <!-- Mobile Menu Button -->
+               
+                <div class="col-3 col-md-3 col-lg-6 text-right mob1">
+                    <a href="cart.html" title="Shoping Cart" class="d-xl-none ">
+                        <span class="utilize-btn-icon">
+                             <i class="fas fa-shopping-cart" style="font-size:30px;"></i>
+                       </span>
+                    </a>
+                </div>
+            </div>
+                <div class="col header-menu-column" style="display:flex;">
+                    <div class="site-logo-wrap">
+                        <div class="site-logo">
+                            <a href="index.html"><img src="img\brand-logo\kirana_logo.png" alt="Logo" style="text-align:center;"></a>
+                        </div>
                 </div>
 
                 <div class="col header-menu-column menu-color-white---">
-                    <div class="header-menu d-none d-xl-block">
-                        <nav>
+                    <div class="header-menu ">
+                        <nav class="">
                             <div class="ltn__main-menu" style="margin-left:160px;">
                                 <ul>
                                     <li class="menu-icon"><a href="index.html">Home</a>
@@ -113,7 +129,7 @@
                                         </ul>
                                     </li>
                                     
-                                    <li class="menu-icon"><a href="shop.html">All Products</a>
+                        
                                         
                                     </li>
                                     
@@ -167,19 +183,6 @@
                                 </ul>
                             </div>
                         </nav>
-                    </div>
-                </div>
-            
-                    <!-- Mobile Menu Button -->
-                    <div class="mobile-menu-toggle d-xl-none">
-                    
-                        <a href="#ltn__utilize-mobile-menu" class="ltn__utilize-toggle" style="margin-top: 15px;">
-                            <svg viewBox="0 0 800 600">
-                                <path d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200" id="top"></path>
-                                <path d="M300,320 L540,320" id="middle"></path>
-                                <path d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190" id="bottom" transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
-                            </svg>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -245,7 +248,7 @@
                 </div>
                 <div class="btn-wrapper">
                     <a href="cart.html" class="theme-btn-1 btn btn-effect-1" style="font-size:13px;">View Cart</a>
-                    <a href="cart.html" class="theme-btn-2 btn btn-effect-2" style="font-size:13px;">Checkout</a>
+                    <a href="checkout.html" class="theme-btn-2 btn btn-effect-2" style="font-size:13px;">Checkout</a>
                 </div>
                 <p>Free Shipping on All Orders Over ₹100!</p>
             </div>
