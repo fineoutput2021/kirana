@@ -33,7 +33,7 @@
                                <div class="panel panel-default">
 
                             <div class="panel-body">
-                                <div class="">
+                                <div class="box-body table-responsive no-padding">
                                     <table class="table table-bordered table-hover table-striped" id="userTable">
                                         <thead>
                                             <tr>
