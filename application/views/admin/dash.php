@@ -5,7 +5,7 @@
         <section class="content-header">
           <h1>
             Dashboard
-            <small>Version 2.0</small>
+            <small></small>
           </h1>
           <ol class="breadcrumb">
             <!-- <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li> -->
@@ -20,7 +20,7 @@
             <div class="col-md-3 col-sm-6 col-xs-12">
               <a href="<?=base_url()?>dcadmin/Product/view_product">
               <div class="info-box">
-                <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+                <span class="info-box-icon bg-aqua"><i class="fa fa-cubes" aria-hidden="true"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text">Total Products</span>
                   <span class="info-box-number"><?            $this->db->select('*');
@@ -33,7 +33,7 @@
             <div class="col-md-3 col-sm-6 col-xs-12">
               <a href="<?=base_url()?>dcadmin/contact_us/view_contact_us">
               <div class="info-box">
-                <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+                <span class="info-box-icon bg-red"><i class="fa fa-phone-square" aria-hidden="true"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text">Contact Enquiry</span>
                   <span class="info-box-number"><?                 $this->db->select('*');

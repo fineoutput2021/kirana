@@ -22,43 +22,56 @@
 </script>
 <!--end excel ------>
   <style>
-  /* /==============================Custom theme=========================================== / */
- .custom_btn{
-   color: white;
-   background-color: hsl(353deg 91% 53%);
- }
- .custom_btn:hover{
-   color: white;
-   background-color: black;
- }
- .custom_header{
-   color: white;
-   background-color: grey !important;
- }
- .custom_header>a:hover{
-   color: #fff;
-   background: hsl(353deg 91% 53%) !important;
-   border-left-color: hsl(353deg 91% 53%);
- }
- .custom_header>li>a:hover{
-   color: #fff;
-   background: #262626;
-   border-left-color: hsl(353deg 91% 53%);
- }
- .active>a{
-   color: #fff;
-   background: hsl(353deg 91% 53%) !important;
-   border-color: hsl(353deg 91% 53%) !important;
- }
+  /* ==============================Custom theme=========================================== */
+  .custom_btn{
+    color: black;
+    background-color: #84c34d;
+  }
+  .custom_btn:hover{
+    color: white;
+    background-color: black;
+  }
+  .custom_header{
+    color: white;
+    background-color: #84c34d !important;
+  }
+  .custom_sidebar{
+    color: white;
+    background-color: white !important;
+  }
+  .custom_header>a:hover{
+    color: black;
+    background: white !important;
+    border-left-color: white;
+  }
+  .custom_header>li>a:hover{
+    color: #fff;
+    background: #262626;
+    border-left-color: hsl(353deg 91% 53%);
+  }
+  .active>a{
+    color: #fff;
+    background: #84c34d !important;
+    border-color: #84c34d !important;
+  }
 .skin-blue .sidebar-menu>li>.treeview-menu{
-   color: white !important;;
-   background-color: #262626;
- }
- .skin-blue .sidebar-menu>li>a:hover{
-   color: #fff;
-   background: #262626;
-   border-left-color: hsl(353deg 91% 53%);
- }
+    color: black !important;;
+    background-color: #e5f7d5;
+  }
+  .skin-blue .treeview-menu>li>a:hover{
+    color: black !important;
+  }
+  .skin-blue .sidebar-menu>li>a:hover{
+    color: #fff;
+    background: #84c34d;
+    border-left-color: black;
+  }
+  .skin-blue .sidebar a{
+    color: black;
+  }
+.skin-blue .wrapper, .sidebar{
+    background-color: white !important;
+  }
   label{
   	margin:5px;
   }
@@ -321,7 +334,7 @@
 
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
+            <li class="header custom_header">MAIN NAVIGATION</li>
 
 
             <?

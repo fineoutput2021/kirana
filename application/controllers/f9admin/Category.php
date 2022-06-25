@@ -11,6 +11,7 @@ class Category extends CI_finecontrol
         parent::__construct();
         $this->load->model("admin/login_model");
         $this->load->model("admin/base_model");
+        $this->load->library("upload");
     }
     //====================view_category==================\\
     public function view_category()
@@ -65,9 +66,41 @@ class Category extends CI_finecontrol
 
                     $addedby=$this->session->userdata('admin_id');
 
+
+                    $img1='image';
+                    $nnnn = '';
+
+                    $file_check=($_FILES['image']['error']);
+                    if ($file_check!=4) {
+                        $image_upload_folder = FCPATH . "assets/uploads/category/";
+                        if (!file_exists($image_upload_folder)) {
+                            mkdir($image_upload_folder, DIR_WRITE_MODE, true);
+                        }
+                        $new_file_name="category_image".date("Ymdhms");
+                        $this->upload_config = array(
+                                'upload_path'   => $image_upload_folder,
+                                'file_name' => $new_file_name,
+                                'allowed_types' =>'jpg|jpeg|png',
+                                'max_size'      => 25000
+                        );
+                        $this->upload->initialize($this->upload_config);
+                        if (!$this->upload->do_upload($img1)) {
+                            $upload_error = $this->upload->display_errors();
+                            // echo json_encode($upload_error);
+                            // echo $upload_error;
+                            $this->session->set_flashdata('emessage', $upload_error);
+                            redirect($_SERVER['HTTP_REFERER']);
+                        } else {
+                            $file_info = $this->upload->data();
+
+                            $videoNAmePath = "assets/uploads/category/".$new_file_name.$file_info['file_ext'];
+                            $nnnn=$videoNAmePath;
+                        }
+                    }
                     $typ=base64_decode($t);
                     if ($typ==1) {
                         $data_insert = array('name'=>$name,
+                        'image'=>$nnnn,
                                 'ip' =>$ip,
                                 'added_by' =>$addedby,
                                 'is_active' =>1,
@@ -91,11 +124,19 @@ class Category extends CI_finecontrol
                     }
                     if ($typ==2) {
                         $idw=base64_decode($iw);
-                        $data_insert = array('name'=>$name,
-                                );
 
-                        $this->db->where('id', $idw);
-                        $last_id=$this->db->update('tbl_category', $data_insert);
+                        if (!empty($nnnn)) {
+                            $data_insert = array('name'=>$name,
+                              'image'=>$nnnn
+                                          );
+                            $this->db->where('id', $idw);
+                            $last_id=$this->db->update('tbl_category', $data_insert);
+                        } else {
+                          $data_insert = array('name'=>$name,
+                                        );
+                          $this->db->where('id', $idw);
+                          $last_id=$this->db->update('tbl_category', $data_insert);
+                        }
                         if ($last_id!=0) {
                             $this->session->set_flashdata('smessage', 'Data updated successfully');
 
