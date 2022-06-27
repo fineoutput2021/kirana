@@ -74,9 +74,17 @@
 .skin-blue .wrapper, .sidebar{
     background-color: white !important;
   }
-   .skin-blue .main-sidebar,{
+   .skin-blue .main-sidebar{
     color: #84c34d;
   }
+  .skin-blue .main-header .logo:hover {
+   background-color: #fff !important;
+   color: #84c34d;
+   border-bottom: 0 solid #1e0c0c00;
+}
+.main-header .sidebar-toggle:hover{
+    color:#84c34d !important;
+}
   label{
   	margin:5px;
   }
@@ -208,6 +216,13 @@
   .popup-close:hover:before {
     background: #fff;
   }
+.dropdown-toggle:hover {
+  background-color:#fff !important;
+}
+.skin-blue .main-header .navbar .nav>li>a:hover{
+  color:#84c34d !important;
+}
+
   </style>
   </head>
   <body class="skin-blue">
@@ -321,7 +336,7 @@
 
             </div>
             <div class="pull-left info">
-              <p> <? print_r($user_name); ?></p>
+              <p style="color:black"> <? print_r($user_name); ?></p>
 
               <!-- <a href="#"><i class="fa fa-circle text-success"></i></a> -->
             </div>
@@ -336,6 +351,7 @@
             </div>
           </form> -->
           <!-- /.search form -->
+
 
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
