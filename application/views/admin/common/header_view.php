@@ -7,6 +7,7 @@
     <link href="<?php echo base_url() ?>assets/admin/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="https://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="<?=base_url()?>assets/frontend/img/favicon.png" type="image/x-icon" />
     <link href="<?php echo base_url() ?>assets/admin/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url() ?>assets/admin/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url() ?>assets/admin/plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
@@ -15,6 +16,7 @@
     <link href="<?php echo base_url() ?>assets/admin/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url() ?>assets/admin/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url() ?>assets/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+
     <!--start excel header cdn ------>
     <link href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -22,43 +24,59 @@
 </script>
 <!--end excel ------>
   <style>
-  /* /==============================Custom theme=========================================== / */
- .custom_btn{
-   color: white;
-   background-color: hsl(353deg 91% 53%);
- }
- .custom_btn:hover{
-   color: white;
-   background-color: black;
- }
- .custom_header{
-   color: white;
-   background-color: grey !important;
- }
- .custom_header>a:hover{
-   color: #fff;
-   background: hsl(353deg 91% 53%) !important;
-   border-left-color: hsl(353deg 91% 53%);
- }
- .custom_header>li>a:hover{
-   color: #fff;
-   background: #262626;
-   border-left-color: hsl(353deg 91% 53%);
- }
- .active>a{
-   color: #fff;
-   background: hsl(353deg 91% 53%) !important;
-   border-color: hsl(353deg 91% 53%) !important;
- }
+  /* ==============================Custom theme=========================================== */
+  .custom_btn{
+    color: black;
+    background-color: #84c34d;
+  }
+  .custom_btn:hover{
+    color: white;
+    background-color: black;
+  }
+  .custom_header{
+    color: white;
+    background-color: #84c34d !important;
+  }
+  .custom_sidebar{
+    color: white;
+    background-color: white !important;
+  }
+  .custom_header>a:hover{
+    color: black;
+    background: white !important;
+    border-left-color: white;
+  }
+  .custom_header>li>a:hover{
+    color: #fff;
+    background: #262626;
+    border-left-color: hsl(353deg 91% 53%);
+  }
+  .active>a{
+    color: #fff;
+    background: #84c34d !important;
+    border-color: #84c34d !important;
+  }
 .skin-blue .sidebar-menu>li>.treeview-menu{
-   color: white !important;;
-   background-color: #262626;
- }
- .skin-blue .sidebar-menu>li>a:hover{
-   color: #fff;
-   background: #262626;
-   border-left-color: hsl(353deg 91% 53%);
- }
+    color: black !important;;
+    background-color: #e5f7d5;
+  }
+  .skin-blue .treeview-menu>li>a:hover{
+    color: black !important;
+  }
+  .skin-blue .sidebar-menu>li>a:hover{
+    color: white;
+    background: #84c34d;
+    border-left-color: black;
+  }
+  .skin-blue .sidebar a{
+    color: black;
+  }
+.skin-blue .wrapper, .sidebar{
+    background-color: white !important;
+  }
+   .skin-blue .main-sidebar,{
+    color: #84c34d;
+  }
   label{
   	margin:5px;
   }
@@ -280,7 +298,7 @@
         </nav>
       </header>
       <!-- Left side column. contains the logo and sidebar -->
-      <aside class="main-sidebar">
+      <aside class="main-sidebar custom_header">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
           <!-- Sidebar user panel -->
@@ -321,7 +339,7 @@
 
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
+            <li class="header custom_header">MAIN NAVIGATION</li>
 
 
             <?

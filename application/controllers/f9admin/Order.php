@@ -23,7 +23,7 @@ class Order extends CI_finecontrol
             $this->db->where('payment_status', 1);
             $this->db->where('order_status', 1);//new orders
             $data['order1_data']= $this->db->get();
-
+$data['heading'] = "New";
             $this->load->view('admin/common/header_view', $data);
             $this->load->view('admin/order/view_order');
             $this->load->view('admin/common/footer_view');
@@ -41,7 +41,7 @@ class Order extends CI_finecontrol
             $this->db->where('payment_status', 1);
             $this->db->where('order_status', 1);//new orders
             $data['order1_data']= $this->db->get();
-
+$data['heading'] = "Placed";
 
 
 
@@ -53,7 +53,7 @@ class Order extends CI_finecontrol
             redirect("login/admin_login", "refresh");
         }
     }
-    
+
     //================================confirmed_orders=======================\\
     public function confirmed_order()
     {
@@ -64,7 +64,7 @@ class Order extends CI_finecontrol
             $this->db->where('payment_status', 1);
             $this->db->where('order_status', 2);//new orders
             $data['order1_data']= $this->db->get();
-
+$data['heading'] = "Confirmed";
 
             $this->load->view('admin/common/header_view', $data);
             $this->load->view('admin/order/view_order');
@@ -83,6 +83,7 @@ class Order extends CI_finecontrol
             $this->db->where('payment_status', 1);
             $this->db->where('order_status', 3);//dispatched_orders
             $data['order1_data']= $this->db->get();
+            $data['heading'] = "Dispatched";
 
 
 
@@ -105,7 +106,7 @@ class Order extends CI_finecontrol
             $this->db->where('payment_status', 1);
             $this->db->where('order_status', 4);//delievered orders
             $data['order1_data']= $this->db->get();
-
+$data['heading'] = "Delievered";
 
 
 
@@ -128,7 +129,7 @@ class Order extends CI_finecontrol
             $this->db->where('payment_status', 1);
             $this->db->where('order_status', 5);//cancelled orders
             $data['order1_data']= $this->db->get();
-
+$data['heading'] = "Cancelled";
 
 
 
@@ -149,7 +150,7 @@ class Order extends CI_finecontrol
             $this->db->where('payment_status', 1);
             $this->db->where('order_status', 6);//rejected orders
             $data['order1_data']= $this->db->get();
-
+$data['heading'] = "Rejected";
 
 
 

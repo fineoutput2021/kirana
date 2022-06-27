@@ -74,7 +74,6 @@ public function admin_login_process()
 														$pos="Manager";
 													}
 
-
 												$this->session->set_userdata('admin_data',1);
 												$this->session->set_userdata('adminname', $nnn1);
 												$this->session->set_userdata('image', $nnn3);
@@ -181,7 +180,7 @@ public function admin_login_process()
 
 
 
-	               redirect("admin/home/view_team","refresh");
+	               redirect("dcadmin/home/view_team","refresh");
 
 
 
