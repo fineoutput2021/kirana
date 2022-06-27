@@ -18,7 +18,11 @@
           <!-- Info boxes -->
           <div class="row">
             <div class="col-md-3 col-sm-6 col-xs-12">
+              <? if ($this->load->get_var('position')=="Super Admin") {?>
               <a href="<?=base_url()?>dcadmin/Product/view_product">
+                <?}else{?>
+                  <a href="javascript:void(0);">
+                  <?}?>
               <div class="info-box">
                 <span class="info-box-icon bg-aqua"><i class="fa fa-cubes" aria-hidden="true"></i></span>
                 <div class="info-box-content">
@@ -31,7 +35,11 @@
               </div></a><!-- /.info-box -->
             </div><!-- /.col -->
             <div class="col-md-3 col-sm-6 col-xs-12">
+                <? if ($this->load->get_var('position')=="Super Admin") {?>
               <a href="<?=base_url()?>dcadmin/contact_us/view_contact_us">
+                <?}else{?>
+                  <a href="javascript:void(0);">
+                  <?}?>
               <div class="info-box">
                 <span class="info-box-icon bg-red"><i class="fa fa-phone-square" aria-hidden="true"></i></span>
                 <div class="info-box-content">
@@ -49,7 +57,11 @@
             <div class="clearfix visible-sm-block"></div>
 
             <div class="col-md-3 col-sm-6 col-xs-12">
+  <? if ($this->load->get_var('position')=="Super Admin") {?>
               <a href="<?=base_url()?>dcadmin/order/view_order">
+                <?}else{?>
+                  <a href="javascript:void(0);">
+                  <?}?>
               <div class="info-box">
                 <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
                 <div class="info-box-content">
@@ -63,7 +75,11 @@
               </div></a><!-- /.info-box -->
             </div><!-- /.col -->
             <div class="col-md-3 col-sm-6 col-xs-12">
+                <? if ($this->load->get_var('position')=="Super Admin") {?>
               <a href="<?=base_url()?>dcadmin/users/view_users">
+                <?}else{?>
+                  <a href="javascript:void(0);">
+                  <?}?>
               <div class="info-box">
                 <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
                 <div class="info-box-content">

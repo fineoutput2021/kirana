@@ -323,8 +323,7 @@ else{
 
 
 					$last_id=$this->base_model->insert_table("tbl_team",$data_insert,1) ;
-
-
+				
 					if($last_id!=0){
 
 					redirect("dcadmin/system/view_team","refresh");
