@@ -44,8 +44,8 @@
                       <th>Phone</th>
                       <th>Email</th>
                       <th>Message</th>
-                      <th>Status</th>
-                      <th>Action</th>
+                      <!-- <th>Status</th>
+                      <th>Action</th> -->
                     </tr>
                   </thead>
                   <tbody>
@@ -56,7 +56,7 @@
                       <td><?php echo $data->phone ?></td>
                       <td><?php echo $data->email ?></td>
                       <td><?php echo $data->message ?></td>
-
+<!--
                       <td><?php if ($data->is_active==1) { ?>
                         <p class="label bg-green">Active</p>
 
@@ -65,8 +65,8 @@
 
 
                         <?php		}   ?>
-                      </td>
-                      <td>
+                      </td> -->
+                      <!-- <td>
                         <div class="btn-group" id="btns<?php echo $i ?>">
                           <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Action <span class="caret"></span></button>
@@ -76,8 +76,8 @@
                               <li><a href="<?php echo base_url() ?>dcadmin/contact_us/updatecontact_usStatus/<?php echo base64_encode($data->id) ?>/inactive">Inactive</a></li>
                               <?php } else { ?>
                               <li><a href="<?php echo base_url() ?>dcadmin/contact_us/updatecontact_usStatus/<?php echo base64_encode($data->id) ?>/active">Active</a></li>
-                              <?php		}   ?>
-                              <li><a href="<?php echo base_url() ?>dcadmin/contact_us/update_contact_us/<?php echo base64_encode($data->id) ?>">Edit</a></li>
+                              <?php		}   ?> -->
+                              <!-- <li><a href="<?php echo base_url() ?>dcadmin/contact_us/update_contact_us/<?php echo base64_encode($data->id) ?>">Edit</a></li>
                               <li><a href="javascript:;" class="dCnf" mydata="<?php echo $i ?>">Delete</a></li>
                             </ul>
                           </div>
@@ -87,7 +87,7 @@
                           <p> Are you sure delete this </p>
                           <a href="<?php echo base_url() ?>dcadmin/contact_us/delete_contact_us/<?php echo base64_encode($data->id); ?>" class="btn btn-danger">Yes</a>
                           <a href="javasript:;" class="cans btn btn-default" mydatas="<?php echo $i ?>">No</a>
-                        </div>
+                        </div> -->
                       </td>
                     </tr>
                     <?php $i++; } ?>
