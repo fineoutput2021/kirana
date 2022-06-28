@@ -117,6 +117,14 @@
                       </td>
                     </tr>
                     <tr>
+                      <td> <strong>Feature Product</strong> <span style="color:red;"></span></strong> </td>
+                      <td>
+                        <select name="feature"  class="form-control">
+                          <option <?if($product->feature=="no"){echo "selected";}?> value="0">No</option>
+                          <option <?if($product->feature=="yes"){echo "selected";}?> value="1">Yes</option>
+                      </td>
+                    </tr>
+                    <tr>
                       <td> <strong>Description</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
                         <input type="text" name="description" class="form-control" placeholder=""required value="<?=$product->description?>" />

@@ -11,6 +11,7 @@ class Testimonials extends CI_finecontrol
         parent::__construct();
         $this->load->model("admin/login_model");
         $this->load->model("admin/base_model");
+        $this->load->library("upload");
     }
     //====================view_testimonials==================\\
     public function view_testimonials()
@@ -67,10 +68,42 @@ class Testimonials extends CI_finecontrol
 
                     $addedby=$this->session->userdata('admin_id');
 
+
+                                        $img1='image';
+                                        $nnnn = '';
+
+                                        $file_check=($_FILES['image']['error']);
+                                        if ($file_check!=4) {
+                                            $image_upload_folder = FCPATH . "assets/uploads/testimonials/";
+                                            if (!file_exists($image_upload_folder)) {
+                                                mkdir($image_upload_folder, DIR_WRITE_MODE, true);
+                                            }
+                                            $new_file_name="testimonials_image".date("Ymdhms");
+                                            $this->upload_config = array(
+                                                    'upload_path'   => $image_upload_folder,
+                                                    'file_name' => $new_file_name,
+                                                    'allowed_types' =>'jpg|jpeg|png',
+                                                    'max_size'      => 25000
+                                            );
+                                            $this->upload->initialize($this->upload_config);
+                                            if (!$this->upload->do_upload($img1)) {
+                                                $upload_error = $this->upload->display_errors();
+                                                // echo json_encode($upload_error);
+                                                // echo $upload_error;
+                                                $this->session->set_flashdata('emessage', $upload_error);
+                                                redirect($_SERVER['HTTP_REFERER']);
+                                            } else {
+                                                $file_info = $this->upload->data();
+
+                                                $videoNAmePath = "assets/uploads/testimonials/".$new_file_name.$file_info['file_ext'];
+                                                $nnnn=$videoNAmePath;
+                                            }
+                                        }
                     $typ=base64_decode($t);
                     if ($typ==1) {
                         $data_insert = array('name'=>$name,
                                 'text'=>$text,
+                                  'image'=>$nnnn,
                                 'ip' =>$ip,
                                 'added_by' =>$addedby,
                                 'is_active' =>1,
@@ -80,25 +113,62 @@ class Testimonials extends CI_finecontrol
 
                         $last_id=$this->base_model->insert_table("tbl_testimonials", $data_insert, 1) ;
                         if ($last_id!=0) {
-                            $this->session->set_flashdata('smessage', 'Data updated successfully');
-
+                            $this->session->set_flashdata('smessage', 'Data inserted successfully');
                             redirect("dcadmin/testimonials/view_testimonials", "refresh");
-                        } else {
-                            $this->session->set_flashdata('emessage', 'Sorry error occured');
-                            redirect($_SERVER['HTTP_REFERER']);
                         }
                     }
                     if ($typ==2) {
                         $idw=base64_decode($iw);
+                        $this->db->select('*');
+                                 $this->db->from('tbl_testimonials');
+                                 $this->db->where('id',$idw);
+                                 $dsa=$this->db->get();
+                                 $da=$dsa->row();
+                                 $img1='image';
+                                 $nnnn = '';
 
+                                 $file_check=($_FILES['image']['error']);
+                                 if ($file_check!=4) {
+                                     $image_upload_folder = FCPATH . "assets/uploads/testimonials/";
+                                     if (!file_exists($image_upload_folder)) {
+                                         mkdir($image_upload_folder, DIR_WRITE_MODE, true);
+                                     }
+                                     $new_file_name="testimonials_image".date("Ymdhms");
+                                     $this->upload_config = array(
+                                             'upload_path'   => $image_upload_folder,
+                                             'file_name' => $new_file_name,
+                                             'allowed_types' =>'jpg|jpeg|png',
+                                             'max_size'      => 25000
+                                     );
+                                     $this->upload->initialize($this->upload_config);
+                                     if (!$this->upload->do_upload($img1)) {
+                                         $upload_error = $this->upload->display_errors();
+                                         // echo json_encode($upload_error);
+                                         // echo $upload_error;
+                                         $this->session->set_flashdata('emessage', $upload_error);
+                                         redirect($_SERVER['HTTP_REFERER']);
+                                     } else {
+                                         $file_info = $this->upload->data();
 
+                                         $videoNAmePath = "assets/uploads/testimonials/".$new_file_name.$file_info['file_ext'];
+                                         $nnnn=$videoNAmePath;
+                                     }
+                                 }
 
+  if (!empty($nnnn)) {
                         $data_insert = array('name'=>$name,
-                      'text'=>$text,);
+                      'text'=>$text,
+                    'image'=>$nnnn,);
 
                         $this->db->where('id', $idw);
                         $last_id=$this->db->update('tbl_testimonials', $data_insert);
-                        if ($last_id!=0) {
+                      }else{
+                        $data_insert = array('name'=>$name,
+                      'text'=>$text);
+
+                        $this->db->where('id', $idw);
+                        $last_id=$this->db->update('tbl_testimonials', $data_insert);
+                      }  if ($last_id!=0) {
                             $this->session->set_flashdata('smessage', 'Data updated successfully');
 
                             redirect("dcadmin/testimonials/view_testimonials", "refresh");

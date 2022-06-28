@@ -18,10 +18,17 @@ class Home extends CI_Controller
         $this->db->from('tbl_slider');
         $this->db->where('is_active', 1);
         $data['slider_data']= $this->db->get();
+
         $this->db->select('*');
         $this->db->from('tbl_category');
         $this->db->where('is_active', 1);
         $data['category_data']= $this->db->get();
+
+        $this->db->select('*');
+        $this->db->from('tbl_testimonials');
+        $this->db->where('is_active', 1);
+        $data['testimonials_data']= $this->db->get();
+
         $this->load->view('frontend/common/header', $data);
         $this->load->view('frontend/index');
         $this->load->view('frontend/common/footer');

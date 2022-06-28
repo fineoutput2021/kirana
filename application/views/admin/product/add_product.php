@@ -93,6 +93,14 @@
                       </td>
                     </tr>
                     <tr>
+                      <td> <strong>Feature Product</strong> <span style="color:red;"></span></strong> </td>
+                      <td>
+                        <select name="feature"  class="form-control">
+                          <option value="0">No</option>
+<option value="1">Yes</option>
+                      </td>
+                    </tr>
+                    <tr>
                       <td> <strong>Description</strong> <span style="color:red;"></span></strong> </td>
                       <td>
                         <textarea name="description" id="editor1"></textarea>

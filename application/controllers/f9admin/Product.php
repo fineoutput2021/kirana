@@ -63,6 +63,7 @@ class Product extends CI_finecontrol
                 $this->form_validation->set_rules('category_id', 'category_id', 'required|xss_clean|trim');
                 $this->form_validation->set_rules('subcategory_id', 'subcategory_id', 'required|xss_clean|trim');
                 $this->form_validation->set_rules('name', 'name', 'required|xss_clean|trim');
+                $this->form_validation->set_rules('feature', 'feature', 'required|xss_clean|trim');
                 $this->form_validation->set_rules('description', 'description', 'required|xss_clean|trim');
 
 
@@ -70,6 +71,7 @@ class Product extends CI_finecontrol
                     $name=$this->input->post('name');
                     $category_id=$this->input->post('category_id');
                     $subcategory_id=$this->input->post('subcategory_id');
+                    $feature=$this->input->post('feature');
                     $description=$this->input->post('description');
 
 
@@ -222,6 +224,7 @@ class Product extends CI_finecontrol
                     'image2' =>$image2,
                     'image3' =>$image3,
                     'image4' =>$image4,
+                    'feature' =>$feature,
                     'description' =>$description,
                     'added_by' =>$addedby,
                     'is_active' =>1,
@@ -264,6 +267,7 @@ class Product extends CI_finecontrol
              'image2' =>$image2,
              'image3' =>$image3,
              'image4' =>$image4,
+             'feature' =>$feature,
              'description' =>$description,
 
 

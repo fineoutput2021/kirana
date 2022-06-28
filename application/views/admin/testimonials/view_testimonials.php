@@ -43,6 +43,7 @@
                       <th>#</th>
                       <th>User Name</th>
                       <th>Review</th>
+                      <th>Image</th>
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
@@ -53,7 +54,13 @@
                       <td><?php echo $i ?> </td>
                       <td><?php echo $data->name ?></td>
                       <td><?php echo $data->text ?></td>
-
+                      <td>
+                        <?php if ($data->image!="") {  ?>
+                        <img id="slide_img_path" height=50 width=100 src="<?php echo base_url().$data->image ?>">
+                        <?php } else {  ?>
+                        Sorry No image Found
+                        <?php } ?>
+                      </td>
                       <td><?php if ($data->is_active==1) { ?>
                         <p class="label bg-green">Active</p>
 
