@@ -80,7 +80,7 @@
                         <nav class="">
                             <div class="ltn__main-menu" style="margin-left:160px;">
                                 <ul>
-                                    <li class="menu-icon"><a href="index.html">Home</a>
+                                    <li class="menu-icon"><a href="<?=base_url()?>Home">Home</a>
 
                                     </li>
                                     <li class="ltn__category-menu-item ltn__category-menu-drop"><a href="#">Shop By All Categories<i class="fa fa-caret-down"></i></a>
@@ -133,7 +133,7 @@
 
                                     </li>
 
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="<?=base_url()?>Home/contact">Contact</a></li>
                                     <div class="ltn__header-options ltn__header-options-2 mb-sm-20">
                                         <!-- header-search-1 -->
                                         <div class="header-search-wrap">
@@ -158,10 +158,10 @@
                                                 <li>
                                                     <a href="#"><i class="icon-user"></i></a>
                                                     <ul>
-                                                        <li><a href="login.html">Sign in</a></li>
-                                                        <li><a href="register.html">Register</a></li>
+                                                        <li><a href="<?=base_url()?>Home/login">Sign in</a></li>
+                                                        <li><a href="<?=base_url()?>Home/register">Register</a></li>
                                                         <li><a href="<?=base_url()?>Home/my_profile">My Profile</a></li>
-                                                        <li><a href="wishlist.html">Wishlist</a></li>
+                                                        <li><a href="<?=base_url()?>Home/wishlist">Wishlist</a></li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -309,7 +309,7 @@
                 </li>
                 <li><a href="about.html">about</a>
                 </li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="<?=base_url()?>Home/contact_form_submit">Contact</a></li>
             </ul>
         </div>
         <div class="ltn__utilize-buttons ltn__utilize-buttons-2">

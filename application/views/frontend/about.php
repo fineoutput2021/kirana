@@ -127,86 +127,22 @@
             </div>
         </div>
         <div class="row ltn__testimonial-slider-3-active slick-arrow-1 slick-arrow-1-inner">
+          <?php $i=1; foreach ($testimonials_data->result() as $testimonials) { ?>
             <div class="col-lg-12">
                 <div class="ltn__testimonial-item ltn__testimonial-item-4">
                     <div class="ltn__testimoni-img">
-                        <img src="<?=base_url()?>assets/frontend/img/testimonial/6.jpg" alt="#">
+                        <img src="<?=base_url().$testimonials->image?>" alt="#">
                     </div>
                     <div class="ltn__testimoni-info">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. </p>
-                        <h4>Rosalina D. William</h4>
-                        <h6>Founder</h6>
+                      <p><?=$testimonials->text?></p>
+                      <h4><?=$testimonials->name?></h4>
                     </div>
                     <div class="ltn__testimoni-bg-icon">
                         <i class="far fa-comments"></i>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12">
-                <div class="ltn__testimonial-item ltn__testimonial-item-4">
-                    <div class="ltn__testimoni-img">
-                        <img src="<?=base_url()?>assets/frontend/img/testimonial/7.jpg" alt="#">
-                    </div>
-                    <div class="ltn__testimoni-info">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. </p>
-                        <h4>Rosalina D. William</h4>
-                        <h6>Founder</h6>
-                    </div>
-                    <div class="ltn__testimoni-bg-icon">
-                        <i class="far fa-comments"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-12">
-                <div class="ltn__testimonial-item ltn__testimonial-item-4">
-                    <div class="ltn__testimoni-img">
-                        <img src="<?=base_url()?>assets/frontend/img/testimonial/1.jpg" alt="#">
-                    </div>
-                    <div class="ltn__testimoni-info">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. </p>
-                        <h4>Rosalina D. William</h4>
-                        <h6>Founder</h6>
-                    </div>
-                    <div class="ltn__testimoni-bg-icon">
-                        <i class="far fa-comments"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-12">
-                <div class="ltn__testimonial-item ltn__testimonial-item-4">
-                    <div class="ltn__testimoni-img">
-                        <img src="<?=base_url()?>assets/frontend/img/testimonial/2.jpg" alt="#">
-                    </div>
-                    <div class="ltn__testimoni-info">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. </p>
-                        <h4>Rosalina D. William</h4>
-                        <h6>Founder</h6>
-                    </div>
-                    <div class="ltn__testimoni-bg-icon">
-                        <i class="far fa-comments"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-12">
-                <div class="ltn__testimonial-item ltn__testimonial-item-4">
-                    <div class="ltn__testimoni-img">
-                        <img src="<?=base_url()?>assets/frontend/img/testimonial/5.jpg" alt="#">
-                    </div>
-                    <div class="ltn__testimoni-info">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipi sicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. </p>
-                        <h4>Rosalina D. William</h4>
-                        <h6>Founder</h6>
-                    </div>
-                    <div class="ltn__testimoni-bg-icon">
-                        <i class="far fa-comments"></i>
-                    </div>
-                </div>
-            </div>
+              <?php $i++; } ?>
             <!--  -->
         </div>
     </div>
@@ -410,10 +346,10 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
                 <div class="ltn__newsletter-inner text-center">
-                    <h1 class="white-color">We make your inbox better</h1>
-                    <p class="white-color">Sign up to our newsletter to receive grooming tips, style
+                    <h1 class="black-color">We make your inbox better</h1>
+                    <p class="black-color">Sign up to our newsletter to receive grooming tips, style
                         inspiration, <br> exclusive access to pre-launch product pricing and more.</p>
-                    <form action="#" class="ltn__form-box">
+                     <form action="<?=base_url()?>Home/subscribe_data" method="POST" enctype="application/x-www-form-urlencoded">
                         <input type="email" name="email" placeholder="Email*">
                         <div class="btn-wrapper">
                             <button class="theme-btn-1 btn btn-effect-1 text-uppercase"

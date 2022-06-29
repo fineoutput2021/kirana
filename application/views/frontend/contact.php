@@ -9,7 +9,7 @@
                     </div>
                     <div class="ltn__breadcrumb-list">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="<?=base_url()?>Home">Home</a></li>
                             <li>Contact</li>
                         </ul>
                     </div>
@@ -64,12 +64,17 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="ltn__form-box contact-form-box box-shadow white-bg">
-                    <h4 class="title-2">Get A Quote</h4>
-                    <form id="contact-form" action="https://tunatheme.com/tf/html/broccoli-preview/broccoli/mail.php" method="post">
+                    <h4 class="title-2">Contact us</h4>
+                    <form id="contact-form" action="<?=base_url()?>Home/contact_form_submit" enctype="application/x-www-form-urlencoded" method="post">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="input-item input-item-name ltn__custom-icon">
-                                    <input type="text" name="name" placeholder="Enter your name">
+                                    <input type="text" name="name" placeholder="Enter your first name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-item input-item-name ltn__custom-icon">
+                                    <input type="text" name="last" placeholder="Enter your last name">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -77,7 +82,7 @@
                                     <input type="email" name="email" placeholder="Enter email address">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <div class="input-item">
                                     <select class="nice-select">
                                         <option>Select Service Type</option>
@@ -87,7 +92,7 @@
                                         <option>Land Preparation</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-md-6">
                                 <div class="input-item input-item-phone ltn__custom-icon">
                                     <input type="text" name="phone" placeholder="Enter phone number">
@@ -97,9 +102,9 @@
                         <div class="input-item input-item-textarea ltn__custom-icon">
                             <textarea name="message" placeholder="Enter message"></textarea>
                         </div>
-                        <p><label class="input-info-save mb-0"><input type="checkbox" name="agree"> Save my name, email, and website in this browser for the next time I comment.</label></p>
+                        <p><label class="input-info-save mb-0"><input type="checkbox" name="agree"> Save my name, email,phone,message and website in this browser for the next time I comment.</label></p>
                         <div class="btn-wrapper mt-0">
-                            <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">get an free service</button>
+                            <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Submit</button>
                         </div>
                         <p class="form-messege mb-0 mt-20"></p>
                     </form>

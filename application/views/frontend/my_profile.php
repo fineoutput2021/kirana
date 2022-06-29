@@ -37,7 +37,7 @@
                                     <!-- <a data-toggle="tab" href="#liton_tab_1_3">Downloads <i class="fas fa-arrow-down"></i></a>
                                     <a data-toggle="tab" href="#liton_tab_1_4">address <i class="fas fa-map-marker-alt"></i></a> -->
                                     <a data-toggle="tab" href="#liton_tab_1_5">Account Details <i class="fas fa-user"></i></a>
-                                    <a href="login.html">Logout <i class="fas fa-sign-out-alt"></i></a>
+                                    <a href="<?=base_url()?>Home/my_profile">Logout <i class="fas fa-sign-out-alt"></i></a>
                                 </div>
                             </div>
                         </div>

@@ -9,7 +9,7 @@
                     </div>
                     <div class="ltn__breadcrumb-list">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="<?=base_url()?>Home">Home</a></li>
                             <li>Login</li>
                         </ul>
                     </div>
@@ -35,14 +35,14 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="account-login-inner">
-                    <form action="#" class="ltn__form-box contact-form-box">
+                      <form action="<?=base_url()?>User/login_process"method="POST" enctype="application/x-www-form-urlencoded">
                         <input type="text" name="email" placeholder="Email*">
                         <input type="password" name="password" placeholder="Password*">
                         <div class="btn-wrapper mt-0">
                             <button class="theme-btn-1 btn btn-block" type="submit">SIGN IN</button>
                         </div>
                         <div class="go-to-btn mt-20">
-                            <a href="#"><small>FORGOTTEN YOUR PASSWORD?</small></a>
+                            <a href="#"><small>FORGOT YOUR PASSWORD?</small></a>
                         </div>
                     </form>
                 </div>
@@ -50,8 +50,7 @@
             <div class="col-lg-6">
                 <div class="account-create text-center pt-50">
                     <h4>DON'T HAVE AN ACCOUNT?</h4>
-                    <p>Add items to your wishlistget personalised recommendations <br>
-                        check out more quickly track your orders register</p>
+                    <p>Register Here</p>
                     <div class="btn-wrapper">
                         <a href="register.html" class="theme-btn-1 btn black-btn">CREATE ACCOUNT</a>
                     </div>

@@ -55,7 +55,7 @@
                        <div class="footer-menu">
                            <ul>
                                <li><a href="<?=base_url()?>Home/about">About</a></li> <br>
-                               <li><a href="contact.html">Contact us</a></li>
+                               <li><a href="<?=base_url()?>Home/contact">Contact us</a></li>
                            </ul>
                        </div>
                    </div>
@@ -66,7 +66,7 @@
                        <div class="footer-menu">
                            <ul>
 
-                               <li><a href="#">Terms & Conditions</a></li><br>
+                               <li><a href="<?=base_url()?>Home/term_and_condition">Terms & Conditions</a></li><br>
                                <li><a href="#">Privacy & Policy</a></li>
 
                            </ul>
@@ -93,7 +93,8 @@
                        <h4 class="footer-title">Newsletter</h4>
                        <p>Subscribe to our weekly Newsletter and receive updates via email.</p>
                        <div class="footer-newsletter">
-                           <form action="#">
+                         <li>Subscribe</li><br>
+                           <form action="<?=base_url()?>Home/subscribe_data" method="POST" enctype="application/x-www-form-urlencoded">
                                <input type="email" name="email" placeholder="Email*">
                                <div class="btn-wrapper">
                                    <button class="theme-btn-1 btn" type="submit"><i class="fas fa-location-arrow"></i></button>
