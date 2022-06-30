@@ -29,17 +29,22 @@ class Home extends CI_Controller
         $this->db->where('is_active', 1);
         $data['testimonials_data']= $this->db->get();
 
-                    $this->db->select('*');
+        $this->db->select('*');
         $this->db->from('tbl_product');
         $this->db->where('is_active', 1);
         $this->db->where('feature', 1);
         $data['feature_data']= $this->db->get();
 
-                    $this->db->select('*');
+        $this->db->select('*');
         $this->db->from('tbl_product');
         $this->db->where('is_active', 1);
         // $this->db->where('feature', 1);
         $data['product_data']= $this->db->get();
+
+        $this->db->select('*');
+        $this->db->from('tbl_subcategory');
+        $this->db->where('is_active', 1);
+        $data['subcategory']= $this->db->get();
 
 
 
@@ -50,10 +55,10 @@ class Home extends CI_Controller
 
     public function about()
     {
-      $this->db->select('*');
-      $this->db->from('tbl_testimonials');
-      $this->db->where('is_active', 1);
-      $data['testimonials_data']= $this->db->get();
+        $this->db->select('*');
+        $this->db->from('tbl_testimonials');
+        $this->db->where('is_active', 1);
+        $data['testimonials_data']= $this->db->get();
         $this->load->view('frontend/common/header', $data);
         $this->load->view('frontend/about');
         $this->load->view('frontend/common/footer');
@@ -68,9 +73,22 @@ class Home extends CI_Controller
 
     public function cart()
     {
-        $this->load->view('frontend/common/header');
-        $this->load->view('frontend/my_profile');
-        $this->load->view('frontend/common/footer');
+        if(!empty($this->session->userdata('user_data'))){
+
+          $this->db->select('*');
+          $this->db->from('tbl_cart');
+          $this->db->where('user_id', $this->session->userdata('user_id'));
+          $data['cart_data']= $this->db->get();
+          $data['cart_check'] = $data['cart_data']->row();
+          $this->load->view('frontend/common/header', $data);
+          $this->load->view('frontend/cart');
+          $this->load->view('frontend/common/footer');
+        }else{
+          $this->load->view('frontend/common/header');
+          $this->load->view('frontend/localcart');
+          $this->load->view('frontend/common/footer');
+        }
+
     }
 
     public function checkout()
@@ -86,7 +104,8 @@ class Home extends CI_Controller
         $this->load->view('frontend/contact');
         $this->load->view('frontend/common/footer');
     }
-    public function term_and_condition ()
+
+    public function term_and_condition()
     {
         $this->load->view('frontend/common/header');
         $this->load->view('frontend/contact');
@@ -98,38 +117,35 @@ class Home extends CI_Controller
         $this->load->view('frontend/login');
         $this->load->view('frontend/common/footer');
     }
-            public function contact_form_submit()
-
-              {
+    public function contact_form_submit()
+    {
 
                 // if(!empty($this->session->userdata('admin_data'))){
 
 
-            $this->load->helper(array('form', 'url'));
-            $this->load->library('form_validation');
-            $this->load->helper('security');
-            if($this->input->post())
-            {
-              // print_r($this->input->post());
-              // exit;
-              $this->form_validation->set_rules('name', 'name', 'required|xss_clean|trim');
-              $this->form_validation->set_rules('last', 'last', 'required|xss_clean|trim');
-              $this->form_validation->set_rules('phone', 'phone', 'require|xss_clean|trim');
-              $this->form_validation->set_rules('email', 'email', 'required|valid_email|xss_clean');
-              $this->form_validation->set_rules('message', 'message', 'required|xss_clean|trim');
-              if($this->form_validation->run()== TRUE)
-              {
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+        $this->load->helper('security');
+        if ($this->input->post()) {
+            // print_r($this->input->post());
+            // exit;
+            $this->form_validation->set_rules('name', 'name', 'required|xss_clean|trim');
+            $this->form_validation->set_rules('last', 'last', 'required|xss_clean|trim');
+            $this->form_validation->set_rules('phone', 'phone', 'require|xss_clean|trim');
+            $this->form_validation->set_rules('email', 'email', 'required|valid_email|xss_clean');
+            $this->form_validation->set_rules('message', 'message', 'required|xss_clean|trim');
+            if ($this->form_validation->run()== true) {
                 $name=$this->input->post('name');
                 $last=$this->input->post('last');
                 $phone=$this->input->post('phone');
                 $email=$this->input->post('email');
                 $message=$this->input->post('message');
 
-                  $ip = $this->input->ip_address();
-          date_default_timezone_set("Asia/Calcutta");
-                  $cur_date=date("Y-m-d H:i:s");
+                $ip = $this->input->ip_address();
+                date_default_timezone_set("Asia/Calcutta");
+                $cur_date=date("Y-m-d H:i:s");
 
-          $data_insert = array('name'=>$name." ".$last,
+                $data_insert = array('name'=>$name." ".$last,
                     'phone'=>$phone,
                     'email'=>$email,
                     'message'=>$message,
@@ -142,64 +158,55 @@ class Home extends CI_Controller
                     );
 
 
-          $last_id=$this->base_model->insert_table("tbl_contact_us",$data_insert,1) ;
+                $last_id=$this->base_model->insert_table("tbl_contact_us", $data_insert, 1) ;
 
 
 
-                              if($last_id!=0){
-                              $this->session->set_flashdata('smessage','We will get back to you soon');
-                              redirect("/","refresh");
-
-                                      }
-
-                                      else
-                                      {
-                                   $this->session->set_flashdata('emessage','Sorry error occured');
-                                     redirect($_SERVER['HTTP_REFERER']);
-                                      }
-              }
-            else{
-$this->session->set_flashdata('emessage',validation_errors());
-     redirect($_SERVER['HTTP_REFERER']);
+                if ($last_id!=0) {
+                    $this->session->set_flashdata('smessage', 'We will get back to you soon');
+                    redirect("/", "refresh");
+                } else {
+                    $this->session->set_flashdata('emessage', 'Sorry error occured');
+                    redirect($_SERVER['HTTP_REFERER']);
+                }
+            } else {
+                $this->session->set_flashdata('emessage', validation_errors());
+                redirect($_SERVER['HTTP_REFERER']);
             }
-            }
-          else{
-$this->session->set_flashdata('emessage','Please insert some data, No data available');
-     redirect($_SERVER['HTTP_REFERER']);
-          }
-          }
-            public function subscribe_data()
-
-              {
+        } else {
+            $this->session->set_flashdata('emessage', 'Please insert some data, No data available');
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+    }
+    public function subscribe_data()
+    {
 
                 // if(!empty($this->session->userdata('admin_data'))){
 
 
-            $this->load->helper(array('form', 'url'));
-            $this->load->library('form_validation');
-            $this->load->helper('security');
-            if($this->input->post())
-            {
-              // print_r($this->input->post());
-              // exit;
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+        $this->load->helper('security');
+        if ($this->input->post()) {
+            // print_r($this->input->post());
+            // exit;
 
-              $this->form_validation->set_rules('email', 'email', 'required|valid_email|xss_clean');
+            $this->form_validation->set_rules('email', 'email', 'required|valid_email|xss_clean');
 
 
-              if($this->form_validation->run()== TRUE)
-              {
+            if ($this->form_validation->run()== true) {
                 $email=$this->input->post('email');
                 // $passw=$this->input->post('password');
 
-                  $ip = $this->input->ip_address();
-          date_default_timezone_set("Asia/Calcutta");
-                  $cur_date=date("Y-m-d H:i:s");
+                $ip = $this->input->ip_address();
+                date_default_timezone_set("Asia/Calcutta");
+                $cur_date=date("Y-m-d H:i:s");
 
-                  // $addedby=$this->session->userdata('admin_id');
+                // $addedby=$this->session->userdata('admin_id');
 
 
 
-          $data_insert = array(
+                $data_insert = array(
                     // 'phone'=>$phone,
                     // 'address'=>$address,
                     'email'=>$email,
@@ -209,38 +216,26 @@ $this->session->set_flashdata('emessage','Please insert some data, No data avail
                     'is_active' =>1,
                     );
 
-          $last_id=$this->base_model->insert_table("tbl_subscribe",$data_insert,1) ;
+                $last_id=$this->base_model->insert_table("tbl_subscribe", $data_insert, 1) ;
 
-          if($last_id!=0){
-          $this->session->set_flashdata('smessage','We will get back to you soon');
-             redirect($_SERVER['HTTP_REFERER']);
-
-                  }
-
-                  else
-                  {
-               $this->session->set_flashdata('emessage','Sorry error occured');
-                 redirect($_SERVER['HTTP_REFERER']);
-                  }
-}
-else{
-$this->session->set_flashdata('emessage',validation_errors());
-redirect($_SERVER['HTTP_REFERER']);
-}
-}
-else{
-$this->session->set_flashdata('emessage','Please insert some data, No data available');
-redirect($_SERVER['HTTP_REFERER']);
-}
-}
-          
-
-    public function login()
-    {
-        $this->load->view('frontend/common/header');
-        $this->load->view('frontend/login');
-        $this->load->view('frontend/common/footer');
+                if ($last_id!=0) {
+                    $this->session->set_flashdata('smessage', 'We will get back to you soon');
+                    redirect($_SERVER['HTTP_REFERER']);
+                } else {
+                    $this->session->set_flashdata('emessage', 'Sorry error occured');
+                    redirect($_SERVER['HTTP_REFERER']);
+                }
+            } else {
+                $this->session->set_flashdata('emessage', validation_errors());
+                redirect($_SERVER['HTTP_REFERER']);
+            }
+        } else {
+            $this->session->set_flashdata('emessage', 'Please insert some data, No data available');
+            redirect($_SERVER['HTTP_REFERER']);
+        }
     }
+
+
     public function register()
     {
         $this->load->view('frontend/common/header');
@@ -263,17 +258,38 @@ redirect($_SERVER['HTTP_REFERER']);
         $this->load->view('frontend/common/footer');
     }
 
-    public function all_products()
+    public function all_products($idd)
     {
-        $this->load->view('frontend/common/header');
+        $id=base64_decode($idd);
+        $data['id']=$idd;
+        $this->db->select('*');
+        $this->db->from('tbl_product');
+        $this->db->where('is_active', 1);
+        $this->db->where('subcategory_id', $id);
+        $data['products_data']= $this->db->get();
+
+        $this->db->select('*');
+        $this->db->from('tbl_category');
+        $this->db->where('is_active', 1);
+        $data['category_data']= $this->db->get();
+        $this->load->view('frontend/common/header', $data);
         $this->load->view('frontend/all_products');
         $this->load->view('frontend/common/footer');
     }
 
-    public function producdetails()
+    public function product_detail($idd)
     {
-        $this->load->view('frontend/common/header');
-        $this->load->view('frontend/producdetails');
+        $id=base64_decode($idd);
+        $data['id']=$idd;
+        $this->db->select('*');
+        $this->db->from('tbl_product');
+        $this->db->where('is_active', 1);
+        $this->db->where('id', $id);
+        $data['related_data'] = $this->db->get();
+        $data['product_data']= $data['related_data']->row();
+
+        $this->load->view('frontend/common/header', $data);
+        $this->load->view('frontend/product_details');
         $this->load->view('frontend/common/footer');
     }
 

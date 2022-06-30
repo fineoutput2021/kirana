@@ -32,10 +32,10 @@ public function login(){
           $data['data'] = '';
     			if($this->input->post())
     			{
-						$referer = $this->input->get('referer');
-						if(empty($referer)){
-							$referer = '';
-						}
+						// $referer = $this->input->get('referer');
+						// if(empty($referer)){
+						// 	$referer = '';
+						// }
     				$this->form_validation->set_rules('email', 'email', 'required|valid_email|xss_clean|trim');
     				$this->form_validation->set_rules('password', 'password', 'required|xss_clean|trim');
     				if($this->form_validation->run()== TRUE)
@@ -66,14 +66,14 @@ public function login(){
                             $this->session->set_userdata('user_id', $db_id);
     												$this->session->set_userdata('customer_name', $db_name);
 
-                            $this->session->set_userdata('customer_email', $db_email);
-                            $this->session->set_userdata('customer_contact', $db_contact);
+	                            $this->session->set_userdata('customer_email', $db_email);
 
     											//	redirect("home","refresh");
-	                         $data['data']=true;
-													 $data['cusomer_id']=$db_id;
-													 $data['referer'] = $referer;
-redirect($_SERVER['HTTP_REFERER']);
+	                         // $data['data']=true;
+													 // $data['cusomer_id']=$db_id;
+													 // $data['referer'] = $referer;
+													 	$this->session->set_flashdata('smessage','Successfully Signned in!');
+														redirect("/", "refresh");
     					}
 							else{
 
@@ -259,7 +259,7 @@ redirect($_SERVER['HTTP_REFERER']);
 
 
         	$last_id=$this->base_model->insert_table("tbl_users",$data_insert,1) ;
-	$this->session->set_flashdata('smessage', 'Successfully Registered!');
+					$this->session->set_flashdata('smessage', 'Successfully Registered!');
 					//------send register email-------------
 												if(!empty($last_id)){
                                   //   $config = array(
@@ -333,7 +333,7 @@ redirect($_SERVER['HTTP_REFERER']);
                                     $this->session->unset_userdata('cart_data');
 																		$this->session->set_flashdata('smessage', 'Successfully Registered!');
 
- redirect($_SERVER['HTTP_REFERER']);
+ redirect("/", "refresh");
         								// $data['data']=true;
 											}else{
 												$this->session->set_flashdata('emessage', 'Users already exists with this email!');

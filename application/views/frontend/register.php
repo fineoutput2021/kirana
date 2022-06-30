@@ -18,18 +18,6 @@
         </div>
     </div>
 </div>
-<!-- BREADCRUMB AREA END -->
-		<? if(!empty($this->session->flashdata('smessage'))){ ?>
-    <div class="alert alert-success alert-dismissible fade in">
-      <strong><? echo $this->session->flashdata('smessage'); ?></strong>
-    </div>
-  <? }
-   if(!empty($this->session->flashdata('emessage'))){ ?>
-  <div class="alert alert-danger alert-dismissible fade in">
-    <strong><? echo $this->session->flashdata('emessage'); ?></strong>
-  </div>
-<? } ?>
-<!-- LOGIN AREA START (Register) -->
 <div class="ltn__login-area pb-110">
     <div class="container">
         <div class="row">

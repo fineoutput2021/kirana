@@ -10,7 +10,7 @@
                     </div>
                     <div class="ltn__breadcrumb-list">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="<?=base_url()?>Home/">Home</a></li>
                             <li>About Us</li>
                         </ul>
                     </div>

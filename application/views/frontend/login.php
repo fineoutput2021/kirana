@@ -52,7 +52,7 @@
                     <h4>DON'T HAVE AN ACCOUNT?</h4>
                     <p>Register Here</p>
                     <div class="btn-wrapper">
-                        <a href="register.html" class="theme-btn-1 btn black-btn">CREATE ACCOUNT</a>
+                        <a href="<?=base_url()?>Home/register" class="theme-btn-1 btn black-btn">CREATE ACCOUNT</a>
                     </div>
                 </div>
             </div>
