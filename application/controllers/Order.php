@@ -332,7 +332,7 @@ class Order extends CI_Controller
                             //-------cart delete---------
                             $delete=$this->db->delete('tbl_cart', array('user_id' => $user_id,'product_id'=>$odr2->product_id, 'type_id'=>$odr2->type_id));
                             $this->session->unset_userdata('cart_data');
-                            $this->session->unset_userdata('order_id');
+                            // $this->session->unset_userdata('order_id');
                             // echo "hi";die();
                         }
 

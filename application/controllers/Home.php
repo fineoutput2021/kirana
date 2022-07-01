@@ -71,6 +71,11 @@ class Home extends CI_Controller
         $this->db->from('tbl_users');
         $this->db->where('id', $this->session->userdata('user_id'));
         $data['user_data']= $this->db->get()->row();
+        $this->db->select('*');
+        $this->db->from('tbl_order1');
+        $this->db->where('order_status != ', 0);
+        $this->db->where('user_id', $this->session->userdata('user_id'));
+        $data['order1_dataa']= $this->db->get();
         $this->load->view('frontend/common/header', $data);
         $this->load->view('frontend/my_profile');
         $this->load->view('frontend/common/footer');

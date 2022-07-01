@@ -665,6 +665,7 @@ function wishlist(obj) {
             $( "#collapsibleNavbar" ).load(window.location.href + " #collapsibleNavbar > *" );
             $( "#wishlist" ).load(window.location.href + " #wishlist > *" );
             $( "#prod_det_heart" ).load(window.location.href + " #prod_det_heart > *" );
+            $( "#add_wish" ).load(window.location.href + " #add_wish > *" );
 
 
       } else if (response.data == false) {

@@ -37,7 +37,7 @@
                                     <!-- <a data-toggle="tab" href="#liton_tab_1_3">Downloads <i class="fas fa-arrow-down"></i></a>
                                     <a data-toggle="tab" href="#liton_tab_1_4">address <i class="fas fa-map-marker-alt"></i></a> -->
                                     <a data-toggle="tab" href="#liton_tab_1_5">Account Details <i class="fas fa-user"></i></a>
-                                    <a href="<?=base_url()?>Home/my_profile">Logout <i class="fas fa-sign-out-alt"></i></a>
+                                    <a href="<?=base_url()?>User/logout">Logout <i class="fas fa-sign-out-alt"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade active show" id="liton_tab_1_1">
                                     <div class="ltn__myaccount-tab-content-inner">
-                                        <p>Hello <strong>UserName</strong> (not <strong>UserName</strong>? <small><a href="login-register.html">Log out</a></small> )</p>
+                                        <p>Hello <strong><?=$user_data->name?></strong></p>
                                         <p>From your account dashboard you can view your <span>recent orders</span>, manage your <span>shipping and billing addresses</span>, and <span>edit your password and account details</span>.</p>
                                     </div>
                                 </div>
@@ -55,6 +55,7 @@
                                             <table class="table">
                                                 <thead>
                                                     <tr>
+                                                        <th>#</th>
                                                         <th>Order</th>
                                                         <th>Date</th>
                                                         <th>Status</th>
@@ -63,27 +64,36 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                  <?$i = 1; foreach($order1_dataa->result() as $order1){?>
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>Jun 22, 2019</td>
-                                                        <td>Pending</td>
-                                                        <td>₹3000</td>
-                                                        <td><a href="cart.html">View</a></td>
+                                                        <td><?=$i;?></td>
+                                                        <td><?=$order1->id?></td>
+                                                        <td><?$source = $order1->date;
+                                                           $date = new DateTime($source);
+                                                           echo $date->format('F j, Y, g:i a');?></td>
+                                                           <td><?php if ($order1->order_status==1) {?>
+                                                           <p class="label bg-green">Placed</p>
+                                                           <?} elseif ($order1->order_status==2) {?>
+                                                           <p class="label bg-blue">Confirmed</p>
+
+                                                           <?} elseif ($order1->order_status==3) {?>
+                                                           <p class="label bg-orange">Dispatched</p>
+
+                                                           <?} elseif ($order1->order_status==4) {?>
+                                                           <p class="label bg-black">Delievered</p>
+
+                                                           <?} elseif ($order1->order_status==5) {?>
+                                                           <p class="label bg-red">Cancelled</p>
+                                                           <?} else {
+                                                           echo("rejected");
+                                                           }
+
+                                                            ?>
+                                                           </td>
+                                                        <td>₹<?=$order1->final_amount;?></td>
+                                                        <td><a href="javascript:;">View</a></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Nov 22, 2019</td>
-                                                        <td>Approved</td>
-                                                        <td>₹200</td>
-                                                        <td><a href="cart.html">View</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Jan 12, 2020</td>
-                                                        <td>On Hold</td>
-                                                        <td>₹990</td>
-                                                        <td><a href="cart.html">View</a></td>
-                                                    </tr>
+                                                    <?$i++; }?>
                                                 </tbody>
                                             </table>
                                         </div>
