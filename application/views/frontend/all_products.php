@@ -67,7 +67,7 @@
 
                                 <!-- Show more menu -->
                                 <!-- <li class="ltn__category-menu-more-item-child">
-                                    <a href="shop.html"><i class="icon-shopping-bags"></i>Apple Juice</a>
+                                    <a href="#"><i class="icon-shopping-bags"></i>Apple Juice</a>
                                     <ul class="ltn__category-submenu">
                                         <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="javascript:void(0)">Handbags</a>
                                             <ul class="ltn__category-submenu-children">

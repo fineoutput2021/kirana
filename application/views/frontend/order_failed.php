@@ -9,7 +9,7 @@
                   </div>
                   <div class="ltn__breadcrumb-list">
                       <ul>
-                          <li><a href="index.html">Home</a></li>
+                          <li><a href="<?=base_url()?>Home">Home</a></li>
                           <li>Order Failed </li>
                       </ul>
                   </div>
@@ -24,12 +24,12 @@
   <div class="container-fluid">
       <div class="row">
           <div class="col-sm-12 text-center">
-              <img src="img\others\success.png" alt="success" width="100px" class="img-fluid">
+              <img src="<?=base_url()?>assets/frontend/img/others/success.png" alt="success" width="100px" class="img-fluid">
               <h2 style="font-size:35px;">Order Failed</h2>
               <h4 style="color:grey;">Something must've happened from our end. Please try again.</h4>
               <div class="btn-wrapper">
-                  <a href="cart.html" class="theme-btn-1 btn btn-effect-1">Checkout ltn__pagination</a>
-                  <a href="index.html" class="theme-btn-1 btn btn-effect-1">Add More Products</a>
+                  <a href="<?=base_url()?>Home/cart" class="theme-btn-1 btn btn-effect-1">Checkout</a>
+                  <a href="<?=base_url()?>Home" class="theme-btn-1 btn btn-effect-1">Add More Products</a>
               </div>
       </div>
       </div>

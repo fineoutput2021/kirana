@@ -182,17 +182,17 @@
                         <div class="product-info">
                           <h2 class="product-title"><a href="<?=base_url()?>Home/product_detail/<?=base64_encode($type_row->product_id)?>"><?=$product->name?></a></h2>
                           <div class="product-price">
-                            <span id="typespgst">₹<?=$type_row->spgst?></span>
-                            <del id="typemrp">₹<?=$type_row->mrp?></del>
+                            <span id="typespgst<?=$type_row->id?>">₹<?=$type_row->spgst?></span>
+                            <del id="typemrp<?=$type_row->id?>">₹<?=$type_row->mrp?></del>
                             <div class="row justify-content-center" style="padding:0px 0px;">
                               <div class="cart-plus-minus p-0">
                                 <div class="dec qtybutton" onclick="incdeec(<?=$type_row->id?>,1)">-</div>
                                 <input type="text" value="1" id="quantity<?=$type_row->id?>" readonly name="qtybutton" class="cart-plus-minus-box">
                                 <div class="inc qtybutton" onclick="incdeec(<?=$type_row->id?>,2)">+</div>
                               </div>
-                              <select class="select ml-3" onchange="typechange(this)">
+                              <select class="select ml-3" id="myselect" onchange="type_change(this)">
                                 <?foreach($type_data->result() as $type){?>
-                                <option value="<?=$type->id?>"><?=$type->name?></option>
+                                <option changes="<?=$type->id?>" value="<?=base64_encode($type->id)?>"><?=$type->name?></option>
                                 <?}?>
                               </select>
                             </div>
@@ -288,9 +288,9 @@
                                   <input type="text" value="1" id="quantity<?=$type_row->id?>" readonly name="qtybutton" class="cart-plus-minus-box">
                                   <div class="inc qtybutton" onclick="incdeec(<?=$type_row->id?>,2)">+</div>
                                 </div>
-                                <select class="select ml-3" onchange="typechange(this)">
+                                <select class="select ml-3"  onchange="type_change(this)">
                                   <?foreach($type_data->result() as $type){?>
-                                  <option value="<?=$type->id?>"><?=$type->name?></option>
+                                  <option <?if($type_row->id==$type->id){echo "selected";}?> value="<?=$type->id?>"><?=$type->name?></option>
                                   <?}?>
                                 </select>
                               </div>
@@ -366,6 +366,57 @@
     </div>
     <!-- TESTIMONIAL AREA END -->
     <script>
+    function type_change(obj){
+
+      var type_id = $(obj).val();
+      // alert(type_id)
+      var changes = $(obj).attr('changes')
+
+                $.ajax({
+                type: "POST",
+                url: "<?php echo base_url(); ?>Home/type_change",
+                data: {
+                type_id: type_id,
+                },
+                dataType: 'json',
+                success: function(response){
+                      if(response.data == 'success'){
+                         var BASE_URL = "<?php echo base_url();?>";
+                        // alert(response.update_type)
+                          // var pro_id = btoa(response.update_type.product_id);
+                          var type_id = btoa(response.update_type.id);
+                        $("#typespgst").html('₹'+response.update_type.spgst);
+                        $("#typemrp").html('₹'+response.update_type.mrp);
+
+                          // $("#add_wish").attr("product_id", pro_id);
+                          // $("#add_wish").attr("type_id", type_id);
+                          // $("#price").html();
+                        // document.getElementById("price").innerHTML = '₹'+response.update_type.spgst;
+                        //  $("#price").attr("value", response.update_type.spgst);
+                        //
+                        //  $("#add_cart").attr('quantity', 1);
+                        //  $("#qty").val(1);
+                      }
+                      else{
+
+                          }
+
+                }
+                });   //$.ajax ends here
+                // Put the results in a div
+                // posting.done(function( data ) {
+                //
+                //
+                //
+                //   var content = $( data ).find( "#content" );
+                //   // console.log(content)
+                //     alert(JSON.stringify(content));
+                //   $( "#result" ).empty().append( content );
+                // });
+
+    }
+
+
       function incdeec(i,pm){
         var oldValue = $("#quantity"+i).val()
         if (pm == 2) {
