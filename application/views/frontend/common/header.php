@@ -46,7 +46,7 @@
     <!-- ltn__header-top-area end -->
 
     <!-- ltn__header-middle-area start -->
-    <div class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white sticky-active-into-mobile plr--9---">
+    <div class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white sticky-active-into-mobile plr--9---" style="background-color: white;">
         <div class="container">
             <div class="row">
                 <div class="row">
@@ -87,7 +87,7 @@
                                     <li class="menu-icon"><a href="<?=base_url()?>Home">Home</a>
 
                                     </li>
-                                    <li class="ltn__category-menu-item ltn__category-menu-drop"><a href="#">Shop By All Categories<i class="fa fa-caret-down"></i></a>
+                                    <li class="ltn__category-menu-item ltn__category-menu-drop"><a href="javascript:void">Shop By All Categories<i class="fa fa-caret-down"></i></a>
                                         <ul class="mega-menu">
                                           <?$this->db->select('*');
                                           $this->db->from('tbl_category');
@@ -118,7 +118,7 @@
                                     <li><a href="<?=base_url()?>Home/about">About</a>
                                     </li>
 
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="<?=base_url()?>Home/contact">Contact</a></li>
                                     <div class="ltn__header-options ltn__header-options-2 mb-sm-20">
                                         <!-- header-search-1 -->
                                         <div class="header-search-wrap">
@@ -129,7 +129,7 @@
                                                 </div>
                                             </div>
                                             <div class="header-search-1-form">
-                                                <form id="#" method="get"  action="#">
+                                                <form id="searcH" method="GET"  action="<?=base_url()?>Home/search">
                                                     <input type="text" name="search" value="" placeholder="Search here..."/>
                                                     <button type="submit">
                                                         <span><i class="icon-search"></i></span>
@@ -147,15 +147,15 @@
                                                         <li><a href="<?=base_url()?>Home/sign_in">Sign in</a></li>
                                                         <li><a href="<?=base_url()?>Home/register">Register</a></li>
                                                         <?}else{?>
-                                                        <li><a href="account.html">My Account</a></li>
-                                                        <li><a href="wishlist.html">Wishlist</a></li>
+                                                        <li><a href="<?=base_url()?>Home/my_profile">My Account</a></li>
+                                                        <li><a href="<?=base_url()?>Home/wishlist">Wishlist</a></li>
                                                         <li><a href="<?=base_url()?>User/logout">Logout</a></li>
                                                         <?}?>
                                                     </ul>
                                                 </li>
                                             </ul>
                                         </div>
-                                        <?if(!empty($this->session->userdata('user_data'))){?>
+
                                         <!-- mini-cart -->
                                         <div class="mini-cart-icon" id="cartIcon">
                                             <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle">
@@ -166,14 +166,27 @@
                                                   $this->db->where('user_id', $this->session->userdata('user_id'));
                                                   $cartCount= $this->db->count_all_results();
                                                   echo $cartCount;
+                                                }else{
+                                                  $cart = $this->session->userdata('cart_data');
+                                                  if(!empty($cart)){
+                                                    echo count($cart);
+                                                  }else{
+                                                    echo "0";
+                                                  }
+
                                                 }?></sup>
                                             </a>
                                         </div>
+                                        <?if(!empty($this->session->userdata('user_data'))){
+                                          $this->db->select('*');
+                                          $this->db->from('tbl_wishlist');
+                                          $this->db->where('user_id', $this->session->userdata('user_id'));
+                                          $wishcount = $this->db->count_all_results();
+                                          ?>
                                         <div class="mini-cart-icon">
-                                            <a href="wishlist.html" class="">
+                                            <a href="<?=base_url()?>Home/wishlist" class="">
                                                 <i class="fa fa-heart"></i>
-                                                <sup>2</sup>
-
+                                                <sup><?=$wishcount?></sup>
                                             </a>
                                         </div>
                                         <?}?>
@@ -193,7 +206,7 @@
     <!-- Utilize Cart Menu Start -->
     <?if(!empty($this->session->userdata('user_data'))){?>
     <div id="ltn__utilize-cart-menu" class="ltn__utilize ltn__utilize-cart-menu">
-        <div class="ltn__utilize-menu-inner ltn__scrollbar">
+        <div class="ltn__utilize-menu-inner ltn__scrollbar" id="sideCartWeb">
           <div class="ltn__utilize-menu-head">
               <span class="ltn__utilize-menu-title">Cart</span>
               <button class="ltn__utilize-close">×</button>
@@ -252,7 +265,65 @@
               <?}?>
         </div>
     </div>
-    <?}?>
+    <?}else{?>
+      <div id="ltn__utilize-cart-menu" class="ltn__utilize ltn__utilize-cart-menu">
+          <div class="ltn__utilize-menu-inner ltn__scrollbar" id="sideCartWeb">
+            <div class="ltn__utilize-menu-head">
+                <span class="ltn__utilize-menu-title">Cart</span>
+                <button class="ltn__utilize-close">×</button>
+            </div>
+              <?
+              if (!empty($this->session->userdata('cart_data'))) {
+              $totalCart = 0;
+              $cart_data= $this->session->userdata('cart_data');
+              foreach($cart_data as $cart){
+                $this->db->select('*');
+                $this->db->from('tbl_product');
+                $this->db->where('id', $cart['product_id']);
+                $product_data = $this->db->get()->row();
+                $this->db->select('*');
+                $this->db->from('tbl_type');
+                $this->db->where('id', $cart['type_id']);
+                $type_data = $this->db->get()->row();
+              ?>
+              <div class="mini-cart-product-area ltn__scrollbar">
+                  <div class="mini-cart-item clearfix">
+                      <div class="mini-cart-img">
+                          <a href="javascript:;"><img src="<?=base_url().$product_data->image1?>" alt="Image"></a>
+                          <span class="mini-cart-item-delete" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" onclick="deleteCartOffline(this)"><i class="icon-cancel"></i></span>
+                      </div>
+                      <div class="mini-cart-info">
+                          <h6><a href="javascript:;"><?=$product_data->name?></a><br /><?=$type_data->name?></h6>
+                          <span class="mini-cart-quantity"><?=$cart['quantity']?> x ₹<?=$type_data->spgst?></span>
+                      </div>
+                  </div>
+              </div>
+              <?
+            $totalCart = $totalCart + ($cart['quantity'] * $type_data->spgst);
+            }?>
+              <div class="mini-cart-footer">
+                  <div class="mini-cart-sub-total">
+                      <h5>Subtotal: <span>₹<?=$totalCart;?></span></h5>
+                  </div>
+                  <div class="btn-wrapper">
+                      <a href="<?=base_url()?>Home/cart" class="theme-btn-1 btn btn-effect-1" style="font-size:13px;">View Cart</a>
+                  </div>
+                  <!-- <p>Free Shipping on All Orders Over ₹100!</p> -->
+              </div>
+              <?}else{?>
+                <div class="mini-cart-footer">
+                    <div class="mini-cart-sub-total">
+                        <h5>Subtotal: <span>₹0.00</span></h5>
+                    </div>
+                    <div class="btn-wrapper">
+                        <a href="<?=base_url()?>Home/cart" class="theme-btn-1 btn btn-effect-1" style="font-size:13px;">View Cart</a>
+                    </div>
+                    <!-- <p>Free Shipping on All Orders Over ₹100!</p> -->
+                </div>
+                <?}?>
+          </div>
+      </div>
+      <?}?>
     <!-- Utilize Cart Menu End -->
 
 
@@ -266,74 +337,81 @@
             <button class="ltn__utilize-close">×</button>
         </div>
         <div class="ltn__utilize-menu-search-form">
-            <form action="#">
-                <input type="text" placeholder="Search...">
-                <button><i class="fas fa-search"></i></button>
+            <form action="<?=base_url()?>Home/search" method"GET">
+                <input type="text" name="search" placeholder="Search...">
+                <button type="submit"><i class="fas fa-search"></i></button>
             </form>
         </div>
         <div class="ltn__utilize-menu">
             <ul>
                 <li><a href="<?=base_url()?>Home">Home</a>
                 </li>
-                <li><a href="#">Shop By All Categories</a>
+                <li><a href="javascript:;">Shop By All Categories</a>
                     <ul class="sub-menu pr-3">
-                        <li style="display: block;"><a href="#">Shop By All Categories</a>
+                      <?$this->db->select('*');
+                      $this->db->from('tbl_category');
+                      $this->db->where('is_active', 1);
+                      $category_data = $this->db->get();
+                      foreach($category_data->result() as $category){
+                      ?>
+                        <li style="display: block;"><a href="javascript:void(0)"><?=$category->name;?></a>
                             <ul class="sub-menu ">
-                                <li style="display: block;"><b><a href="about.html">About</a></b></li>
-                                <li style="display: block;"><b><a href="about.html">About1</a></b></li>
-                                <li style="display: block;"><b><a href="about.html">About2</a></b></li>
-
+                              <?$this->db->select('*');
+                              $this->db->from('tbl_subcategory');
+                              $this->db->where('is_active', 1);
+                              $this->db->where('category_id', $category->id);
+                              $subcategory_data= $this->db->get();
+                              foreach($subcategory_data->result() as $subcategory){
+                              ?>
+                                <li style="display: block;"><b><a href="<?=base_url()?>Home/all_products/<?=base64_encode($subcategory->id)?>"><?=$subcategory->name;?></a></b></li>
+                              <?}?>
                             </ul>
                         </li>
-                        <li style="display: block;"><a href="#">testing</a>
-                            <ul class="sub-menu ">
-                                <li style="display: block;"><b><a href="about.html">About</a></b></li>
-                                <li style="display: block;"><b><a href="about.html">About1</a></b></li>
-                                <li style="display: block;"><b><a href="about.html">About2</a></b></li>
-
-                            </ul>
-                        </li>
-                        <li style="display: block;"><a href="#">testing2</a>
-                            <ul class="sub-menu ">
-                                <li style="display: block;"><b><a href="about.html">About</a></b></li>
-                                <li style="display: block;"><b><a href="about.html">About1</a></b></li>
-                                <li style="display: block;"><b><a href="about.html">About2</a></b></li>
-
-                            </ul>
-                        </li>
+                      <?}?>
                     </ul>
                 </li>
-                <li><a href="shop.html">All Products</a>
+                <li><a href="<?=base_url()?>Home/about">About</a>
                 </li>
-                <li><a href="about.html">about</a>
-                </li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="<?=base_url()?>Home/contact">Contact</a></li>
             </ul>
         </div>
         <div class="ltn__utilize-buttons ltn__utilize-buttons-2">
             <ul>
                 <li>
-                    <a href="account.html" title="My Account">
+                    <a href="<?=base_url()?>Home/my_profile" title="My Account">
                         <span class="utilize-btn-icon">
                             <i class="far fa-user"></i>
                         </span>
                         My Account
                     </a>
                 </li>
+                <?if(!empty($this->session->userdata('user_data'))){
+                  $this->db->select('*');
+                  $this->db->from('tbl_wishlist');
+                  $this->db->where('user_id', $this->session->userdata('user_id'));
+                  $wishcount = $this->db->count_all_results();
+                  ?>
                 <li>
-                    <a href="wishlist.html" title="Wishlist">
+                    <a href="<?=base_url()?>Home/wishlist" title="Wishlist">
                         <span class="utilize-btn-icon">
                             <i class="far fa-heart"></i>
-                            <sup>3</sup>
+                            <sup><?=$wishcount;?></sup>
                         </span>
                         Wishlist
                     </a>
                 </li>
+                <?}?>
                 <li>
                     <a href="<?=base_url()?>Home/cart" title="Shoping Cart">
                         <span class="utilize-btn-icon">
                             <i class="fas fa-shopping-cart"></i>
-                            <sup>5</sup>
+                            <sup><?if(!empty($this->session->userdata('user_data'))){
+                              $this->db->select('*');
+                              $this->db->from('tbl_cart');
+                              $this->db->where('user_id', $this->session->userdata('user_id'));
+                              $cartCount= $this->db->count_all_results();
+                              echo $cartCount;
+                            }?></sup>
                         </span>
                         Shoping Cart
                     </a>

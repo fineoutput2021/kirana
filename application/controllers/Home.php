@@ -66,9 +66,15 @@ class Home extends CI_Controller
 
     public function my_profile()
     {
-        $this->load->view('frontend/common/header');
+        if(!empty($this->session->userdata('user_data'))){
+        $this->db->select('*');
+        $this->db->from('tbl_users');
+        $this->db->where('id', $this->session->userdata('user_id'));
+        $data['user_data']= $this->db->get()->row();
+        $this->load->view('frontend/common/header', $data);
         $this->load->view('frontend/my_profile');
         $this->load->view('frontend/common/footer');
+      }
     }
 
     public function cart()
@@ -219,7 +225,7 @@ class Home extends CI_Controller
                 $last_id=$this->base_model->insert_table("tbl_subscribe", $data_insert, 1) ;
 
                 if ($last_id!=0) {
-                    $this->session->set_flashdata('smessage', 'We will get back to you soon');
+                    $this->session->set_flashdata('smessage', 'Subscribed successfully!');
                     redirect($_SERVER['HTTP_REFERER']);
                 } else {
                     $this->session->set_flashdata('emessage', 'Sorry error occured');
@@ -242,6 +248,27 @@ class Home extends CI_Controller
         $this->load->view('frontend/register');
         $this->load->view('frontend/common/footer');
     }
+
+
+    public function search()
+    {
+
+      $string= $this->input->get('search');
+
+        $this->db->select('*');
+        $this->db->from('tbl_product');
+        $this->db->like('name', $string);
+        $this->db->where('is_active', 1);
+        $data['products_data']= $this->db->get();
+        $this->db->select('*');
+        $this->db->from('tbl_category');
+        $this->db->where('is_active', 1);
+        $data['category_data']= $this->db->get();
+        $this->load->view('frontend/common/header', $data);
+        $this->load->view('frontend/all_products');
+        $this->load->view('frontend/common/footer');
+    }
+
 
     public function order_failed()
     {
@@ -295,9 +322,19 @@ class Home extends CI_Controller
 
     public function wishlist()
     {
-        $this->load->view('frontend/common/header');
+        if(!empty($this->session->userdata('user_data'))){
+        $this->db->select('*');
+        $this->db->from('tbl_wishlist');
+        $this->db->where('user_id', $this->session->userdata('user_id'));
+        $data['wish_data']= $this->db->get();
+        $data['wish_check'] = $data['wish_data']->row();
+        $this->load->view('frontend/common/header', $data);
         $this->load->view('frontend/wishlist');
         $this->load->view('frontend/common/footer');
+      }else{
+        $this->session->set_flashdata('emessage', 'Please Login First!');
+        redirect("/", "refresh");
+      }
     }
     public function profile()
     {

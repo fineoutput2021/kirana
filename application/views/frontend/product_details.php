@@ -124,13 +124,14 @@
                         </a>
                         <?}?>
                     </li>
-
+                    <?if(!empty($this->session->userdata('user_data'))){?>
                     <li>
-                      <a href="broccoli/wishlist.html" class="theme-btn-1 btn btn-effect-1" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
+                      <a href="broccoli/wishlist.html" class="theme-btn-1 btn btn-effect-1" title="Wishlist">
                         <i class="far fa-heart"></i>
                         <span>ADD TO WISHLIST</span>
                       </a>
                     </li>
+                    <?}?>
 
                   </ul>
                 </div>

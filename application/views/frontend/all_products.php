@@ -10,7 +10,7 @@
                     <div class="ltn__breadcrumb-list">
                         <ul>
                             <li><a href="<?=base_url()?>Home/">Home</a></li>
-                            <li><a href="shop.html">Shop</a></li>
+                            <li><a href="javascript:;">Shop</a></li>
                         </ul>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                               <?php $i=1; foreach($category_data->result() as $category) { ?>
                                 <!-- Submenu Column - unlimited -->
                                 <li class="ltn__category-menu-item ltn__category-menu-drop">
-                                    <a href="#"><i class="icon-shopping-bags"></i><?=$category->name?></a>
+                                    <a href="javascript:void(0)"><i class="icon-shopping-bags"></i><?=$category->name?></a>
                                     <ul class="ltn__category-submenu ltn__category-column-5">
                                       <?$this->db->select('*');
                                       $this->db->from('tbl_subcategory');
@@ -69,13 +69,13 @@
                                 <!-- <li class="ltn__category-menu-more-item-child">
                                     <a href="shop.html"><i class="icon-shopping-bags"></i>Apple Juice</a>
                                     <ul class="ltn__category-submenu">
-                                        <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="#">Handbags</a>
+                                        <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="javascript:void(0)">Handbags</a>
                                             <ul class="ltn__category-submenu-children">
-                                                <li><a href="#">Clutches</a></li>
-                                                <li><a href="#">Cross Body</a></li>
-                                                <li><a href="#">Satchels</a></li>
-                                                <li><a href="#">Sholuder</a></li>
-                                                <li><a href="#">Toter</a></li>
+                                                <li><a href="javascript:void(0)">Clutches</a></li>
+                                                <li><a href="javascript:void(0)">Cross Body</a></li>
+                                                <li><a href="javascript:void(0)">Satchels</a></li>
+                                                <li><a href="javascript:void(0)">Sholuder</a></li>
+                                                <li><a href="javascript:void(0)">Toter</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -105,12 +105,14 @@
                                     <div class="ltn__product-item ltn__product-item-3 text-center">
                                         <div class="product-img">
                                             <a href="<?=base_url()?>Home/product_detail/<?=base64_encode($product->id)?>"><img src="<?=base_url().$product->image1?>" alt="#"></a>
+                                            <?if(!empty($this->session->userdata('user_data'))){?>
                                             <div class="product-badge">
-                                                <ul>
-                                                    <li class="sale-badge"><a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
+                                                <!-- <ul>
+                                                    <li class="sale-badge"><a href="javascript:void(0)" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
                                                             <i class="far fa-heart iconn"></i></a></li>
-                                                </ul>
+                                                </ul> -->
                                             </div>
+                                            <?}?>
 
                                         </div>
                                         <div class="product-info">
@@ -127,7 +129,7 @@
                                                 <del>₹<?=$first_type->mrp?></del>
                                                 <div class="row justify-content-center" style="padding:0px 0px;">
                                                     <div class="cart-plus-minus ">
-                                                        <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
+                                                        <input type="text" value="1" readonly name="qtybutton" class="cart-plus-minus-box">
                                                     </div>
                                                     <select class="select ml-3">
                                                       <?foreach($type_data->result() as $type){?>
@@ -138,7 +140,21 @@
 
                                             </div>
                                             <div class="row justify-content-center">
-                                               <a href="cart.html"><button class="btn theme-btn-1 btn-effect-1"><i class="fas fa-shopping-cart" >&nbsp;&nbsp;Add to cart</i></button></a>
+                                              <?if(empty($this->session->userdata('user_data'))){
+                                                $this->db->select('*');
+                                                $this->db->from('tbl_cart');
+                                                // $this->db->where('user_id', base64_decode($this->session->userdata('user_id')));
+                                                $this->db->where('type_id', $type->id);
+                                                $cartCheck = $this->db->get()->row();
+                                                if(empty($cartCheck)){
+                                                ?>
+                                               <a href="javascript:void(0)" product_id="<?=base64_encode($type->product_id)?>" type_id="<?=base64_encode($type->id)?>" id="addToCart" quantity=1 onclick="addToCartOffline(this)"><button class="btn theme-btn-1 btn-effect-1"><i class="fas fa-shopping-cart" >&nbsp;&nbsp;Add to cart</i></button></a>
+                                               <?}else{?>
+                                                 <a href="javascript:void(0)" product_id="<?=base64_encode($type->product_id)?>" type_id="<?=base64_encode($type->id)?>" id="addToCart" quantity=1 onclick="deleteCartOnline(this)"><button class="btn theme-btn-1 btn-effect-1"><i class="fas fa-shopping-cart" >&nbsp;&nbsp;Remove from cart</i></button></a>
+                                               <?}
+                                             }else{?>
+                                                  <a href="javascript:void(0)" product_id="<?=base64_encode($type->product_id)?>" type_id="<?=base64_encode($type->id)?>" id="addToCart" quantity=1 onclick="addToCartOnline(this)"><button class="btn theme-btn-1 btn-effect-1"><i class="fas fa-shopping-cart" >&nbsp;&nbsp;Add to cart</i></button></a>
+                                                   <?}?>
                                             </div>
                                         </div>
                                     </div>

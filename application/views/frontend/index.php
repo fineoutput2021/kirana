@@ -159,13 +159,25 @@
                     <div class="col-lg-12">
                       <div class="ltn__product-item ltn__product-item-3 text-center">
                         <div class="product-img">
-                          <a href="product-details.html"><img src="<?=base_url().$product->image1?>" alt="#"></a>
+                          <a href="<?=base_url()?>Home/product_detail/<?=base64_encode($product->id)?>"><img src="<?=base_url().$product->image1?>" alt="#"></a>
+                          <?if(!empty($this->session->userdata('user_data'))){?>
                           <div class="product-badge">
                             <ul>
-                              <li class="sale-badge"><a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
+                              <?$this->db->select('*');
+                                $this->db->from('tbl_wishlist');
+                                $this->db->where('type_id',$type_row->id);
+                                $this->db->where('user_id',$this->session->userdata('user_id'));
+                                $wishlist_data= $this->db->get()->row();
+                                if(empty($wishlist_data)){?>
+                              <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="add_wish" status="add" user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
                                   <i class="far fa-heart iconn"></i></a></li>
+                                  <?}else{?>
+                              <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="add_wish" status="remove" user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
+                                  <i class="far fa-heart-fill iconn"></i></a></li>
+                                        <?}?>
                             </ul>
                           </div>
+                          <?}?>
                         </div>
                         <div class="product-info">
                           <h2 class="product-title"><a href="product-details.html"><?=$product->name?></a></h2>
@@ -239,14 +251,15 @@
                     <div class="col-lg-12">
                       <div class="ltn__product-item ltn__product-item-3 text-center">
                         <div class="product-img">
-                          <a href="product-details.html"><img src="<?=base_url().$feature->image1?>" alt="#"></a>
+                          <a href="<?=base_url()?>Home/product_detail/<?=base64_encode($product->id)?>"><img src="<?=base_url().$feature->image1?>" alt="#"></a>
+                          <?if(!empty($this->session->userdata('user_data'))){?>
                           <div class="product-badge">
                             <ul>
                               <li class="sale-badge"><a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
                                   <i class="far fa-heart iconn"></i></a></li>
                             </ul>
                           </div>
-
+                          <?}?>
                         </div>
                         <div class="product-info">
                           <h2 class="product-title"><a href="product-details.html"><?=$feature->name?></a></h2><?

@@ -465,7 +465,7 @@ function loadSuccessNotify(succ_message){
               '</div>'
           });
 
-          $( "#ltn__utilize-cart-menu" ).load(window.location.href + " #ltn__utilize-cart-menu > *" );
+          $( "#sideCartWeb" ).load(window.location.href + " #sideCartWeb > *" );
           $( "#cartCount" ).load(window.location.href + " #cartCount > *" );
           $( "#cartDiv" ).load(window.location.href + " #cartDiv > *" );
 
@@ -503,13 +503,111 @@ function loadSuccessNotify(succ_message){
               '</div>'
           });
           $( "#here" ).load(window.location.href + " #here > *" );
-          $( "#ltn__utilize-cart-menu" ).load(window.location.href + " #ltn__utilize-cart-menu > *" );
+          $( "#sideCartWeb" ).load(window.location.href + " #sideCartWeb > *" );
           $( "#cartDiv" ).load(window.location.href + " #cartDiv > *" );
 
         }
       }
     });
   }
+
+
+  function deleteCartOffline(obj) {
+    var product_id = $(obj).attr("product_id");
+    var type_id = $(obj).attr("type_id");
+    // alert(product_id);
+    var base_path = "<?=base_url();?>";
+    $.ajax({
+      url: '<?=base_url();?>Cart/deleteCartOffline',
+      method: 'post',
+      data: {
+        product_id: product_id,
+        type_id: type_id
+      },
+      dataType: 'json',
+      success: function(response) {
+        // alert(response)
+        if (response.data == true) {
+          $.notify({
+            icon: 'fa fa-check',
+            title: '',
+            message: response.data_message
+          }, {
+            element: 'body',
+            position: null,
+            type: "success",
+            allow_dismiss: true,
+            newest_on_top: false,
+            showProgressbar: false,
+            placement: {
+              from: "top",
+              align: "right"
+            },
+            offset: 20,
+            spacing: 10,
+            z_index: 1031,
+            delay: 1000,
+            animate: {
+              enter: 'animated fadeInDown',
+              exit: 'animated fadeOutUp'
+            },
+            icon_type: 'class',
+            template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-danger  alert-dismissible fade show alert-{0}" role="alert">' +
+            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
+              '<span data-notify="title">{1}</span> ' +
+              '<span data-notify="message">{2}</span>' +
+              '<a href="{3}" target="{4}" data-notify="url"></a>' +
+              '</div>'
+          });
+
+          $( "#cartDiv" ).load(window.location.href + " #cartDiv > *" );
+          $( "#sideCartWeb" ).load(window.location.href + " #sideCartWeb > *" );
+          $( "#cartCount" ).load(window.location.href + " #cartCount > *" );
+
+        } else if (response.data == false) {
+          $.notify({
+            icon: 'fa fa-cancel',
+            title: '',
+            message: response.data_message
+          }, {
+            element: 'body',
+            position: null,
+            type: "danger",
+            allow_dismiss: true,
+            newest_on_top: false,
+            showProgressbar: true,
+            placement: {
+              from: "top",
+              align: "right"
+            },
+            offset: 20,
+            spacing: 10,
+            z_index: 1031,
+            delay: 5000,
+            animate: {
+              enter: 'animated fadeInDown',
+              exit: 'animated fadeOutUp'
+            },
+            icon_type: 'class',
+            template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-danger  alert-dismissible fade show alert-{0}" role="alert">' +
+            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
+              '<span data-notify="title">{1}</span> ' +
+              '<span data-notify="message">{2}</span>' +
+              '<a href="{3}" target="{4}" data-notify="url"></a>' +
+              '</div>'
+          });
+          $( "#here" ).load(window.location.href + " #here > *" );
+          $( "#sideCartWeb" ).load(window.location.href + " #sideCartWeb > *" );
+          $( "#cartDiv" ).load(window.location.href + " #cartDiv > *" );
+
+
+
+
+        }
+      }
+    });
+  }
+
 
       //---------------wishlist----------
 function wishlist(obj) {

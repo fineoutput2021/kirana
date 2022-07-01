@@ -47,13 +47,7 @@ function __construct()
                 // $this->db->where('id', $type_id);
                 // $pro_data = $this->db->get()->row();
                 // echo $type_id;die();
-                //-----check inventory------
-                $this->db->select('*');
-                $this->db->from('tbl_inventory');
-                $this->db->where('type_id',$type_id);
-                $inventory= $this->db->get()->row();
-                if (!empty($inventory->quantity)) {
-                    if ($inventory->quantity >= $quantity) {
+
                         //------inventory in stock--------
                         $cart_data = $this->session->userdata('cart_data');
                         //----check product in already in cart------
@@ -85,17 +79,6 @@ function __construct()
                             $respone['data_message'] = "Item successfully added in your cart";
                             echo json_encode($respone);
                         }
-                        ///---inventory out of stock--------
-                    } else {
-                        $respone['data'] = false;
-                        $respone['data_message'] ="Out of stock";
-                        echo json_encode($respone);
-                    }
-                } else {
-                    $respone['data'] = false;
-                    $respone['data_message'] ="Out of stock";
-                    echo json_encode($respone);
-                }
             } else {
                 $respone['data'] = false;
                 $respone['data_message'] =validation_errors();

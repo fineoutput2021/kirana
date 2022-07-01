@@ -4,51 +4,48 @@
 
 <!-- mobile cart end  -->
 <div class="container mt-3 ">
-    <div class="row">
+
+    <div class="row" id="cartDiv">
         <div class="col-12 col-md-8 col-lg-8 ">
-            <div style="border:1px solid #ccc" class="row">
-                <div class="col-4 col-md-4 col-lg-4 col-sm-4 p-3" style="justify-content:center">
-                    <img src="img/product/1.png" class="img-fluid"></a>
-                </div>
-                <div class="col-8 col-md-8 col-lg-8 col-sm-8 " style="justify-content: space-around;">
-                    <ul class="p-0">
-                        <li style="text-align:right; padding-bottom:0px;">
-                            <p style="font-size:20px; color:green;">X</p>
-                        </li>
-                        <li>
-                            <h4>Product Name</h4>
-                        </li>
-                        <div style="display:flex;">
-                            <li style="display:flex; font-size:20px;"><span>Type:-&nbsp</span>
-                                <div class="">
-                                    <select class="selectt" style="font-size:15px;">
-                                        <option selected>kg</option>
-                                        <option> kg-1 </option>
-                                        <option> kg-2 </option>
-                                        <option> kg-3 </option>
-                                    </select>
-                                </div>
-                            </li>
-                            <li style="display:flex; font-size:20px;margin-right:10px" class="cart2"><span
-                                    class="ml-4">Qty:-&nbsp</span>
-                                <div class=" cart-plus-minus">
-                                    <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-                                </div>
-                            </li>
-                        </div>
-                        <li style="display:flex; font-size:15px; " class="cart3"><span>Qty:-&nbsp</span>
-                            <div class=" cart-plus-minus">
-                                <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-                            </div>
-                        </li>
-                        <li style="display:flex; font-size:20px;"><span>Price:-&nbsp</span>
-                            <div>
-                                <h5 class="mt-2" style="font-size:20px; margin-left:5px;">₹ 100</h5>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+          <?
+          $totalCart = 0;
+          $cart_data= $this->session->userdata('cart_data');
+          foreach($cart_data as $cart){
+            $this->db->select('*');
+            $this->db->from('tbl_product');
+            $this->db->where('id', $cart['product_id']);
+            $product_data = $this->db->get()->row();
+            $this->db->select('*');
+            $this->db->from('tbl_type');
+            $this->db->where('id', $cart['type_id']);
+            $type_data = $this->db->get()->row();
+          ?>
+          <div style="border:1px solid #ccc" class="row">
+              <div class="col-4 col-md-4 col-lg-4 col-sm-4 p-3" style="justify-content:center">
+                  <img src="<?=base_url().$product_data->image1?>" class="img-fluid"></a>
+              </div>
+              <div class="col-8 col-md-8 col-lg-8 col-sm-8 " style="justify-content: space-around;">
+                  <ul class="p-0">
+                      <li style="text-align:right; padding-bottom:0px;">
+                          <p style="font-size:20px; color:green; cursor: pointer;" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" onclick="deleteCartOffline(this)">X</p>
+                      </li>
+                      <li>
+                          <h4><?=$product_data->name;?></h4><br />
+                          <?=$type_data->name;?>
+                      </li>
+                      <li style="display:flex; font-size:20px;"><span>Price:-&nbsp</span>
+                          <div>
+                              <h5 class="mt-2" style="font-size:20px; margin-left:5px;">₹ <?=$type_data->spgst*$cart['quantity']?></h5>
+                          </div>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+          <? $totalCart = $totalCart + ($cart['quantity'] * $type_data->spgst);
+        }?>
+
+
+
         </div>
 
 
@@ -62,20 +59,16 @@
                     <tbody>
                         <tr style="background-color:#f7f8fa;">
                             <td>Cart Subtotal</td>
-                            <td>₹ 100</td>
-                        </tr>
-                        <tr>
-                            <td>Shipping</td>
-                            <td>₹ 50</td>
+                            <td>₹<?=$totalCart?></td>
                         </tr>
                         <tr style="border-bottom:opx;">
                             <th>Order Total</th>
-                            <th>₹ 150</th>
+                            <th>₹<?=$totalCart?></th>
                         </tr>
                     </tbody>
                 </table>
                 <div class="btn-wrapper text-center" style="position:sticky;top:o;">
-                    <a href="checkout.html" class="theme-btn-1 btn btn-effect-1">Proceed to checkout</a>
+                    <a href="<?=base_url()?>Home/sign_in" class="theme-btn-1 btn btn-effect-1">Proceed To Checkout</a>
                 </div>
             </div>
         </div><!-- //side div end -->

@@ -23,19 +23,32 @@
 
 <!-- WISHLIST AREA START -->
 <!-- FEATURE AREA END -->
-<div class="container col-12">
+<div class="container col-12 mt-5">
   <div class="tab-content">
     <div class="tab-pane fade active show" id="liton_product_grid">
       <div class="ltn__product-tab-content-inner ltn__product-grid-view">
-        <div class="row">
+        <div class="row" id="wishlist">
+          <?if(!empty($wish_check)){
+            foreach($wish_data->result() as $wish){
+              $this->db->select('*');
+              $this->db->from('tbl_product');
+              $this->db->where('is_active', 1);
+              $this->db->where('id', $wish->product_id);
+              $product = $this->db->get()->row();
+              $this->db->select('*');
+              $this->db->from('tbl_type');
+              $this->db->where('is_active', 1);
+              $this->db->where('id', $wish->type_id);
+              $type= $this->db->get()->row();
+            ?>
           <!-- ltn__product-item -->
           <div class="col-xl-3 col-md-3 col-sm-6 col-6">
             <div class="ltn__product-item ltn__product-item-3 text-center">
               <div class="product-img">
-                <a href="product-details.html"><img src="img/product/1.png" alt="#"></a>
+                <a href="<?=base_url()?>Home/product_detail/<?=base64_encode($wish->product_id)?>"><img src="<?=base_url().$product->image1?>" alt="#"></a>
                 <div class="prod">
                   <ul>
-                    <li class="sale-badge"><a href="#" title="Remove" data-toggle="modal" data-target="#liton_wishlist_modal">
+                    <li class="sale-badge"><a href="javascript:;" title="Remove" onclick="wishlist(this)" product_id="<?=base64_encode($wish->product_id)?>" type_id="<?=base64_encode($wish->type_id)?>" id="add_wish" status="remove" user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
                         <h5>X</h5>
                       </a></li>
                   </ul>
@@ -45,140 +58,23 @@
               <div class="product-info">
                 <h2 class="product-title"><a href="product-details.html">Carrots Group Scal</a></h2>
                 <div class="product-price">
-                  <span>₹32.00</span>
-                  <del>₹46.00</del>
-                  <div class="row justify-content-center" style="padding:0px 21px;">
-                    <div class="cart-plus-minus ">
-                      <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-                    </div>
-                    <select class="select ml-3">
-                      <option selected> kg-1 </option>
-                      <option> kg-2 </option>
-                      <option> kg-3 </option>
-                      <option> kg-4 </option>
-                    </select>
-                  </div>
-
+                  <span>₹<?=$type->spgst?></span>
+                  <del>₹<?=$type->mrp?></del>
                 </div>
                 <div class="row justify-content-center">
-                  <a href="cart.html"><button class="btn theme-btn-1 btn-effect-1"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Add to cart</i></button></a>
+                  <a href="javascript:;" product_id="<?=base64_encode($type->product_id)?>" type_id="<?=base64_encode($type->id)?>" id="addToCart<?=$type->id?>" quantity=1 onclick="addToCartOnline(this)"><button class="btn theme-btn-1 btn-effect-1"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Add to cart</i></button></a>
                 </div>
               </div>
             </div>
           </div>
-          <!-- ltn__product-item -->
-          <div class="col-xl-3 col-md-3 col-sm-6 col-6">
-            <div class="ltn__product-item ltn__product-item-3 text-center">
-              <div class="product-img">
-                <a href="product-details.html"><img src="img/product/2.png" alt="#"></a>
-                <div class="prod">
-                  <ul>
-                    <li class="sale-badge"><a href="#" title="Remove" data-toggle="modal" data-target="#liton_wishlist_modal">
-                        <h5>X</h5>
-                      </a></li>
-                  </ul>
-                </div>
-
-              </div>
-              <div class="product-info">
-                <h2 class="product-title"><a href="product-details.html">Carrots Group Scal</a></h2>
-                <div class="product-price">
-                  <span>₹32.00</span>
-                  <del>₹46.00</del>
-                  <div class="row justify-content-center" style="padding:0px 21px;">
-                    <div class="cart-plus-minus ">
-                      <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-                    </div>
-                    <select class="select ml-3">
-                      <option selected> kg-1 </option>
-                      <option> kg-2 </option>
-                      <option> kg-3 </option>
-                      <option> kg-4 </option>
-                    </select>
-                  </div>
-
-                </div>
-                <div class="row justify-content-center">
-                  <a href="cart.html"><button class="btn theme-btn-1 btn-effect-1"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Add to cart</i></button></a>
-                </div>
-              </div>
-            </div>
+          <?}
+        }else{?>
+          <div class="tab-pane fade show active">
+            <h4>No items found in your wishlist</h4>
           </div>
+            <?}?>
 
-          <div class="col-xl-3 col-md-3 col-sm-6 col-6">
-            <div class="ltn__product-item ltn__product-item-3 text-center">
-              <div class="product-img">
-                <a href="product-details.html"><img src="img/product/2.png" alt="#"></a>
-                <div class="prod">
-                  <ul>
-                    <li class="sale-badge"><a href="#" title="Remove" data-toggle="modal" data-target="#liton_wishlist_modal">
-                        <h5>X</h5>
-                      </a></li>
-                  </ul>
-                </div>
 
-              </div>
-              <div class="product-info">
-                <h2 class="product-title"><a href="product-details.html">Carrots Group Scal</a></h2>
-                <div class="product-price">
-                  <span>₹32.00</span>
-                  <del>₹46.00</del>
-                  <div class="row justify-content-center" style="padding:0px 21px;">
-                    <div class="cart-plus-minus ">
-                      <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-                    </div>
-                    <select class="select ml-3">
-                      <option selected> kg-1 </option>
-                      <option> kg-2 </option>
-                      <option> kg-3 </option>
-                      <option> kg-4 </option>
-                    </select>
-                  </div>
-
-                </div>
-                <div class="row justify-content-center">
-                  <a href="cart.html"><button class="btn theme-btn-1 btn-effect-1"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Add to cart</i></button></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-md-3 col-sm-6 col-6">
-            <div class="ltn__product-item ltn__product-item-3 text-center">
-              <div class="product-img">
-                <a href="product-details.html"><img src="img/product/2.png" alt="#"></a>
-                <div class="prod">
-                  <ul>
-                    <li class="sale-badge"><a href="#" title="Remove" data-toggle="modal" data-target="#liton_wishlist_modal">
-                        <h5>X</h5>
-                      </a></li>
-                  </ul>
-                </div>
-
-              </div>
-              <div class="product-info">
-                <h2 class="product-title"><a href="product-details.html">Carrots Group Scal</a></h2>
-                <div class="product-price">
-                  <span>₹32.00</span>
-                  <del>₹46.00</del>
-                  <div class="row justify-content-center" style="padding:0px 21px;">
-                    <div class="cart-plus-minus ">
-                      <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-                    </div>
-                    <select class="select ml-3">
-                      <option selected> kg-1 </option>
-                      <option> kg-2 </option>
-                      <option> kg-3 </option>
-                      <option> kg-4 </option>
-                    </select>
-                  </div>
-
-                </div>
-                <div class="row justify-content-center">
-                  <a href="cart.html"><button class="btn theme-btn-1 btn-effect-1"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Add to cart</i></button></a>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

@@ -105,10 +105,6 @@ public function login(){
 	          $data['data'] = '';
 	    			if($this->input->post())
 	    			{
-							$referer = $this->input->get('referer');
-							if(empty($referer)){
-								$referer = '';
-							}
 	    				$this->form_validation->set_rules('email', 'email', 'required|valid_email|xss_clean|trim');
 	    				$this->form_validation->set_rules('password', 'password', 'required|xss_clean|trim');
 	    				if($this->form_validation->run()== TRUE)
@@ -151,13 +147,6 @@ public function login(){
 						                                            $this->db->where('type_id', $value['type_id']);
 						                                            $cartInfo= $this->db->get()->row();
 						                                            if (empty($cartInfo)) {
-						                                                //---------inventory check------------
-						                                                $this->db->select('*');
-						                                                $this->db->from('tbl_inventory');
-						                                                $this->db->where('type_id', $value['type_id']);
-						                                                $pro_data= $this->db->get()->row();
-						                                                if (!empty($pro_data)) {
-						                                                    if ($pro_data->quantity>=$value['quantity']) {
 						                                                        $data_insert = array('user_id'=> $db_id,
 						                                              'product_id'=>$value['product_id'],
 						                                              'type_id'=>$value['type_id'],
@@ -167,13 +156,11 @@ public function login(){
 						                                              );
 
 						                                                        $cart_id=$this->base_model->insert_table("tbl_cart", $data_insert, 1) ;
-						                                                    }
-						                                                }///end check innventory
+						                                                    ///end check innventory
 						                                            }
 						                                        }
 						                                    }
-						                                    $this->session->unset_userdata('cart_data');
-
+						                  $this->session->unset_userdata('cart_data');
 	    												$this->session->set_userdata('user_data',1);
 	    												$this->session->set_userdata('user_id',$db_id);
 	    												$this->session->set_userdata('user_name', $db_first_name);
@@ -182,7 +169,6 @@ public function login(){
 	    											//	redirect("home","refresh");
 		                         $data['data']=true;
 														 $data['cusomer_id']=$db_id;
-														 $data['referer'] = $referer;
 														 $this->session->set_flashdata('smessage', 'Successfully Logged in!');
 	                            redirect("/","refresh");
 	    					}
@@ -309,13 +295,6 @@ public function login(){
                                             $this->db->where('type_id', $value['type_id']);
                                             $cartInfo= $this->db->get()->row();
                                             if (empty($cartInfo)) {
-                                                //---------inventory check------------
-                                                $this->db->select('*');
-                                                $this->db->from('tbl_inventory');
-                                                $this->db->where('type_id', $value['type_id']);
-                                                $pro_data= $this->db->get()->row();
-                                                if (!empty($pro_data)) {
-                                                    if ($pro_data->quantity>=$value['quantity']) {
                                                         $data_insert = array('user_id'=> $last_id,
                                               'product_id'=>$value['product_id'],
                                               'type_id'=>$value['type_id'],
@@ -324,9 +303,7 @@ public function login(){
                                               'date'=>$cur_date
                                               );
 
-                                                        $cart_id=$this->base_model->insert_table("tbl_cart", $data_insert, 1) ;
-                                                    }
-                                                }///end check innventory
+                                                        $cart_id=$this->base_model->insert_table("tbl_cart", $data_insert, 1) ;//end check innventory
                                             }
                                         }
                                     }
