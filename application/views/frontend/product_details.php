@@ -183,85 +183,67 @@
                     <div class="tab-pane fade active show" id="liton_tab_3_1">
                       <div class="ltn__product-tab-content-inner">
                         <div class="row ltn__tab-product-slider-one-active slick-arrow-1 col-md-12">
-                          <?foreach($related_data->result() as $related){?>
-                          <!-- ltn__product-item -->
-                          <div class="col-lg-12">
-                            <div class="ltn__product-item ltn__product-item-3 text-center">
-                              <div class="product-img">
-                                <a href="product-details.html"><img src="<?=base_url()?>assets/frontend/img/product/7.png" alt="#"></a>
-                                <div class="product-badge">
-                                  <ul>
-                                    <li class="sale-badge"><a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                        <i class="far fa-heart iconn"></i></a></li>
-                                  </ul>
-                                </div>
-
-                              </div>
-                              <div class="product-info">
-                                <h2 class="product-title"><a href="product-details.html">Carrots Group Scal</a></h2>
-                                <div class="product-price">
-                                  <span>₹32.00</span>
-                                  <del>₹46.00</del>
-                                  <div class="row justify-content-between" style="padding:0px 21px;">
-                                    <div class="cart-plus-minus p-0">
-                                      <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-                                    </div>
-                                    <select class="select">
-                                      <option selected>kg</option>
-                                      <option> kg-1 </option>
-                                      <option> kg-2 </option>
-                                      <option> kg-3 </option>
-                                      <option> kg-4 </option>
-                                    </select>
+                          <?php $i=1; foreach($related_data->result() as $feature) {
+                            $this->db->select('*');
+                            $this->db->from('tbl_type');
+                            $this->db->where('is_active', 1);
+                            $this->db->where('product_id', $feature->id);
+                            $type_data = $this->db->get();
+                            $type_row = $type_data->row();?>
+                            <div class="col-lg-12">
+                              <div class="ltn__product-item ltn__product-item-3 text-center">
+                                <div class="product-img">
+                                  <a href="<?=base_url()?>Home/product_detail/<?=base64_encode($feature->id)?>"><img src="<?=base_url().$feature->image1?>" alt="#"></a>
+                                  <?if(!empty($this->session->userdata('user_data'))){?>
+                                  <div class="product-badge">
+                                    <ul>
+                                      <?$this->db->select('*');
+                                        $this->db->from('tbl_wishlist');
+                                        $this->db->where('type_id',$type_row->id);
+                                        $this->db->where('user_id',$this->session->userdata('user_id'));
+                                        $wishlist_data= $this->db->get()->row();
+                                        if(empty($wishlist_data)){?>
+                                      <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="add_wish" status="add" user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
+                                          <i class="far fa-heart iconn"></i></a></li>
+                                          <?}else{?>
+                                      <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="add_wish" status="remove" user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
+                                          <i class="far fa-heart-fill iconn"></i></a></li>
+                                                <?}?>
+                                    </ul>
                                   </div>
-
+                                  <?}?>
                                 </div>
-                                <div class="row">
-                                  <a href="cart.html"><button class="btn theme-btn-1 btn-effect-1 ml-3"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Add to cart</i></button></a>
+                                <div class="product-info">
+                                  <h2 class="product-title"><a href="<?=base_url()?>Home/product_detail/<?=base64_encode($feature->id)?>"><?=$feature->name?></a></h2>
+                                  <div class="product-price">
+                                    <span id="typespgst">₹<?=$type_row->spgst?></span>
+                                    <del id="typemrp">₹<?=$type_row->mrp?></del>
+                                    <div class="row justify-content-center" style="padding:0px 0px;">
+                                      <div class="cart-plus-minus p-0">
+                                        <div class="dec qtybutton" onclick="incdeec(<?=$type_row->id?>,1)">-</div>
+                                        <input type="text" value="1" id="quantity<?=$type_row->id?>" readonly name="qtybutton" class="cart-plus-minus-box">
+                                        <div class="inc qtybutton" onclick="incdeec(<?=$type_row->id?>,2)">+</div>
+                                      </div>
+                                      <select class="select ml-3" onchange="typechange(this)">
+                                        <?foreach($type_data->result() as $type){?>
+                                        <option value="<?=$type->id?>"><?=$type->name?></option>
+                                        <?}?>
+                                      </select>
+                                    </div>
+
+                                  </div>
+                                  <div class="row justify-content-center">
+                                    <?if(empty($this->session->userdata('user_data'))){?>
+                                    <a href="javascript:void(0)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="addToCart<?=$type_row->id?>" quantity=1 onclick="addToCartOffline(this)"><button class="btn theme-btn-1 btn-effect-1"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Add to cart</i></button></a>
+                                    <?}else{?>
+                                      <a href="javascript:void(0)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="addToCart<?=$type_row->id?>" quantity=1 onclick="addToCartOnline(this)"><button class="btn theme-btn-1 btn-effect-1"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Add to cart</i></button></a>
+                                      <?}?>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
+      <?}?>
 
-
-                          <div class="col-lg-12">
-                            <div class="ltn__product-item ltn__product-item-3 text-center">
-                              <div class="product-img">
-                                <a href="product-details.html"><img src="<?=base_url()?>assets/frontend/img/product/3.png" alt="#"></a>
-                                <div class="product-badge">
-                                  <ul>
-                                    <li class="sale-badge"><a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                        <i class="far fa-heart iconn"></i></a></li>
-                                  </ul>
-                                </div>
-
-                              </div>
-                              <div class="product-info">
-                                <h2 class="product-title"><a href="product-details.html">Carrots Group Scal</a></h2>
-                                <div class="product-price">
-                                  <span>₹32.00</span>
-                                  <del>₹46.00</del>
-                                  <div class="row justify-content-between" style="padding:0px 0px;">
-                                    <div class="cart-plus-minus p-0">
-                                      <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-                                    </div>
-                                    <select class="select">
-                                      <option selected>kg</option>
-                                      <option> kg-1 </option>
-                                      <option> kg-2 </option>
-                                      <option> kg-3 </option>
-                                      <option> kg-4 </option>
-                                    </select>
-                                  </div>
-
-                                </div>
-                                <div class="row">
-                                  <a href="cart.html"><button class="btn theme-btn-1 btn-effect-1 ml-3"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Add to cart</i></button></a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <?}?>
                           <!-- ltn__product-item -->
 
 
