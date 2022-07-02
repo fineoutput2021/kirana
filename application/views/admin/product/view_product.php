@@ -100,7 +100,13 @@
                         Sorry No image Found
                         <?php } ?>
                       </td>
-                      <td><?php echo $data->feature ?></td>
+                      <td><?php
+                       if($data->feature==1){
+                        echo"yes";
+                      }else{
+                          echo"no";
+                         }
+                       ?></td>
                       <td><?php echo $data->description ?></td>
 
                       <td><?php if ($data->is_active==1) { ?>
