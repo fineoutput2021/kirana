@@ -5,12 +5,12 @@
             <div class="col-lg-12">
                 <div class="ltn__breadcrumb-inner ltn__breadcrumb-inner-2 justify-content-between">
                     <div class="section-title-area ltn__section-title-2">
-                        <h1 class="section-title white-color">Shop</h1>
+                        <h1 class="section-title white-color"><?=$subcategoryName?></h1>
                     </div>
                     <div class="ltn__breadcrumb-list">
                         <ul>
                             <li><a href="<?=base_url()?>Home/">Home</a></li>
-                            <li><a href="javascript:;">Shop</a></li>
+                            <li><a href="javascript:;"><?=$subcategoryName?></a></li>
                         </ul>
                     </div>
                 </div>
@@ -120,13 +120,13 @@
                                             $this->db->where('user_id', $this->session->userdata('user_id'));
                                             $wishlist_data= $this->db->get()->row();
                                             if (empty($wishlist_data)) {?>
-                                          <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="add_wish" status="add"
+                                          <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="add_wish<?=$product->id?>" status="add"
                                               user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
                                               <i class="far fa-heart iconn"></i></a></li>
                                           <?} else {?>
-                                          <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="add_wish" status="remove"
+                                          <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="add_wish<?=$product->id?>" status="remove"
                                               user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
-                                              <i class="far fa-heart-fill iconn"></i></a></li>
+                                              <i class="far fa-heart iconn"></i></a></li>
                                           <?}?>
                                         </ul>
                                       </div>

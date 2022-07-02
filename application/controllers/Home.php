@@ -319,6 +319,7 @@ class Home extends CI_Controller
         $this->db->from('tbl_category');
         $this->db->where('is_active', 1);
         $data['category_data']= $this->db->get();
+        $data['subcategoryName'] = "Search Results";
         $this->load->view('frontend/common/header', $data);
         $this->load->view('frontend/all_products');
         $this->load->view('frontend/common/footer');
@@ -345,6 +346,13 @@ class Home extends CI_Controller
         $id=base64_decode($idd);
         $data['id']=$idd;
         $this->db->select('*');
+        $this->db->from('tbl_subcategory');
+        $this->db->where('is_active', 1);
+        $this->db->where('id', $id);
+        $sub_data = $this->db->get()->row();
+        $data['subcategoryName'] = $sub_data->name;
+
+        $this->db->select('*');
         $this->db->from('tbl_product');
         $this->db->where('is_active', 1);
         $this->db->where('subcategory_id', $id);
@@ -354,6 +362,7 @@ class Home extends CI_Controller
         $this->db->from('tbl_category');
         $this->db->where('is_active', 1);
         $data['category_data']= $this->db->get();
+        
         $this->load->view('frontend/common/header', $data);
         $this->load->view('frontend/all_products');
         $this->load->view('frontend/common/footer');

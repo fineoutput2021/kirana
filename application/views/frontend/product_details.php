@@ -221,7 +221,7 @@
                                       <?} else {?>
                                       <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="add_wish" status="remove"
                                           user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
-                                          <i class="far fa-heart-fill iconn"></i></a></li>
+                                          <i class="far fa-heart iconn"></i></a></li>
                                       <?}?>
                                     </ul>
                                   </div>

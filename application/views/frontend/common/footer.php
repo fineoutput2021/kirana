@@ -163,6 +163,7 @@ function type_change(obj) {
         $("#typespgst" + changes).html('₹' + response.update_type.spgst);
         $("#typemrp" + changes).html('₹' + response.update_type.mrp);
         $("#addToCart" + changes).attr('type_id', type_id);
+        $("#add_wish" + changes).attr('type_id', type_id);
 
         // $("#add_wish").attr("product_id", pro_id);
         // $("#add_wish").attr("type_id", type_id);
