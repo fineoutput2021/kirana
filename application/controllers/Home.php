@@ -400,7 +400,16 @@ class Home extends CI_Controller
         $this->db->where('is_active', 1);
         $this->db->where('id', $id);
         $data['product_data'] = $this->db->get()->row();
-
+        $this->db->select('*');
+        $this->db->from('tbl_type');
+        $this->db->where('is_active', 1);
+        $this->db->where('product_id', $data['product_data']);
+        $type_check = $this->db->get()->row();
+        if(empty($type_check)){
+          $this->session->set_flashdata('emessage', 'No Products Found');
+          redirect("/", "refresh");
+          exit;
+        }
         $this->db->select('*');
         $this->db->from('tbl_product');
         $this->db->where('is_active', 1);
