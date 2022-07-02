@@ -296,6 +296,12 @@ class Order extends CI_Controller
                     $ip = $this->input->ip_address();
                     date_default_timezone_set("Asia/Calcutta");
                     $cur_date=date("Y-m-d H:i:s");
+                    $this->db->select('*');
+                    $this->db->from('tbl_users');
+                    $this->db->where('id', $user_id);
+                    $user_data = $this->db->get()->row();
+                    if(!empty($user_data)){
+                    if($user_data->is_active==1){
 
                     //----------order1 entry-------------
                     $order1_update = array(
@@ -381,6 +387,24 @@ class Order extends CI_Controller
                         $respone['data_message'] ="Some error occured";
                         echo json_encode($respone);
                     }
+                  }else{
+                    $this->session->unset_userdata('user_data');
+                    $this->session->unset_userdata('user_id');
+                    $this->session->unset_userdata('user_name');
+                    $this->session->unset_userdata('user_email');
+                    $respone['data'] = false;
+                    $respone['data_message'] ="Your account is inactive! Contact Admin";
+                    echo json_encode($respone);
+                  }
+                }else{
+                  $this->session->unset_userdata('user_data');
+                  $this->session->unset_userdata('user_id');
+                  $this->session->unset_userdata('user_name');
+                  $this->session->unset_userdata('user_email');
+                  $respone['data'] = false;
+                  $respone['data_message'] ="User Not Found!";
+                  echo json_encode($respone);
+                }
                 } else {
                   $respone['data'] = false;
                   $respone['data_message'] = validation_errors();

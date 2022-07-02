@@ -71,6 +71,8 @@ class Home extends CI_Controller
             $this->db->from('tbl_users');
             $this->db->where('id', $this->session->userdata('user_id'));
             $data['user_data']= $this->db->get()->row();
+            if(!empty($data['user_data'])){
+            if($data['user_data']->is_active==1){
             $this->db->select('*');
             $this->db->from('tbl_order1');
             $this->db->where('order_status != ', 0);
@@ -79,6 +81,22 @@ class Home extends CI_Controller
             $this->load->view('frontend/common/header', $data);
             $this->load->view('frontend/my_profile');
             $this->load->view('frontend/common/footer');
+          }else{
+              $this->session->unset_userdata('user_data');
+              $this->session->unset_userdata('user_id');
+              $this->session->unset_userdata('user_name');
+              $this->session->unset_userdata('user_email');
+            $this->session->set_flashdata('emessage','Your account is inactive! Please contact admin');
+            redirect("/", "refresh");
+          }
+        }else{
+              $this->session->unset_userdata('user_data');
+            $this->session->unset_userdata('user_id');
+            $this->session->unset_userdata('user_name');
+            $this->session->unset_userdata('user_email');
+          $this->session->set_flashdata('emessage','User not found');
+          redirect("/", "refresh");
+        }
         }
     }
 
@@ -100,12 +118,6 @@ class Home extends CI_Controller
         }
     }
 
-    public function checkout()
-    {
-        $this->load->view('frontend/common/header');
-        $this->load->view('frontend/checkout');
-        $this->load->view('frontend/common/footer');
-    }
 
     public function contact()
     {
@@ -416,12 +428,6 @@ class Home extends CI_Controller
             $this->session->set_flashdata('emessage', 'Please Login First!');
             redirect("/", "refresh");
         }
-    }
-    public function profile()
-    {
-        $this->load->view('frontend/common/header');
-        $this->load->view('frontend/my_profile');
-        $this->load->view('frontend/common/footer');
     }
 
     public function error404()

@@ -50,6 +50,7 @@ public function login(){
     												$da_customer= $this->db->get();
     												$da=$da_customer->row();
     												if(!empty($da)){
+															if($da->is_active==1){
 
     															$db_name=$da->name;
     															$db_id=$da->id;
@@ -81,6 +82,10 @@ public function login(){
 								redirect($_SERVER['HTTP_REFERER']);
 
 							}
+						}else{
+							$this->session->set_flashdata('emessage','Your account is inactive! Please contact admin');
+							redirect($_SERVER['HTTP_REFERER']);
+						}
 						}
 						else{
 							$this->session->set_flashdata('emessage','Invalid email or password!');
