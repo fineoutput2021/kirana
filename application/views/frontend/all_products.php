@@ -114,7 +114,7 @@
                                   <option value="AZ">Sort by A-Z</option>
                                   <option value="ZA">Sort by Z-A</option>
                                   <option value="NA">Sort by New Arrivals</option>
-                                  <option value="FP">Sort by Feature Products</option>
+                                  <option value="FP">Sort by Trending Products</option>
 
                               </select>
                           </div>

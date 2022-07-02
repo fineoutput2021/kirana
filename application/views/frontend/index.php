@@ -241,7 +241,7 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="section-title-area ltn__section-title-2 text-center">
-              <h1 class="section-title">Featured Products</h1>
+              <h1 class="section-title">Trending Products</h1>
             </div>
 
             <div class="ltn__tab-menu ltn__tab-menu-2 ltn__tab-menu-top-right-- text-uppercase text-center">

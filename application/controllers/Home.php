@@ -138,67 +138,53 @@ class Home extends CI_Controller
         $this->load->view('frontend/login');
         $this->load->view('frontend/common/footer');
     }
-    public function contact_form_submit()
-    {
 
-                // if(!empty($this->session->userdata('admin_data'))){
-
-
-        $this->load->helper(array('form', 'url'));
-        $this->load->library('form_validation');
-        $this->load->helper('security');
-        if ($this->input->post()) {
-            // print_r($this->input->post());
-            // exit;
-            $this->form_validation->set_rules('name', 'name', 'required|xss_clean|trim');
-            $this->form_validation->set_rules('last', 'last', 'required|xss_clean|trim');
-            $this->form_validation->set_rules('phone', 'phone', 'require|xss_clean|trim');
-            $this->form_validation->set_rules('email', 'email', 'required|valid_email|xss_clean');
-            $this->form_validation->set_rules('message', 'message', 'required|xss_clean|trim');
-            if ($this->form_validation->run()== true) {
-                $name=$this->input->post('name');
-                $last=$this->input->post('last');
-                $phone=$this->input->post('phone');
-                $email=$this->input->post('email');
-                $message=$this->input->post('message');
-
-                $ip = $this->input->ip_address();
-                date_default_timezone_set("Asia/Calcutta");
-                $cur_date=date("Y-m-d H:i:s");
-
-                $data_insert = array('name'=>$name." ".$last,
-                    'phone'=>$phone,
-                    'email'=>$email,
-                    'message'=>$message,
-
-                    'ip' =>$ip,
-                    // 'added_by' =>$addedby,
-                    'is_active' =>1,
-                    'date'=>$cur_date
-
-                    );
+public function contact_form_submit(){
+    $this->load->helper(array('form', 'url'));
+  	$this->load->library('form_validation');
+  	$this->load->helper('security');
+  	if($this->input->post())
+  	{
+  	$this->form_validation->set_rules('name', 'name', 'xss_clean|trim');
+  	$this->form_validation->set_rules('last', 'last', 'xss_clean|trim');
+  	$this->form_validation->set_rules('phone', 'phone', 'xss_clean|trim');
+  	$this->form_validation->set_rules('message', 'message', 'xss_clean|trim');
+  	$this->form_validation->set_rules('email', 'email', 'xss_clean|trim');
 
 
-                $last_id=$this->base_model->insert_table("tbl_contact_us", $data_insert, 1) ;
+  		if($this->form_validation->run()== TRUE)
+  		{
+         $name=$this->input->post('name');
+         $last=$this->input->post('last');
+         $phone=$this->input->post('phone');
+         $message=$this->input->post('message');
+         $email=$this->input->post('email');
+         $ip = $this->input->ip_address();
+         date_default_timezone_set("Asia/Calcutta");
+         $cur_date=date("Y-m-d H:i:s");
 
+         $data_insert = array('name'=>$name." ".$last,
+         'email'=>$email,
+         'phone'=>$phone,
+         'message'=>$message,
+         'ip'=>$ip,
+         'date'=>$cur_date
+       );
 
-
-                if ($last_id!=0) {
-                    $this->session->set_flashdata('smessage', 'We will get back to you soon');
-                    redirect("/", "refresh");
-                } else {
-                    $this->session->set_flashdata('emessage', 'Sorry error occured');
-                    redirect($_SERVER['HTTP_REFERER']);
-                }
-            } else {
-                $this->session->set_flashdata('emessage', validation_errors());
-                redirect($_SERVER['HTTP_REFERER']);
-            }
-        } else {
-            $this->session->set_flashdata('emessage', 'Please insert some data, No data available');
-            redirect($_SERVER['HTTP_REFERER']);
-        }
-    }
+       $last_id=$this->base_model->insert_table("tbl_contact_us", $data_insert, 1) ;
+       if($last_id!=0){
+         $this->session->set_flashdata('smessage', "Thank you for your response!");
+         redirect("/", "refresh");
+       }
+      } else {
+          $this->session->set_flashdata('emessage', validation_errors());
+          redirect($_SERVER['HTTP_REFERER']);
+      }
+  } else {
+      $this->session->set_flashdata('emessage', 'Please insert some data, No data available');
+      redirect($_SERVER['HTTP_REFERER']);
+  }
+}
     public function subscribe_data()
     {
 
