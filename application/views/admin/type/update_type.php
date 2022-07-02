@@ -39,7 +39,7 @@
               <form action="<?php echo base_url() ?>dcadmin/type/add_type_data/<?php echo base64_encode(2); ?>/<?=$id?>" method="POST" id="slide_frm" enctype="multipart/form-data">
                 <div class="table-responsive">
                   <table class="table table-hover">
-                    <input type="hidden" name="product_id" value="<?=$type->product_id?>">
+                    <input type="hidden" name="product_id" value="<?=base64_encode($type->product_id)?>">
                     <tr>
                       <td> <strong>Name</strong> <span style="color:red;"></span></strong> </td>
                       <td>

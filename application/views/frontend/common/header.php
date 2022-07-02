@@ -169,6 +169,32 @@
                                                 }else{
                                                   $cart = $this->session->userdata('cart_data');
                                                   if(!empty($cart)){
+
+                                     foreach(($this->session->userdata('cart_data')) as $cart_data){
+                                       $this->db->select('*');
+                                       $this->db->from('tbl_type');
+                                       $this->db->where('id',$cart_data['type_id']);
+                                       $this->db->where('is_active', 1);
+                                       $cart_row = $this->db->get()->row();
+                                       if(empty($cart_row)){
+                                         $type_id = $cart_data['type_id'];
+                                         $index="-1";
+                                         $cart = $this->session->userdata('cart_data');
+                                         if (!empty($cart)) {
+                                             for ($i = 0; $i < count($cart); $i ++) {
+                                                 if ($cart[$i]['type_id'] == $type_id) {
+                                                     $index= $i;
+                                                 }
+                                             }
+                                         }
+                                         if ($index > -1) {
+                                             $cart = $this->session->userdata('cart_data');
+                                             unset($cart[$index]);
+                                             $cart = array_values($cart);
+                                             $this->session->set_userdata('cart_data', $cart);
+                                           }
+                                       }
+                                     }
                                                     echo count($cart);
                                                   }else{
                                                     echo "0";

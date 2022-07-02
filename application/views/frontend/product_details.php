@@ -80,8 +80,8 @@
                   $type_row = $type_data->row();
                   ?>
                 <div class="product-price" style="font-size:30px;">
-                  <del>₹<?=$type_row->mrp?></del><br>
-                  <span>₹<?=$type_row->spgst?></span>
+                  <del id="typemrp<?=$product_data->id?>">₹<?=$type_row->mrp?></del><br>
+                  <span id="typespgst<?=$product_data->id?>">₹<?=$type_row->spgst?></span>
 
                 </div>
                 <ul style="list-style:none;display:flex;">
@@ -89,9 +89,9 @@
 
 
                   <li class="ml-3">
-                    <select>
+                    <select onchange="type_change(this)" changes="<?=$product_data->id?>">
                       <?foreach($type_data->result() as $type){?>
-                      <option onclick="type_change(<?=$type->id?>)" value="<?=$type->id?>"><?=$type->name?></option>
+                      <option value="<?=base64_encode($type->id)?>"><?=$type->name?></option>
                       <?}?>
                     </select>
                   </li>
@@ -113,12 +113,12 @@
                   <ul>
                     <li>
                     <?if(empty($this->session->userdata('user_data'))){?>
-                      <a href="javascript:void(0)" class="theme-btn-1 btn btn-effect-1" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="addToCart" quantity=1 onclick="addToCartOffline(this)">
+                      <a href="javascript:void(0)" class="theme-btn-1 btn btn-effect-1" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="addToCart<?=$product_data->id?>" quantity=1 onclick="addToCartOffline(this)">
                         <i class="fas fa-shopping-cart"></i>
                         <span>ADD TO CART</span>
                       </a>
                       <?}else{?>
-                        <a href="javascript:void(0)" class="theme-btn-1 btn btn-effect-1" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="addToCart" quantity=1 onclick="addToCartOnline(this)">
+                        <a href="javascript:void(0)" class="theme-btn-1 btn btn-effect-1" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="addToCart<?=$product_data->id?>" quantity=1 onclick="addToCartOnline(this)">
                           <i class="fas fa-shopping-cart"></i>
                           <span>ADD TO CART</span>
                         </a>
@@ -206,50 +206,54 @@
                               <div class="ltn__product-item ltn__product-item-3 text-center">
                                 <div class="product-img">
                                   <a href="<?=base_url()?>Home/product_detail/<?=base64_encode($feature->id)?>"><img src="<?=base_url().$feature->image1?>" alt="#"></a>
-                                  <?if(!empty($this->session->userdata('user_data'))){?>
+                                  <?if (!empty($this->session->userdata('user_data'))) {?>
                                   <div class="product-badge">
                                     <ul>
                                       <?$this->db->select('*');
                                         $this->db->from('tbl_wishlist');
-                                        $this->db->where('type_id',$type_row->id);
-                                        $this->db->where('user_id',$this->session->userdata('user_id'));
+                                        $this->db->where('type_id', $type_row->id);
+                                        $this->db->where('user_id', $this->session->userdata('user_id'));
                                         $wishlist_data= $this->db->get()->row();
-                                        if(empty($wishlist_data)){?>
-                                      <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" status="add" user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
+                                        if (empty($wishlist_data)) {?>
+                                      <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="add_wish" status="add"
+                                          user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
                                           <i class="far fa-heart iconn"></i></a></li>
-                                          <?}else{?>
-                                      <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" status="remove" user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
+                                      <?} else {?>
+                                      <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="add_wish" status="remove"
+                                          user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
                                           <i class="far fa-heart-fill iconn"></i></a></li>
-                                                <?}?>
+                                      <?}?>
                                     </ul>
                                   </div>
-                                  <?}?>
+                                  <?} ?>
                                 </div>
                                 <div class="product-info">
-                                  <h2 class="product-title"><a href="<?=base_url()?>Home/product_detail/<?=base64_encode($feature->id)?>"><?=$feature->name?></a></h2>
+                                  <h2 class="product-title"><a href="<?=base_url()?>Home/product_detail/<?=base64_encode($type_row->product_id)?>"><?=$feature->name?></a></h2>
                                   <div class="product-price">
-                                    <span id="typespgst">₹<?=$type_row->spgst?></span>
-                                    <del id="typemrp">₹<?=$type_row->mrp?></del>
+                                    <span id="typespgst<?="Re".$feature->id?>">₹<?=$type_row->spgst?></span>
+                                    <del id="typemrp<?="Re".$feature->id?>">₹<?=$type_row->mrp?></del>
                                     <div class="row justify-content-center" style="padding:0px 0px;">
                                       <div class="cart-plus-minus p-0">
-                                        <div class="dec qtybutton" onclick="incdeec(<?=$type_row->id?>,1)">-</div>
-                                        <input type="text" value="1" id="quantity<?=$type_row->id?>" readonly name="qtybutton" class="cart-plus-minus-box">
-                                        <div class="inc qtybutton" onclick="incdeec(<?=$type_row->id?>,2)">+</div>
+                                        <div class="dec qtybutton" onclick="incdeec('<?="Re".$feature->id?>',1)">-</div>
+                                        <input type="text" value="1" id="quantity<?="Re".$feature->id?>" readonly name="qtybutton" class="cart-plus-minus-box">
+                                        <div class="inc qtybutton" onclick="incdeec('<?="Re".$feature->id?>',2)">+</div>
                                       </div>
-                                      <select class="select ml-3" onchange="typechange(this)">
-                                        <?foreach($type_data->result() as $type){?>
-                                        <option value="<?=$type->id?>"><?=$type->name?></option>
-                                        <?}?>
+                                      <select class="select ml-3" id="myselect" changes="<?="Re".$feature->id?>" onchange="type_change(this)">
+                                        <?foreach ($type_data->result() as $type) {?>
+                                        <option value="<?=base64_encode($type->id)?>"><?=$type->name?></option>
+                                        <?} ?>
                                       </select>
                                     </div>
 
                                   </div>
                                   <div class="row justify-content-center">
-                                    <?if(empty($this->session->userdata('user_data'))){?>
-                                    <a href="javascript:void(0)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="addToCart<?=$type_row->id?>" quantity=1 onclick="addToCartOffline(this)"><button class="btn theme-btn-1 btn-effect-1"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Add to cart</i></button></a>
-                                    <?}else{?>
-                                      <a href="javascript:void(0)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="addToCart<?=$type_row->id?>" quantity=1 onclick="addToCartOnline(this)"><button class="btn theme-btn-1 btn-effect-1"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Add to cart</i></button></a>
-                                      <?}?>
+                                    <?if (empty($this->session->userdata('user_data'))) {?>
+                                    <a href="javascript:void(0)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="addToCart<?="Re".$feature->id?>" quantity=1 onclick="addToCartOffline(this)"><button
+                                        class="btn theme-btn-1 btn-effect-1"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Add to cart</i></button></a>
+                                    <?} else {?>
+                                    <a href="javascript:void(0)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="addToCart<?="Re".$feature->id?>" quantity=1 onclick="addToCartOnline(this)"><button
+                                        class="btn theme-btn-1 btn-effect-1"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Add to cart</i></button></a>
+                                    <?} ?>
                                   </div>
                                 </div>
                               </div>

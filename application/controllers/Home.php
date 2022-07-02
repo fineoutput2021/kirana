@@ -66,40 +66,38 @@ class Home extends CI_Controller
 
     public function my_profile()
     {
-        if(!empty($this->session->userdata('user_data'))){
-        $this->db->select('*');
-        $this->db->from('tbl_users');
-        $this->db->where('id', $this->session->userdata('user_id'));
-        $data['user_data']= $this->db->get()->row();
-        $this->db->select('*');
-        $this->db->from('tbl_order1');
-        $this->db->where('order_status != ', 0);
-        $this->db->where('user_id', $this->session->userdata('user_id'));
-        $data['order1_dataa']= $this->db->get();
-        $this->load->view('frontend/common/header', $data);
-        $this->load->view('frontend/my_profile');
-        $this->load->view('frontend/common/footer');
-      }
+        if (!empty($this->session->userdata('user_data'))) {
+            $this->db->select('*');
+            $this->db->from('tbl_users');
+            $this->db->where('id', $this->session->userdata('user_id'));
+            $data['user_data']= $this->db->get()->row();
+            $this->db->select('*');
+            $this->db->from('tbl_order1');
+            $this->db->where('order_status != ', 0);
+            $this->db->where('user_id', $this->session->userdata('user_id'));
+            $data['order1_dataa']= $this->db->get();
+            $this->load->view('frontend/common/header', $data);
+            $this->load->view('frontend/my_profile');
+            $this->load->view('frontend/common/footer');
+        }
     }
 
     public function cart()
     {
-        if(!empty($this->session->userdata('user_data'))){
-
-          $this->db->select('*');
-          $this->db->from('tbl_cart');
-          $this->db->where('user_id', $this->session->userdata('user_id'));
-          $data['cart_data']= $this->db->get();
-          $data['cart_check'] = $data['cart_data']->row();
-          $this->load->view('frontend/common/header', $data);
-          $this->load->view('frontend/cart');
-          $this->load->view('frontend/common/footer');
-        }else{
-          $this->load->view('frontend/common/header');
-          $this->load->view('frontend/localcart');
-          $this->load->view('frontend/common/footer');
+        if (!empty($this->session->userdata('user_data'))) {
+            $this->db->select('*');
+            $this->db->from('tbl_cart');
+            $this->db->where('user_id', $this->session->userdata('user_id'));
+            $data['cart_data']= $this->db->get();
+            $data['cart_check'] = $data['cart_data']->row();
+            $this->load->view('frontend/common/header', $data);
+            $this->load->view('frontend/cart');
+            $this->load->view('frontend/common/footer');
+        } else {
+            $this->load->view('frontend/common/header');
+            $this->load->view('frontend/localcart');
+            $this->load->view('frontend/common/footer');
         }
-
     }
 
     public function checkout()
@@ -247,58 +245,57 @@ class Home extends CI_Controller
     }
 
     //================Product Details page type change==============================
-public function type_change(){
-    $this->load->helper(array('form', 'url'));
-    $this->load->library('form_validation');
-    $this->load->helper('security');
-    if($this->input->post())
+    public function type_change()
     {
-    $this->form_validation->set_rules('type_id', 'type_id', 'xss_clean|trim');
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+        $this->load->helper('security');
+        if ($this->input->post()) {
+            $this->form_validation->set_rules('type_id', 'type_id', 'xss_clean|trim');
 
 
-      if($this->form_validation->run()== TRUE)
-      {
-         $type_id=$this->input->post('type_id');
-         // $type_id=base64_decode($this->input->post('type_id'));
+            if ($this->form_validation->run()== true) {
+                // $type_id=$this->input->post('type_id');
+                $type_id=base64_decode($this->input->post('type_id'));
 
-         $this->db->select('*');
-         $this->db->from('tbl_type');
-         $this->db->where('id',$type_id);
-         $type_data= $this->db->get()->row();
+                $this->db->select('*');
+                $this->db->from('tbl_type');
+                $this->db->where('id', $type_id);
+                $type_data= $this->db->get()->row();
 
-       //   if(!empty($this->session->userdata('user_data'))){
-       //   // -----wishlist check----------
-       //   $this->db->select('*');
-       //   $this->db->from('tbl_wishlist');
-       //   $this->db->where('user_id', $this->session->userdata('user_id'));
-       //   $this->db->where('type_id', $type_id);
-       //   $wish_data = $this->db->get()->row();
-       //   if(!empty($wish_data)){
-       //     $existsInWishlist = 1;
-       //   }else{
-       //     $existsInWishlist = 0;
-       //   }
-       // }else{
-       //   $existsInWishlist = 33;
-       // }
+                //   if(!empty($this->session->userdata('user_data'))){
+                //   // -----wishlist check----------
+                //   $this->db->select('*');
+                //   $this->db->from('tbl_wishlist');
+                //   $this->db->where('user_id', $this->session->userdata('user_id'));
+                //   $this->db->where('type_id', $type_id);
+                //   $wish_data = $this->db->get()->row();
+                //   if(!empty($wish_data)){
+                //     $existsInWishlist = 1;
+                //   }else{
+                //     $existsInWishlist = 0;
+                //   }
+                // }else{
+                //   $existsInWishlist = 33;
+                // }
 
 
-         $respone['data'] = 'success';
-         $respone['data_message'] = 'success';
-         $respone['update_type'] = $type_data;
-         // $respone['existsInWishlist'] = $existsInWishlist;
-         echo json_encode($respone);
-      } else {
-        $respone['data'] = false;
-        $respone['data_message'] = validation_errors();
-        echo json_encode($respone);
-      }
-  } else {
-    $respone['data'] = false;
-    $respone['data_message'] ="Please insert some data, No data available";
-    echo json_encode($respone);
-  }
-}
+                $respone['data'] = 'success';
+                $respone['data_message'] = 'success';
+                $respone['update_type'] = $type_data;
+                // $respone['existsInWishlist'] = $existsInWishlist;
+                echo json_encode($respone);
+            } else {
+                $respone['data'] = false;
+                $respone['data_message'] = validation_errors();
+                echo json_encode($respone);
+            }
+        } else {
+            $respone['data'] = false;
+            $respone['data_message'] ="Please insert some data, No data available";
+            echo json_encode($respone);
+        }
+    }
 
 
     public function register()
@@ -311,8 +308,7 @@ public function type_change(){
 
     public function search()
     {
-
-      $string= $this->input->get('search');
+        $string= $this->input->get('search');
 
         $this->db->select('*');
         $this->db->from('tbl_product');
@@ -371,8 +367,14 @@ public function type_change(){
         $this->db->from('tbl_product');
         $this->db->where('is_active', 1);
         $this->db->where('id', $id);
-        $data['related_data'] = $this->db->get();
-        $data['product_data']= $data['related_data']->row();
+        $data['product_data'] = $this->db->get()->row();
+
+        $this->db->select('*');
+        $this->db->from('tbl_product');
+        $this->db->where('is_active', 1);
+        $this->db->where('id != ', $id);
+        $this->db->where('subcategory_id', $data['product_data']->subcategory_id);
+        $data['related_data']= $this->db->get();
 
         $this->load->view('frontend/common/header', $data);
         $this->load->view('frontend/product_details');
@@ -381,19 +383,19 @@ public function type_change(){
 
     public function wishlist()
     {
-        if(!empty($this->session->userdata('user_data'))){
-        $this->db->select('*');
-        $this->db->from('tbl_wishlist');
-        $this->db->where('user_id', $this->session->userdata('user_id'));
-        $data['wish_data']= $this->db->get();
-        $data['wish_check'] = $data['wish_data']->row();
-        $this->load->view('frontend/common/header', $data);
-        $this->load->view('frontend/wishlist');
-        $this->load->view('frontend/common/footer');
-      }else{
-        $this->session->set_flashdata('emessage', 'Please Login First!');
-        redirect("/", "refresh");
-      }
+        if (!empty($this->session->userdata('user_data'))) {
+            $this->db->select('*');
+            $this->db->from('tbl_wishlist');
+            $this->db->where('user_id', $this->session->userdata('user_id'));
+            $data['wish_data']= $this->db->get();
+            $data['wish_check'] = $data['wish_data']->row();
+            $this->load->view('frontend/common/header', $data);
+            $this->load->view('frontend/wishlist');
+            $this->load->view('frontend/common/footer');
+        } else {
+            $this->session->set_flashdata('emessage', 'Please Login First!');
+            redirect("/", "refresh");
+        }
     }
     public function profile()
     {

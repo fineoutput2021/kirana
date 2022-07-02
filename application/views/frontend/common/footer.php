@@ -119,6 +119,68 @@
 
 
 </div>
+<script>
+  function incdeec(i, pm) {
+    // alert(i)
+    var oldValue = $("#quantity" + i).val()
+    if (pm == 2) {
+      var newVal = parseFloat(oldValue) + 1;
+    } else {
+      if (oldValue > 1) {
+        var newVal = parseFloat(oldValue) - 1;
+      } else {
+        newVal = 1;
+        // $("#addToCart").attr('quantity', newVal)
+      }
+    }
+    // $button.parent().find("input").val(newVal);
+    $("#addToCart" + i).attr('quantity', newVal)
+    $("#quantity" + i).val(newVal)
+  }
+</script>
+<script>
+//---------type change function----------------------
+function type_change(obj) {
+
+  var type_id = $(obj).val();
+  // alert(type_id)
+  var changes = $(obj).attr('changes')
+  // alert(changes)
+
+  $.ajax({
+    type: "POST",
+    url: "<?php echo base_url(); ?>Home/type_change",
+    data: {
+      type_id: type_id,
+    },
+    dataType: 'json',
+    success: function(response) {
+      if (response.data == 'success') {
+        var BASE_URL = "<?php echo base_url();?>";
+        // alert(response.update_type)
+        // var pro_id = btoa(response.update_type.product_id);
+        var type_id = btoa(response.update_type.id);
+        $("#typespgst" + changes).html('₹' + response.update_type.spgst);
+        $("#typemrp" + changes).html('₹' + response.update_type.mrp);
+        $("#addToCart" + changes).attr('type_id', type_id);
+
+        // $("#add_wish").attr("product_id", pro_id);
+        // $("#add_wish").attr("type_id", type_id);
+        // $("#price").html();
+        // document.getElementById("price").innerHTML = '₹'+response.update_type.spgst;
+        //  $("#price").attr("value", response.update_type.spgst);
+        //
+        //  $("#add_cart").attr('quantity', 1);
+        //  $("#qty").val(1);
+      } else {
+
+      }
+
+    }
+  });
+}
+
+</script>
 
 <script>
 
@@ -714,6 +776,7 @@ function wishlist(obj) {
 }
 
     </script>
+
 
 
 

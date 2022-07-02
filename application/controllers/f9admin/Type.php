@@ -76,6 +76,7 @@ class Type extends CI_finecontrol
                     $sp=$this->input->post('sp');
                     $gst=$this->input->post('gst');
                     $spgst=$this->input->post('spgst');
+                    // echo $product_id;exit;
 
 
                     $ip = $this->input->ip_address();
@@ -108,7 +109,7 @@ class Type extends CI_finecontrol
                                             if ($last_id!=0) {
                                                 $this->session->set_flashdata('smessage', 'Type inserted successfully');
 
-                                                redirect("dcadmin/type/view_type/".base64_encode($product_id), "refresh");
+                                                redirect("dcadmin/Type/view_type/".base64_encode($product_id), "refresh");
                                             } else {
                                                 $this->session->set_flashdata('emessage', 'Sorry error occured');
                                                 redirect($_SERVER['HTTP_REFERER']);
@@ -116,29 +117,20 @@ class Type extends CI_finecontrol
                     }
                     if ($typ==2) {
                         $idw=base64_decode($iw);
-
-
-
-                        $data_insert = array('product_id'=>$product_id,
+                        $data_insert = array(
                   'name'=>$name,
                   'mrp'=>$mrp,
                   'sp'=>$sp,
                   'gst'=>$gst,
                   'spgst' =>$spgst,
-
-
                             );
-
-
-
-
                         $this->db->where('id', $idw);
                         $last_id=$this->db->update('tbl_type', $data_insert);
 
                                             if ($last_id!=0) {
                                                 $this->session->set_flashdata('smessage', 'Type updated successfully');
 
-                                                redirect("dcadmin/type/view_type/".base64_encode($product_id), "refresh");
+                                                redirect("dcadmin/Type/view_type/".base64_encode($product_id), "refresh");
                                             } else {
                                                 $this->session->set_flashdata('emessage', 'Sorry error occured');
                                                 redirect($_SERVER['HTTP_REFERER']);
