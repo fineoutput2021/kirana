@@ -1,4 +1,4 @@
-          <?php ob_start(); if (! defined('BASEPATH')) {
+<?php ob_start(); if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
