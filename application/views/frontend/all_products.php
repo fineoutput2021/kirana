@@ -95,6 +95,32 @@
                 <!-- END CATEGORY-MENU-LIST -->
             </div>
             <div class="col-lg-9">
+              <div class="ltn__shop-options">
+                  <ul>
+                      <li>
+                          <div class="ltn__grid-list-tab-menu ">
+
+                          </div>
+                      </li>
+                      <li>
+                         <div class="showing-product-number text-right">
+                              <!-- <span>Showing 1–12 of 18 results</span> -->
+                          </div>
+                      </li>
+                      <li>
+                         <div class="short-by text-center">
+                              <select onchange="filter(this)" class="nice-select">
+                                  <option value="">Default Sorting</option>
+                                  <option value="AZ">Sort by A-Z</option>
+                                  <option value="ZA">Sort by Z-A</option>
+                                  <option value="NA">Sort by New Arrivals</option>
+                                  <option value="FP">Sort by Feature Products</option>
+
+                              </select>
+                          </div>
+                      </li>
+                  </ul>
+              </div>
                 <div class="tab-content">
                     <div class="tab-pane fade active show" id="liton_product_grid">
                         <div class="ltn__product-tab-content-inner ltn__product-grid-view">
@@ -176,3 +202,9 @@
         </div>
     </div>
 </div>
+<script>
+function filter(obj){
+  var filter = $(obj).val();
+  window.location.href='<?=base_url()?>Home/all_products/<?=$id?>/'+filter;
+}
+</script>

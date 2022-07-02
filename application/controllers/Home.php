@@ -341,7 +341,7 @@ class Home extends CI_Controller
         $this->load->view('frontend/common/footer');
     }
 
-    public function all_products($idd)
+    public function all_products($idd, $sort="")
     {
         $id=base64_decode($idd);
         $data['id']=$idd;
@@ -355,6 +355,17 @@ class Home extends CI_Controller
         $this->db->select('*');
         $this->db->from('tbl_product');
         $this->db->where('is_active', 1);
+        if(!empty($sort)){
+          if($sort=="AZ"){
+            $this->db->order_by('name', "aesc");
+          }elseif($sort=="ZA"){
+            $this->db->order_by('name', "desc");
+          }elseif($sort=="NA"){
+            $this->db->order_by('id', "desc");
+          }elseif($sort=="FP"){
+            $this->db->where('feature', 1);
+          }
+        }
         $this->db->where('subcategory_id', $id);
         $data['products_data']= $this->db->get();
 
@@ -362,7 +373,7 @@ class Home extends CI_Controller
         $this->db->from('tbl_category');
         $this->db->where('is_active', 1);
         $data['category_data']= $this->db->get();
-        
+
         $this->load->view('frontend/common/header', $data);
         $this->load->view('frontend/all_products');
         $this->load->view('frontend/common/footer');
