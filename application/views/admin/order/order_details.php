@@ -40,11 +40,10 @@
                           <thead>
                             <tr>
                               <th>#</th>
-
-                              <th>Product_name</th>
+                              <th>Product Name</th>
                               <th>Quantity</th>
-                              <th>Selling_price</th>
-                              <th>Total_amount</th>
+                              <th>Selling Price</th>
+                              <th>Total Amount</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -62,7 +61,7 @@
                                                  ?></td>
 
                               <td><?php echo $data->quantity ?></td>
-                              <td><?php echo $data->selling_price ?></td>
+                              <td><?php echo "₹".$data->selling_price ?></td>
                               <td><?php echo $data->total_amount ?></td>
 
                             </tr>

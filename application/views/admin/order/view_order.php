@@ -41,15 +41,16 @@
 <thead>
 <tr>
 <th>#</th>
+<th>Order Id</th>
 <th>User Name</th>
-<th>final_amount</th>
-<th>payment_type</th>
-<th>name</th>
-<th>phone</th>
-<th>pincode</th>
-<th>email</th>
-<th>address</th>
-<th>status</th>
+<th>Final Amount</th>
+<th>Payment Type</th>
+<th>Name</th>
+<th>Phone</th>
+<th>Pincode</th>
+<th>Email</th>
+<th>Address</th>
+<th>Status</th>
 <th>Action</th>
 </tr>
 </thead>
@@ -57,6 +58,7 @@
 <?php $i=1; foreach ($order1_data->result() as $data) { ?>
 <tr>
 <td><?=$i?></td>
+<td><?=$data->id?></td>
 
 <td><?php             $this->db->select('*');
                               $this->db->from('tbl_users');
@@ -70,7 +72,7 @@
                               ?></td>
 
 <!-- <td><?php ?> </td> -->
-<td><?php echo $data->final_amount ?></td>
+<td><?php echo "₹".$data->final_amount ?></td>
 <td>
 <?php if ($data->payment_type== 1) {
                                   echo "COD";
