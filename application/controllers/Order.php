@@ -280,6 +280,7 @@ class Order extends CI_Controller
                 $this->form_validation->set_rules('phone', 'phone', 'required|xss_clean|trim');
                 $this->form_validation->set_rules('address', 'address', 'required|xss_clean|trim');
                 $this->form_validation->set_rules('pincode', 'pincode', 'required|xss_clean|trim');
+                $this->form_validation->set_rules('state', 'state', 'required|xss_clean|trim');
                 $this->form_validation->set_rules('payment_method', 'payment_method', 'required|xss_clean|trim');
 
 
@@ -290,6 +291,7 @@ class Order extends CI_Controller
                     $phone=$this->input->post('phone');
                     $address=$this->input->post('address');
                     $pincode=$this->input->post('pincode');
+                    $state=$this->input->post('state');
                     $payment_method=$this->input->post('payment_method');
                     $user_id=$this->session->userdata('user_id');
                     // exit;
@@ -309,6 +311,7 @@ class Order extends CI_Controller
                                 'email'=>$email,
                                 'phone'=>$phone,
                                 'address'=>$address,
+                                'state'=>$state,
                                 'pincode'=>$pincode,
                                 'payment_status'=>1,
                                 'payment_type'=>1,

@@ -48,6 +48,7 @@
 <th>Name</th>
 <th>Phone</th>
 <th>Pincode</th>
+<th>State</th>
 <th>Email</th>
 <th>Address</th>
 <th>Status</th>
@@ -83,6 +84,7 @@ echo "online payment";
 <td><?php echo $data->name ?></td>
 <td><?php echo $data->phone ?></td>
 <td><?php echo $data->pincode ?></td>
+<td><?php echo $data->state ?></td>
 <td><?php echo $data->email ?></td>
 <td><?php echo $data->address ?></td>
 <td><?php if ($data->order_status==1) {?>

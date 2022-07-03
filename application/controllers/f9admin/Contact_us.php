@@ -20,7 +20,7 @@ class Contact_us extends CI_finecontrol
 
             $this->db->select('*');
             $this->db->from('tbl_contact_us');
-
+            $this->db->order_by('id', 'desc');
             $data['contact_us_data']= $this->db->get();
 
             $this->load->view('admin/common/header_view', $data);

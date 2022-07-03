@@ -9,13 +9,13 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <!-- Css file include -->
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/frontend/css/style.css">
-	<title>Kiranaking Bill</title>
+	<title>Kirana Bill</title>
 </head>
 <body style="padding-top:75px;">
 <div class="container main_container">
 	<div class="row">
 		<div class="col-sm-6 oswal_logo">
-		<img src="<?=base_url()?>assets/mc_logo.png" class="img-fluid" style="width:150px;">
+		<img src="<?=base_url()?>assets/frontend/img/brand-logo/kirana_logo.png" class="img-fluid" style="width:150px;">
 		</div>
 		<div class="col-sm-6 content_part">Tax Invoice/Bill of Supply/Cash Memo
 			<p>(Original for Recipient)</p>
@@ -25,11 +25,11 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-6"><span class="font-weight-bold ">Sold By</span><br>
-<span class="seller_details">Kiranaking <br>
+<span class="seller_details">Kirana <br>
 
 Rajasthan<br>India
 <br><br>
-		www.Kiranaking.com<br></span>
+		www.kirana.com<br></span>
 		</div>
 
 		<div class="col-sm-6 billing_content"><span class="font-weight-bold ">Billing Address:</span><br>
@@ -57,8 +57,9 @@ if(!empty($users_data)){
 
 
 User: <?=$user_name;?>
-<br>Email: <?=$user_email;?>
-<br>Contact: <?=$user_contact;?><br>
+<br />Address Name: <?=$order1_data->name;?>
+<br>Email: <?=$order1_data->email;?>
+<br>Contact: <?=$order1_data->phone;?><br>
 
 
       <?php
@@ -94,8 +95,8 @@ if(!empty($address)){
 }
 ?> <br>
 
-Place of supply: <br>
-Place of delivery: <br>
+Place of supply: <?=$order1_data->state;?><br>
+Place of delivery: <?=$order1_data->state;?><br>
 Pincode: <?php echo $pincode;?><br>
 </div>
 </div>
@@ -131,10 +132,10 @@ Pincode: <?php echo $pincode;?><br>
         <th>Type</th>
         <!-- <th>HSN Code</th> -->
         <!-- <th>Unit Name</th> -->
-        <th>Selling Price</th>
-        <th>Qty</th>
         <th>MRP</th>
+        <th>Qty</th>
         <th>GST(%)</th>
+        <th>Selling Price</th>
 
         <th>Total Amount</th>
       </tr>
@@ -173,18 +174,10 @@ echo $product_name= $product_data->name;
  ?>
 </td>
 
-        <td>
-          <?
-            // $hsn_code= $product_data->hsn_code;
-          echo "₹".$product_sp= $data->selling_price;
-
-
-?>
-
-        </td>
-        <td ><?php echo $data->quantity;?></td>
-        <td ><?php echo $data->mrp;?></td>
-        <td ><?php echo $data->gst;?></td>
+        <td ><?php if(!empty($type)){echo "₹".$type->sp;} ?></td>
+        <td ><?php echo "₹".$data->quantity;?></td>
+        <td ><?php if(!empty($type)){echo $type->gst."%";}?></td>
+        <td><? if(!empty($type)){echo "₹".$product_sp= $type->spgst;}?> </td>
         <!-- <td>9%</td>
         <td>CGST</td>
         <td>200</td> -->
@@ -232,7 +225,7 @@ echo $product_name= $product_data->name;
         }
         ?>
         <tr>
-          <th colspan="6">Promocode:<?=$promocode_name;?> </th>
+          <th colspan="6">Promocode: <?=$promocode_name;?> </th>
           <th class="product_table"><?php if(!empty($order1_data)){ echo " "; }?></th>
           <th class="product_table"><?php if(!empty($order1_data->promocode)){
                       $this->db->select('*');

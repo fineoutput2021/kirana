@@ -76,6 +76,7 @@ class Home extends CI_Controller
             $this->db->select('*');
             $this->db->from('tbl_order1');
             $this->db->where('order_status != ', 0);
+            $this->db->order_by('id', 'desc');
             $this->db->where('user_id', $this->session->userdata('user_id'));
             $data['order1_dataa']= $this->db->get();
             $this->load->view('frontend/common/header', $data);
@@ -90,7 +91,7 @@ class Home extends CI_Controller
             redirect("/", "refresh");
           }
         }else{
-              $this->session->unset_userdata('user_data');
+            $this->session->unset_userdata('user_data');
             $this->session->unset_userdata('user_id');
             $this->session->unset_userdata('user_name');
             $this->session->unset_userdata('user_email');
@@ -98,6 +99,24 @@ class Home extends CI_Controller
           redirect("/", "refresh");
         }
         }
+    }
+
+    public function order_details($idd){
+      if(!empty($this->session->userdata('user_data'))){
+         $id=base64_decode($idd);
+        $data['id']=$idd;
+        $this->db->select('*');
+        $this->db->from('tbl_order2');
+        $this->db->where('main_id', $id);
+        $data['order2_data']= $this->db->get();
+        $this->load->view('frontend/common/header', $data);
+        $this->load->view('frontend/order_details');
+        $this->load->view('frontend/common/footer');
+      }else{
+
+        $this->session->set_flashdata('emessage','User not found');
+        redirect("/", "refresh");
+      }
     }
 
     public function cart()

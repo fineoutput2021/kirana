@@ -39,9 +39,10 @@ $data['heading'] = "New";
             $this->db->select('*');
             $this->db->from('tbl_order1');
             $this->db->where('payment_status', 1);
+            $this->db->order_by('id', 'desc');
             $this->db->where('order_status', 1);//new orders
             $data['order1_data']= $this->db->get();
-$data['heading'] = "Placed";
+            $data['heading'] = "New ";
 
 
 
@@ -62,6 +63,7 @@ $data['heading'] = "Placed";
             $this->db->select('*');
             $this->db->from('tbl_order1');
             $this->db->where('payment_status', 1);
+            $this->db->order_by('id', 'desc');
             $this->db->where('order_status', 2);//new orders
             $data['order1_data']= $this->db->get();
 $data['heading'] = "Confirmed";
@@ -81,6 +83,7 @@ $data['heading'] = "Confirmed";
             $this->db->select('*');
             $this->db->from('tbl_order1');
             $this->db->where('payment_status', 1);
+            $this->db->order_by('id', 'desc');
             $this->db->where('order_status', 3);//dispatched_orders
             $data['order1_data']= $this->db->get();
             $data['heading'] = "Dispatched";
@@ -104,6 +107,7 @@ $data['heading'] = "Confirmed";
             $this->db->select('*');
             $this->db->from('tbl_order1');
             $this->db->where('payment_status', 1);
+            $this->db->order_by('id', 'desc');
             $this->db->where('order_status', 4);//delievered orders
             $data['order1_data']= $this->db->get();
 $data['heading'] = "Delievered";
@@ -126,6 +130,7 @@ $data['heading'] = "Delievered";
             $data['user_name']=$this->load->get_var('user_name');
             $this->db->select('*');
             $this->db->from('tbl_order1');
+            $this->db->order_by('id', 'desc');
             $this->db->where('payment_status', 1);
             $this->db->where('order_status', 5);//cancelled orders
             $data['order1_data']= $this->db->get();
@@ -148,6 +153,7 @@ $data['heading'] = "Cancelled";
             $this->db->select('*');
             $this->db->from('tbl_order1');
             $this->db->where('payment_status', 1);
+            $this->db->order_by('id', 'desc');
             $this->db->where('order_status', 6);//rejected orders
             $data['order1_data']= $this->db->get();
 $data['heading'] = "Rejected";

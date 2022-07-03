@@ -437,6 +437,7 @@ $(document).ready(function () {
       phone: $("#phone").val(),
       order_id: $("#order").val(),
       pincode: $("#pincode").val(),
+      state: $("#state").val(),
       address: $("#address").val(),
       payment_method: payment_method,
     };

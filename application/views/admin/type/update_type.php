@@ -96,7 +96,7 @@
 </script>
 <script>
   $(document).ready(function() {
-    $('#gst').keyup(function(ev) {
+    $('#gst, #sp').keyup(function(ev) {
       var sp = $('#sp').val() * 1;
       var gst = $('#gst').val() * 1;
       var gst_price = (gst / 100) * sp;

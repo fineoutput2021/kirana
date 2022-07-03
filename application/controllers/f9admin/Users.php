@@ -41,6 +41,8 @@ class Users extends CI_finecontrol
 
             if ($this->load->get_var('position')=="Super Admin") {
                 $zapak=$this->db->delete('tbl_users', array('id' => $id));
+                $zapak=$this->db->delete('tbl_cart', array('user_id' => $id));
+                $zapak=$this->db->delete('tbl_wishlist', array('user_id' => $id));
                 if ($zapak!=0) {
                     // $path = FCPATH . "assets/public/users/".$img;
                     // unlink($path);

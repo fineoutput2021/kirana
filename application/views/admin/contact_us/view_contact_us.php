@@ -44,6 +44,7 @@
                       <th>Phone</th>
                       <th>Email</th>
                       <th>Message</th>
+                      <th>Date</th>
                       <!-- <th>Status</th>
                       <th>Action</th> -->
                     </tr>
@@ -56,6 +57,12 @@
                       <td><?php echo $data->phone ?></td>
                       <td><?php echo $data->email ?></td>
                       <td><?php echo $data->message ?></td>
+                        <td>
+                      <?
+                        $newdate = new DateTime($data->date);
+                        echo $newdate->format('F j, Y, g:i a');   #d-m-Y  // March 10, 2001, 5:16 pm
+                        ?>
+                      </td>
 <!--
                       <td><?php if ($data->is_active==1) { ?>
                         <p class="label bg-green">Active</p>

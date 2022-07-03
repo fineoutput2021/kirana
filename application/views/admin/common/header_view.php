@@ -30,8 +30,8 @@
     background-color: #84c34d;
   }
   .custom_btn:hover{
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: white;
   }
   .custom_header{
     color: white;
@@ -355,7 +355,7 @@
 
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
-            <li class="header custom_header">MAIN NAVIGATION</li>
+            <li class="header" style="background-color: white;">MAIN NAVIGATION</li>
 
 
             <?
@@ -363,11 +363,12 @@
 // exit;
             foreach($sidebar as $sd){
 
-
+              $currentURL = current_url();
+            $urls= base_url().ADMIN_URL."/".$sd['url'];
 
                             ?>
                             <li class="treeview">
-                              <a href="<?
+                              <a style="<?php if($currentURL == $urls){ echo 'background-color:#84c34d; color: white; border-left-color: black;';}?>" href="<?
                               $this->db->select('*');
                               $this->db->from('tbl_admin_sidebar2');
                               $this->db->where('main_id',$sd['id']);
@@ -375,7 +376,7 @@
                               $dawwa=$dsaww->row();
                               if(empty($dawwa)){
                                 echo base_url().ADMIN_URL."/".$sd['url'].'">';?>
-                                <i class="fa fa-bullseye"></i>
+                                <i class="fa fa-circle-o"></i>
                                 <span><? echo $sd['name'] ?></span>
                                 <span class="label label-primary pull-right"></span>
                                 </a>
@@ -384,7 +385,7 @@
                               <?
                               }
                               else{
-                                echo '#"> <i class="fa fa-bullseye"></i>
+                                echo '#"> <i class="fa fa-circle-o"></i>
                                 <span>'.$sd['name'].'</span>
                                 <span class="label label-primary pull-right"></span>
                               </a>

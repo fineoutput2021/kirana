@@ -173,8 +173,6 @@ class Promocode extends CI_finecontrol
             if ($this->load->get_var('position')=="Super Admin") {
                 $zapak=$this->db->delete('tbl_promocode', array('id' => $id));
                 if ($zapak!=0) {
-                    $path = FCPATH . "assets/public/promocode/".$img;
-                    unlink($path);
                       $this->session->set_flashdata('smessage', 'Data deleted successfully');
                     redirect("dcadmin/promocode/view_promocode", "refresh");
                 } else {
@@ -182,9 +180,8 @@ class Promocode extends CI_finecontrol
                     exit;
                 }
             } else {
-                $data['e']="Sorry You Don't Have Permission To Delete Anything.";
-                // exit;
-                $this->load->view('errors/error500admin', $data);
+              $this->session->set_flashdata('emessage', "Sorry You Don't Have Permission To Delete Anything");
+              redirect("dcadmin/promocode/view_promocode", "refresh");
             }
         } else {
             $this->load->view('admin/login/index');

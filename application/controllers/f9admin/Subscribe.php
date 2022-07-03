@@ -21,6 +21,7 @@ class Subscribe extends CI_finecontrol
 
             $this->db->select('*');
             $this->db->from('tbl_subscribe');
+            $this->db->order_by('id', 'desc');
             //$this->db->where('id',$usr);
             $data['subscribe_data']= $this->db->get();
 

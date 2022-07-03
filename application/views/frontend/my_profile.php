@@ -36,7 +36,7 @@
                                     <a data-toggle="tab" href="#liton_tab_1_2">Orders <i class="fas fa-file-alt"></i></a>
                                     <!-- <a data-toggle="tab" href="#liton_tab_1_3">Downloads <i class="fas fa-arrow-down"></i></a>
                                     <a data-toggle="tab" href="#liton_tab_1_4">address <i class="fas fa-map-marker-alt"></i></a> -->
-                                    <a data-toggle="tab" href="#liton_tab_1_5">Account Details <i class="fas fa-user"></i></a>
+                                    <!-- <a data-toggle="tab" href="#liton_tab_1_5">Account Details <i class="fas fa-user"></i></a> -->
                                     <a href="<?=base_url()?>User/logout">Logout <i class="fas fa-sign-out-alt"></i></a>
                                 </div>
                             </div>
@@ -55,8 +55,8 @@
                                             <table class="table">
                                                 <thead>
                                                     <tr>
-                                                        <th>#</th>
-                                                        <th>Order</th>
+                                                        <th>S No.</th>
+                                                        <th>Order Id</th>
                                                         <th>Date</th>
                                                         <th>Status</th>
                                                         <th>Total</th>
@@ -91,7 +91,7 @@
                                                             ?>
                                                            </td>
                                                         <td>₹<?=$order1->final_amount;?></td>
-                                                        <td><a href="javascript:;">View</a></td>
+                                                        <td><a href="<?=base_url()?>Home/order_details/<?=base64_encode($order1->id)?>">View</a></td>
                                                     </tr>
                                                     <?$i++; }?>
                                                 </tbody>
