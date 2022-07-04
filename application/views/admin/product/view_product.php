@@ -48,7 +48,7 @@
                       <th>Image2</th>
                       <th>Image3</th>
                       <th>Image4</th>
-                      <th>Feature Product</th>
+                      <th>Trending Product</th>
                       <th>Description</th>
                       <th>Status</th>
                       <th>Action</th>
@@ -104,7 +104,7 @@
                        if($data->feature==1){
                         echo"yes";
                       }else{
-                          echo"no";
+                          echo"No";
                          }
                        ?></td>
                       <td><?php echo $data->description ?></td>

@@ -117,7 +117,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <td> <strong>Feature Product</strong> <span style="color:red;"></span></strong> </td>
+                      <td> <strong>Trending Product</strong> <span style="color:red;"></span></strong> </td>
                       <td>
                         <select name="feature"  class="form-control">
                           <option <?if($product->feature=="0"){echo "selected";}?> value="0">No</option>
