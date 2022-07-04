@@ -282,7 +282,7 @@
                 <div class="btn-wrapper">
                     <a href="<?=base_url()?>Home/cart" class="theme-btn-1 btn btn-effect-1" style="font-size:13px;">View Cart</a>
                 </div>
-                <p>Free Shipping on All Orders Over ₹100!</p>
+                <!-- <p>Free Shipping on All Orders Over ₹100!</p> -->
             </div>
             <?}else{?>
               <div class="mini-cart-footer">
@@ -292,7 +292,7 @@
                   <div class="btn-wrapper">
                       <a href="<?=base_url()?>Home/cart" class="theme-btn-1 btn btn-effect-1" style="font-size:13px;">View Cart</a>
                   </div>
-                  <p>Free Shipping on All Orders Over ₹100!</p>
+                  <!-- <p>Free Shipping on All Orders Over ₹100!</p> -->
               </div>
               <?}?>
         </div>

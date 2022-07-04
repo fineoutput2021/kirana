@@ -153,7 +153,9 @@
                                     $this->db->where('is_active', 1);
                                     $this->db->where('product_id', $product->id);
                                     $type_data = $this->db->get();
-                                    $type_row = $type_data->row(); ?>
+                                    $type_row = $type_data->row();
+                                    if(!empty($type_row)){
+                                    ?>
                     <!-- ltn__product-item -->
                     <div class="col-lg-12">
                       <div class="ltn__product-item ltn__product-item-3 text-center">
@@ -174,7 +176,7 @@
                               <?} else {?>
                               <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" status="remove"
                                   user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
-                                  <i class="far fa-heart iconn"></i></a></li>
+                                  <i class="fa fa-heart iconn"></i></a></li>
                               <?}?>
                             </ul>
                           </div>
@@ -211,7 +213,7 @@
                         </div>
                       </div>
                     </div>
-                    <?
+                    <?}
                                 } ?>
 
                     <!--  -->
@@ -258,7 +260,9 @@
                                 $this->db->where('is_active', 1);
                                 $this->db->where('product_id', $feature->id);
                                 $type_data = $this->db->get();
-                                $type_row = $type_data->row(); ?>
+                                $type_row = $type_data->row();
+                                if(!empty($type_row)){
+                                ?>
                                 <div class="col-lg-12">
                                   <div class="ltn__product-item ltn__product-item-3 text-center">
                                     <div class="product-img">
@@ -274,7 +278,7 @@
                                             if (empty($wishlist_data)) {?>
                                           <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="add_wish" status="add"
                                               user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
-                                              <i class="far fa-heart iconn"></i></a></li>
+                                              <i class="fa fa-heart iconn"></i></a></li>
                                           <?} else {?>
                                           <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="add_wish" status="remove"
                                               user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
@@ -315,7 +319,7 @@
                                     </div>
                                   </div>
                                 </div>
-                    <?
+                    <?}
                             }?>
 
 

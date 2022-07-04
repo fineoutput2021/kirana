@@ -124,7 +124,7 @@ function __construct()
                   $cart = array_values($cart);
                   $this->session->set_userdata('cart_data', $cart);
                   $respone['data'] = true;
-                  $respone['data_message'] ="Item successfully deleted from your cart";
+                  $respone['data_message'] ="Item successfully removed from your cart";
                   echo json_encode($respone);
               } else {
                   $respone['data'] = false;
@@ -280,7 +280,7 @@ function __construct()
                               if (!empty($last_id)) {
 
                                   $respone['data'] = true;
-                                  $respone['data_message'] ="Item successfully deleted from your cart";
+                                  $respone['data_message'] ="Item successfully removed from your cart";
                                   echo json_encode($respone);
                               } else {
                                   $respone['data'] = false;
@@ -332,7 +332,7 @@ function __construct()
 
                   $zapak=$this->db->delete('tbl_cart', array('user_id' => $user_id,'product_id'=>$product_id, 'type_id'=>$type_id));
                   $respone['data'] = true;
-                  $respone['data_message'] ='Item successfully deleted from your cart';
+                  $respone['data_message'] ='Item successfully removed from your cart';
                   echo json_encode($respone);
               } else {
                   $respone['data'] = false;
@@ -480,9 +480,16 @@ function __construct()
                             echo json_encode($respone);
                         }
                     } else {
-                        $respone['data'] = false;
-                        $respone['data_message'] ='Already in your wishlist';
-                        echo json_encode($respone);
+											$delete=$this->db->delete('tbl_wishlist', array('user_id' => $user_id,'product_id'=>$product_id, 'type_id'=>$type_id));
+											if (!empty($delete)) {
+													$respone['data'] = true;
+													$respone['data_message'] ='Item successfully removed from your wishlist';
+													echo json_encode($respone);
+											} else {
+													$respone['data'] = false;
+													$respone['data_message'] ='Some error occured';
+													echo json_encode($respone);
+											}
                     }
                 }
                 //---------remove wishlist---------
@@ -490,7 +497,7 @@ function __construct()
                     $delete=$this->db->delete('tbl_wishlist', array('user_id' => $user_id,'product_id'=>$product_id, 'type_id'=>$type_id));
                     if (!empty($delete)) {
                         $respone['data'] = true;
-                        $respone['data_message'] ='Item successfully deleted from your wishlist';
+                        $respone['data_message'] ='Item successfully removed from your wishlist';
                         echo json_encode($respone);
                     } else {
                         $respone['data'] = false;

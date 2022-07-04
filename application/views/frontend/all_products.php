@@ -131,7 +131,9 @@
                                               $this->db->where('is_active', 1);
                                               $this->db->where('product_id', $product->id);
                                               $type_data = $this->db->get();
-                                              $type_row = $type_data->row(); ?>
+                                              $type_row = $type_data->row();
+                                              if(!empty($type_row)){
+                                               ?>
                                 <!-- ltn__product-item -->
                                 <div class="col-xl-4 col-sm-6 col-6">
                                   <div class="ltn__product-item ltn__product-item-3 text-center">
@@ -189,7 +191,7 @@
                                     </div>
                                   </div>
                                 </div>
-                                <?}?>
+                                <?}}?>
                             </div>
                         </div>
                     </div>
