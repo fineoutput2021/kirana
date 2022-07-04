@@ -42,7 +42,7 @@
 
 
                     <tr>
-                      <td> <strong>Image</strong> <span style="color:red;"></span></strong> </td>
+                      <td> <strong>Image</strong> <span style="color:red;"><br />1665X400px</span></strong> </td>
                       <td>
                         <input type="file" name="image" class="form-control" placeholder="" value="<?=$banner->image?>" />
                         <?php if ($banner->image!="") {  ?>

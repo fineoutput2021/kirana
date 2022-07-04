@@ -494,6 +494,16 @@ function __construct()
                 }
                 //---------remove wishlist---------
                 elseif ($status=="remove") {
+									$ip = $this->input->ip_address();
+	                date_default_timezone_set("Asia/Calcutta");
+	                $cur_date=date("Y-m-d H:i:s");
+	                $this->db->select('*');
+	                $this->db->from('tbl_wishlist');
+	                $this->db->where('user_id', $user_id);
+	                $this->db->where('product_id', $product_id);
+	                $this->db->where('type_id', $type_id);
+	                $wishcheck= $this->db->get()->row();
+									if(!empty($wishcheck)){
                     $delete=$this->db->delete('tbl_wishlist', array('user_id' => $user_id,'product_id'=>$product_id, 'type_id'=>$type_id));
                     if (!empty($delete)) {
                         $respone['data'] = true;
@@ -504,6 +514,26 @@ function __construct()
                         $respone['data_message'] ='Some error occured';
                         echo json_encode($respone);
                     }
+									}else{
+										$data_insert = array('user_id'=>$user_id,
+			'product_id'=>$product_id,
+			'type_id'=>$type_id,
+			'ip' =>$ip,
+			'date'=>$cur_date
+			);
+
+										$last_id=$this->base_model->insert_table("tbl_wishlist", $data_insert, 1) ;
+
+										if (!empty($last_id)) {
+												$respone['data'] = true;
+												$respone['data_message'] ='Item successfully added in your wishlist';
+												echo json_encode($respone);
+										} else {
+												$respone['data'] = false;
+												$respone['data_message'] ='Some error occured';
+												echo json_encode($respone);
+										}
+									}
                 }
                 //---------move to cart--------
                 elseif ($status=="move") {

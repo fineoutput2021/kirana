@@ -115,9 +115,11 @@
     <!-- CATEGORY AREA END -->
 
     <!--===================================-banner image===========================---->
+    <?if(!empty($banner_data1)){?>
     <div class="container-fluid p-0 text-center ">
-      <img src="<?=base_url()?>assets/frontend/img\bg\2.jpg" class="img-fluid">
+      <img src="<?=base_url().$banner_data1->image?>" class="img-fluid">
     </div>
+    <?}?>
     <!---=================================================================================-->
 
     <!--============================================ PRODUCT TAB AREA START (product-item-3) ======================================-->
@@ -176,7 +178,7 @@
                               <?} else {?>
                               <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" status="remove"
                                   user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
-                                  <i class="fa fa-heart iconn"></i></a></li>
+                                  <i class="far fa-heart iconn"></i></a></li>
                               <?}?>
                             </ul>
                           </div>
@@ -232,9 +234,11 @@
     <!---==============================================================================================================-->
 
     <!--===================================-banner image===========================---->
+    <?if(!empty($banner_data2)){?>
     <div class="container-fluid p-0 mt-5">
-      <img src="<?=base_url()?>assets/frontend/img\bg\2.jpg" class="img-fluid">
+      <img src="<?=base_url().$banner_data2->image?>" class="img-fluid">
     </div>
+    <?}?>
     <!--============================================slider2============================================================-->
 
 
@@ -276,11 +280,11 @@
                                             $this->db->where('user_id', $this->session->userdata('user_id'));
                                             $wishlist_data= $this->db->get()->row();
                                             if (empty($wishlist_data)) {?>
-                                          <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="add_wish" status="add"
+                                          <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>"  status="add"
                                               user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
-                                              <i class="fa fa-heart iconn"></i></a></li>
+                                              <i class="far fa-heart iconn"></i></a></li>
                                           <?} else {?>
-                                          <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="add_wish" status="remove"
+                                          <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>"  status="remove"
                                               user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
                                               <i class="far fa-heart iconn"></i></a></li>
                                           <?}?>
