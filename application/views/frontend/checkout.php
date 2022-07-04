@@ -142,10 +142,10 @@
                           <td>- ₹<?=$order_data->promo_discount?></td>
                           <?}?>
                       </tr>
-                      <!-- <tr>
-                          <td>Shipping and Handing</td>
-                          <td>₹15.00</td>
-                      </tr> -->
+                      <tr>
+                          <td>Shipping</td>
+                          <td>₹50.00</td>
+                      </tr>
                       <tr>
                           <td><strong>Order Total</strong></td>
                           <td id="finalAmt"><strong>₹<?=$order_data->final_amount?></strong></td>
@@ -214,7 +214,7 @@
                 </div>
             </div>
             <div class="ltn__payment-note mt-30 mb-30">
-                <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
+                <p>Your order will be delivered to you within 24 hours.</p>
             </div>
             <a href="javascript:;"><button class="btn theme-btn-1 btn-effect-1 text-uppercase"  onclick="checkout()">Place order</button></a>
               </form>

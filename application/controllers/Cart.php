@@ -153,7 +153,7 @@ function __construct()
         $this->form_validation->set_rules('product_id', 'product_id', 'required|xss_clean|trim');
         $this->form_validation->set_rules('type_id', 'type_id', 'required|xss_clean|trim');
         $this->form_validation->set_rules('quantity', 'quantity', 'required|xss_clean|trim');
-        $this->form_validation->set_rules('price', 'price', 'required|xss_clean|trim');
+        // $this->form_validation->set_rules('price', 'price', 'required|xss_clean|trim');
 
           if ($this->form_validation->run()== true) {
             $product_id=$this->input->post('product_id');
@@ -162,7 +162,7 @@ function __construct()
             $type_id=base64_decode($type_id);
             // echo $type_id;die();
             $quantity=$this->input->post('quantity');
-            $pricee=$this->input->post('price');
+            // $pricee=$this->input->post('price');
               $index="-1";
 
               // echo $type_id;die();
@@ -172,13 +172,6 @@ function __construct()
               $this->db->where('product_id', $product_id);
               $this->db->where('id', $type_id);
               $pro_data= $this->db->get()->row();
-              //-----check inventory------
-              $this->db->select('*');
-              $this->db->from('tbl_inventory');
-              $this->db->where('type_id',$type_id);
-              $inventory= $this->db->get()->row();
-              if (!empty($inventory->quantity)) {
-                  if ($inventory->quantity >= $quantity) {
                       $cart = $this->session->userdata('cart_data');
                       // echo $product_id;
                       // print_r($cart);
@@ -208,7 +201,9 @@ function __construct()
                               $price = $pro_data->spgst * $value['quantity'];
                               $total= $total + $price;
                           }
-                          $subtotal = $total;
+                          $cartsubtotal = $total;
+													$subtotal = $cartsubtotal + 50;
+
                           $this->db->select('*');
               $this->db->from('tbl_type');
               $this->db->where('id',$value['type_id']);
@@ -217,25 +212,16 @@ function __construct()
 
                           $respone['data'] = true;
                           $respone['data_message'] ="Item successfully updated in your cart";
-                          $respone['data_price'] =round($total);
-                          $respone['data_subtotal'] =round($subtotal);
-                          $respone['newprice'] =$newprice;
+                          $respone['data_price'] =round($total, 2);
+                          $respone['data_subtotal'] =round($subtotal, 2);
+                          $respone['data_carttotal'] =round($cartsubtotal, 2);
+                          $respone['newprice'] =round($newprice);
                           echo json_encode($respone);
                       } else {
                           $respone['data'] = false;
                           $respone['data_message'] ="Some error occured";
                           echo json_encode($respone);
                       }
-                  } else {
-                      $respone['data'] = false;
-                      $respone['data_message'] ="Out of stock";
-                      echo json_encode($respone);
-                  }
-              } else {
-                  $respone['data'] = false;
-                  $respone['data_message'] ="Out of stock";
-                  echo json_encode($respone);
-              }
           } else {
               $respone['data'] = false;
               $respone['data_message'] = validation_errors();
@@ -385,17 +371,10 @@ function __construct()
               $quantity=$this->input->post('quantity');
               $user_id = $this->session->userdata('user_id');
 
-                          $this->db->select('*');
-              $this->db->from('tbl_inventory');
-              $this->db->where('type_id',$type_id);
-              $inventory_data= $this->db->get()->row();
-              // echo $inventory_data->quantity;die();
-              //-----check inventory------
-              if (!empty($inventory_data->quantity)) {
-                  if ($inventory_data->quantity >= $quantity) {
 
               //----------cart quantity update--------
                       $data_update = array('quantity'=>$quantity);
+
                       $this->db->where('user_id', $user_id);
                       $this->db->where('product_id', $product_id);
                       $this->db->where('type_id', $type_id);
@@ -420,7 +399,8 @@ function __construct()
                               $price = $pro_data->spgst * $cart->quantity;
                               $total= $total + $price;
                           }
-                          $subtotal = $total;
+                          $cartsubtotal = $total;
+													$subtotal = $cartsubtotal + 50;
                                       $this->db->select('*');
                           $this->db->from('tbl_type');
                           $this->db->where('id',$type_id);
@@ -428,25 +408,16 @@ function __construct()
                           $newprice = $type_da->spgst * $quantity;
                           $respone['data'] = true;
                           $respone['data_message'] ="Cart item update successfully";
-                          $respone['data_price'] =round($total);
-                          $respone['data_subtotal'] =round($subtotal);
-                          $respone['newprice'] =$newprice;
+                          $respone['data_price'] =round($total, 2);
+                          $respone['data_subtotal'] =round($subtotal, 2);
+                          $respone['data_cartsubtotal'] =round($cartsubtotal, 2);
+                          $respone['newprice'] =round($newprice);
                           echo json_encode($respone);
                       } else {
                           $respone['data'] = false;
                           $respone['data_message'] ="Some error occucred";
                           echo json_encode($respone);
                       }
-                  } else {
-                      $respone['data'] = false;
-                      $respone['data_message'] ="Out of stock";
-                      echo json_encode($respone);
-                  }
-              } else {
-                  $respone['data'] = false;
-                  $respone['data_message'] ="Out of stock";
-                  echo json_encode($respone);
-              }
           } else {
               $respone['data'] = false;
               $respone['data_message'] =validation_errors();

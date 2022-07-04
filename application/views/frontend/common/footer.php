@@ -66,7 +66,7 @@
                        <div class="footer-menu">
                            <ul>
 
-                               <li><a href="<?=base_url()?>Home/term_and_condition">Terms & Conditions</a></li><br>
+                               <li><a href="javascript:;">Terms & Conditions</a></li><br>
                                <li><a href="#">Privacy & Policy</a></li>
 
                            </ul>
@@ -221,7 +221,7 @@ function loadSuccessNotify(succ_message){
              },
              offset: 20,
              spacing: 10,
-             z_index: 9999,
+             z_index: 999999,
              delay: 1000,
              animate: {
                  enter: 'animated fadeInDown',
@@ -259,7 +259,7 @@ function loadSuccessNotify(succ_message){
                  },
                  offset: 20,
                  spacing: 10,
-                 z_index: 9999,
+                 z_index: 999999,
                  delay: 1000,
                  animate: {
                      enter: 'animated fadeInDown',
@@ -313,7 +313,7 @@ function loadSuccessNotify(succ_message){
                             },
                             offset: 20,
                             spacing: 10,
-                            z_index: 9999,
+                            z_index: 999999,
                             delay: 5000,
                             animate: {
                                 enter: 'animated fadeInDown',
@@ -352,7 +352,7 @@ function loadSuccessNotify(succ_message){
                                },
                                offset: 20,
                                spacing: 10,
-                               z_index: 9999,
+                               z_index: 999999,
                                delay: 5000,
                                animate: {
                                    enter: 'animated fadeInDown',
@@ -413,7 +413,7 @@ function loadSuccessNotify(succ_message){
                             },
                             offset: 20,
                             spacing: 10,
-                            z_index: 9999,
+                            z_index: 999999,
                             delay: 5000,
                             animate: {
                                 enter: 'animated fadeInDown',
@@ -452,7 +452,7 @@ function loadSuccessNotify(succ_message){
                                },
                                offset: 20,
                                spacing: 10,
-                               z_index: 9999,
+                               z_index: 999999,
                                delay: 5000,
                                animate: {
                                    enter: 'animated fadeInDown',
@@ -513,7 +513,7 @@ function loadSuccessNotify(succ_message){
             },
             offset: 20,
             spacing: 10,
-            z_index: 9999,
+            z_index: 999999,
             delay: 1000,
             animate: {
               enter: 'animated fadeInDown',
@@ -551,7 +551,7 @@ function loadSuccessNotify(succ_message){
             },
             offset: 20,
             spacing: 10,
-            z_index: 9999,
+            z_index: 999999,
             delay: 5000,
             animate: {
               enter: 'animated fadeInDown',
@@ -709,7 +709,7 @@ function wishlist(obj) {
           },
           offset: 20,
           spacing: 10,
-          z_index: 9999,
+          z_index: 999999,
           delay: 1000,
           animate: {
             enter: 'animated fadeInDown',
@@ -728,7 +728,7 @@ function wishlist(obj) {
             $( "#collapsibleNavbar" ).load(window.location.href + " #collapsibleNavbar > *" );
             $( "#wishlist" ).load(window.location.href + " #wishlist > *" );
             $( "#prod_det_heart" ).load(window.location.href + " #prod_det_heart > *" );
-            // $( "#add_wish" ).load(window.location.href + " #add_wish > *" );
+            $( "#add_wish" ).load(window.location.href + " #add_wish > *" );
 
 
       } else if (response.data == false) {
@@ -749,7 +749,7 @@ function wishlist(obj) {
           },
           offset: 20,
           spacing: 10,
-          z_index: 9999,
+          z_index: 999999,
           delay: 5000,
           animate: {
             enter: 'animated fadeInDown',

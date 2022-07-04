@@ -43,6 +43,9 @@
 <th>#</th>
 <th>Order Id</th>
 <th>User Name</th>
+<th>Promocode</th>
+<th>Total Amount</th>
+<th>Promocode Discount</th>
 <th>Final Amount</th>
 <th>Payment Type</th>
 <th>Name</th>
@@ -71,8 +74,25 @@
                                   echo "user not found";
                               }
                               ?></td>
+<td>
+  <?if(!empty($data->promocode)){
+    $this->db->select('*');
+    $this->db->from('tbl_promocode');
+    $this->db->where('id', $data->promocode);
+    $promo_data = $this->db->get()->row();
+    if(!empty($promo_data)){
+      echo $promo_data->promocode;
+    }else{
+      echo "Promocode Not Found";
+    }
+  }else{
+    echo "NA";
+  }?>
+</td>
 
 <!-- <td><?php ?> </td> -->
+<td><?php echo "₹".$data->total_amount ?></td>
+<td><?php if(!empty($data->promocode)){ echo "₹".$data->promo_discount;}else{ echo "NA";} ?></td>
 <td><?php echo "₹".$data->final_amount ?></td>
 <td>
 <?php if ($data->payment_type== 1) {
@@ -209,31 +229,31 @@ dom: 'Bfrtip',
 buttons: [{
 extend: 'copyHtml5',
 exportOptions: {
-columns: [1, 2, 3, 4, 5, 6, 7, 8, 9] //number of columns, excluding # column
+columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] //number of columns, excluding # column
 }
 },
 {
 extend: 'csvHtml5',
 exportOptions: {
-columns: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 }
 },
 {
 extend: 'excelHtml5',
 exportOptions: {
-columns: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 }
 },
 {
 extend: 'pdfHtml5',
 exportOptions: {
-columns: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 }
 },
 {
 extend: 'print',
 exportOptions: {
-columns: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 }
 },
 

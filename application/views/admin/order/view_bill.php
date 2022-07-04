@@ -175,7 +175,7 @@ echo $product_name= $product_data->name;
 </td>
 
         <td ><?php if(!empty($type)){echo "₹".$type->sp;} ?></td>
-        <td ><?php echo "₹".$data->quantity;?></td>
+        <td ><?php echo $data->quantity;?></td>
         <td ><?php if(!empty($type)){echo $type->gst."%";}?></td>
         <td><? if(!empty($type)){echo "₹".$product_sp= $type->spgst;}?> </td>
         <!-- <td>9%</td>
@@ -202,11 +202,6 @@ echo $product_name= $product_data->name;
         <th class="product_table" colspan="5"><?php if(!empty($order1_data)){ echo ""; }?></th>
 
         <th class="product_table"><?php if(!empty($order1_data)){ echo "₹".$order1_data->total_amount; }?></th>
-      </tr>
-
-      <tr>
-
-
       </tr>
 
 
@@ -250,7 +245,13 @@ echo $product_name= $product_data->name;
 
         </tr>
       <?php }?>
+      <tr>
+        <th>Shipping</th>
+        <th class="product_table" ><?php if(!empty($order1_data)){ echo ""; }?></th>
+        <th class="product_table" colspan="5"><?php if(!empty($order1_data)){ echo ""; }?></th>
 
+        <th class="product_table"><?php if(!empty($order1_data)){ echo "₹50.00"; }?></th>
+      </tr>
 
       <tr>
         <th colspan="7">SubTotal</th>

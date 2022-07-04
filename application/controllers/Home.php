@@ -148,7 +148,7 @@ class Home extends CI_Controller
     public function term_and_condition()
     {
         $this->load->view('frontend/common/header');
-        $this->load->view('frontend/contact');
+        $this->load->view('frontend/term_and_condition');
         $this->load->view('frontend/common/footer');
     }
     public function sign_in()

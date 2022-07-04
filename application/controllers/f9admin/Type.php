@@ -1,5 +1,7 @@
-<?php if (! defined('BASEPATH')) {
-exit('No direct script access allowed');
+<?php
+
+if (! defined('BASEPATH')) {
+    exit('No direct script access allowed');
 }
 require_once(APPPATH . 'core/CI_finecontrol.php');
 class Type extends CI_finecontrol
@@ -16,11 +18,11 @@ class Type extends CI_finecontrol
     {
         if (!empty($this->session->userdata('admin_data'))) {
             $data['user_name']=$this->load->get_var('user_name');
-             $id=base64_decode($idd);
+            $id=base64_decode($idd);
             $data['id']=$idd;
             $this->db->select('*');
             $this->db->from('tbl_type');
-            $this->db->where('product_id',$id);
+            $this->db->where('product_id', $id);
             $data['type_data']= $this->db->get();
 
 
@@ -38,7 +40,7 @@ class Type extends CI_finecontrol
         if (!empty($this->session->userdata('admin_data'))) {
             $data['user_name']=$this->load->get_var('user_name');
             $id=base64_decode($product_id);
-           $data['id']=$product_id;
+            $data['id']=$product_id;
 
             $this->db->select('*');
             $this->db->from('tbl_product');
@@ -106,14 +108,14 @@ class Type extends CI_finecontrol
 
                         $last_id=$this->base_model->insert_table("tbl_type", $data_insert, 1) ;
 
-                                            if ($last_id!=0) {
-                                                $this->session->set_flashdata('smessage', 'Type inserted successfully');
+                        if ($last_id!=0) {
+                            $this->session->set_flashdata('smessage', 'Type inserted successfully');
 
-                                                redirect("dcadmin/Type/view_type/".base64_encode($product_id), "refresh");
-                                            } else {
-                                                $this->session->set_flashdata('emessage', 'Sorry error occured');
-                                                redirect($_SERVER['HTTP_REFERER']);
-                                            }
+                            redirect("dcadmin/Type/view_type/".base64_encode($product_id), "refresh");
+                        } else {
+                            $this->session->set_flashdata('emessage', 'Sorry error occured');
+                            redirect($_SERVER['HTTP_REFERER']);
+                        }
                     }
                     if ($typ==2) {
                         $idw=base64_decode($iw);
@@ -127,17 +129,15 @@ class Type extends CI_finecontrol
                         $this->db->where('id', $idw);
                         $last_id=$this->db->update('tbl_type', $data_insert);
 
-                                            if ($last_id!=0) {
-                                                $this->session->set_flashdata('smessage', 'Type updated successfully');
+                        if ($last_id!=0) {
+                            $this->session->set_flashdata('smessage', 'Type updated successfully');
 
-                                                redirect("dcadmin/Type/view_type/".base64_encode($product_id), "refresh");
-                                            } else {
-                                                $this->session->set_flashdata('emessage', 'Sorry error occured');
-                                                redirect($_SERVER['HTTP_REFERER']);
-                                            }
+                            redirect("dcadmin/Type/view_type/".base64_encode($product_id), "refresh");
+                        } else {
+                            $this->session->set_flashdata('emessage', 'Sorry error occured');
+                            redirect($_SERVER['HTTP_REFERER']);
+                        }
                     }
-
-
                 } else {
                     $this->session->set_flashdata('emessage', validation_errors());
                     redirect($_SERVER['HTTP_REFERER']);
@@ -186,7 +186,7 @@ class Type extends CI_finecontrol
             if ($this->load->get_var('position')=="Super Admin") {
                 $zapak=$this->db->delete('tbl_type', array('id' => $id));
                 if ($zapak!=0) {
-                  $this->session->set_flashdata('smessage', 'Data deleted successfully');
+                    $this->session->set_flashdata('smessage', 'Data deleted successfully');
                     redirect("dcadmin/type/view_type", "refresh");
                 } else {
                     echo "Error";
@@ -208,6 +208,10 @@ class Type extends CI_finecontrol
 
 
             $id=base64_decode($idd);
+            $this->db->select('*');
+            $this->db->from('tbl_type');
+            $this->db->where('id', $id);
+            $type_data = $this->db->get()->row();
 
             if ($t=="active") {
                 $data_update = array(
@@ -220,7 +224,7 @@ class Type extends CI_finecontrol
                 $this->session->set_flashdata('smessage', 'Data updated successfully');
 
                 if ($zapak!=0) {
-                    redirect("dcadmin/type/view_type", "refresh");
+                    redirect("dcadmin/type/view_type/".base64_encode($type_data->product_id), "refresh");
                 } else {
                     echo "Error";
                     exit;
@@ -237,7 +241,7 @@ class Type extends CI_finecontrol
                 $this->session->set_flashdata('smessage', 'Data updated successfully');
 
                 if ($zapak!=0) {
-                    redirect("dcadmin/type/view_type", "refresh");
+                    redirect("dcadmin/type/view_type/".base64_encode($type_data->product_id), "refresh");
                 } else {
                     $data['e']="Error Occured";
                     // exit;
