@@ -19,6 +19,7 @@ class Users extends CI_finecontrol
             $data['user_name']=$this->load->get_var('user_name');
             $this->db->select('*');
             $this->db->from('tbl_users');
+            $this->db->order_by('id', 'desc');
             //$this->db->where('id',$usr);
             $data['users_data']= $this->db->get();
 

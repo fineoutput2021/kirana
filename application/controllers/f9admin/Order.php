@@ -21,6 +21,7 @@ class Order extends CI_finecontrol
             $this->db->select('*');
             $this->db->from('tbl_order1');
             $this->db->where('payment_status', 1);
+            $this->db->order_by('id', 'desc');
             $this->db->where('order_status', 1);//new orders
             $data['order1_data']= $this->db->get();
 $data['heading'] = "New";
