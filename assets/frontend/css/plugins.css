@@ -6795,17 +6795,17 @@ a.close.disabled {
   display: block
 }
 
-.active.carousel-item-right,
+/* .active.carousel-item-right,
 .carousel-item-next:not(.carousel-item-left) {
   -webkit-transform: translateX(100%);
   transform: translateX(100%)
-}
+} */
 
-.active.carousel-item-left,
+/* .active.carousel-item-left,
 .carousel-item-prev:not(.carousel-item-right) {
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%)
-}
+} */
 
 .carousel-fade .carousel-item {
   opacity: 0;
