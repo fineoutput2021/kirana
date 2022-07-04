@@ -182,12 +182,17 @@ class Type extends CI_finecontrol
 
 
             $id=base64_decode($idd);
+            $id=base64_decode($idd);
+            $this->db->select('*');
+            $this->db->from('tbl_type');
+            $this->db->where('id', $id);
+            $type_data = $this->db->get()->row();
 
             if ($this->load->get_var('position')=="Super Admin") {
                 $zapak=$this->db->delete('tbl_type', array('id' => $id));
                 if ($zapak!=0) {
                     $this->session->set_flashdata('smessage', 'Data deleted successfully');
-                    redirect("dcadmin/type/view_type", "refresh");
+                    redirect("dcadmin/type/view_type/".base64_encode($type_data->product_id), "refresh");
                 } else {
                     echo "Error";
                     exit;
