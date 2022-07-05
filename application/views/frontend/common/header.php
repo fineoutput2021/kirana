@@ -163,8 +163,9 @@
                                         </div>
 
                                         <!-- mini-cart -->
-                                        <div class="mini-cart-icon" id="cartIcon">
+                                        <div class="mini-cart-icon" >
                                             <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle">
+                                              <span id="cartIcon">
                                                 <i class="icon-shopping-cart"></i>
                                                 <sup><?if(!empty($this->session->userdata('user_data'))){
                                                   $this->db->select('*');
@@ -207,6 +208,7 @@
                                                   }
 
                                                 }?></sup>
+                                                </span>
                                             </a>
                                         </div>
                                         <?if(!empty($this->session->userdata('user_data'))){
@@ -241,7 +243,7 @@
         <div class="ltn__utilize-menu-inner ltn__scrollbar" id="sideCartWeb">
           <div class="ltn__utilize-menu-head">
               <span class="ltn__utilize-menu-title">Cart</span>
-              <button class="ltn__utilize-close">×</button>
+              <button class="ltn__utilize-close" onclick="closeCart()">×</button>
           </div>
             <?$this->db->select('*');
             $this->db->from('tbl_cart');
@@ -302,7 +304,7 @@
           <div class="ltn__utilize-menu-inner ltn__scrollbar" id="sideCartWeb">
             <div class="ltn__utilize-menu-head">
                 <span class="ltn__utilize-menu-title">Cart</span>
-                <button class="ltn__utilize-close">×</button>
+                <button class="ltn__utilize-close" onclick="closeCart()">×</button>
             </div>
               <?
               if (!empty($this->session->userdata('cart_data'))) {
