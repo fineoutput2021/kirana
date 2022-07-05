@@ -236,7 +236,7 @@ class Product extends CI_finecontrol
                         if ($last_id!=0) {
                             $this->session->set_flashdata('smessage', 'Data inserted successfully');
 
-                            redirect("dcadmin/product/view_product", "refresh");
+                            redirect("dcadmin/Type/view_type/".base64_encode($last_id), "refresh");
                         } else {
                             $this->session->set_flashdata('emessage', 'Sorry error occured');
                             redirect($_SERVER['HTTP_REFERER']);

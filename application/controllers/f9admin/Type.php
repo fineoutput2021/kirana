@@ -44,6 +44,12 @@ class Type extends CI_finecontrol
 
             $this->db->select('*');
             $this->db->from('tbl_product');
+            $this->db->where('id',$id);
+            $product_data = $this->db->get()->row();
+            $data['productName'] = $product_data->name;
+
+            $this->db->select('*');
+            $this->db->from('tbl_product');
             $data['product_data']= $this->db->get();
 
             $this->load->view('admin/common/header_view', $data);
@@ -166,7 +172,12 @@ class Type extends CI_finecontrol
 
             $this->db->select('*');
             $this->db->from('tbl_product');
+            $this->db->where('id',$data['type']->product_id);
+            $product_data = $this->db->get()->row();
+            $data['productName'] = $product_data->name;
 
+            $this->db->select('*');
+            $this->db->from('tbl_product');
             $data['product_data']= $this->db->get();
             $this->load->view('admin/common/header_view', $data);
             $this->load->view('admin/type/update_type');

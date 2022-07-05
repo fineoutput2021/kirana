@@ -40,7 +40,7 @@
                 <div class="table-responsive">
                   <table class="table table-hover">
 
-                    <tr>
+                    <!-- <tr>
                       <td> <strong>Category</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
                         <select name="category_id" id="category_id" class="form-control">
@@ -64,7 +64,9 @@
                             }?>><?=$subcategory->name?></option>
                           <?php $i++; } ?>
                       </td>
-                    </tr>
+                    </tr> -->
+                    <input type="hidden" name="category_id" value="<?=$product->category_id?>" />
+                    <input type="hidden" name="subcategory_id" value="<?=$product->subcategory_id?>" />
 
                     <tr>
                       <td> <strong>Name</strong> <span style="color:red;">*</span></strong> </td>
