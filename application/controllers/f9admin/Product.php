@@ -339,8 +339,6 @@ class Product extends CI_finecontrol
     {
         if (!empty($this->session->userdata('admin_data'))) {
             $data['user_name']=$this->load->get_var('user_name');
-
-
             $id=base64_decode($idd);
 
             if ($this->load->get_var('position')=="Super Admin") {

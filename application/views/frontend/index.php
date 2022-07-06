@@ -192,7 +192,7 @@
                           <?} ?>
                         </div>
                         <div class="product-info">
-                          <h2 class="product-title"><a href="<?=base_url()?>Home/product_detail/<?=base64_encode($type_row->product_id)?>"><?=$product->name?></a></h2>
+                          <h2 class="product-title text"><a href="<?=base_url()?>Home/product_detail/<?=base64_encode($type_row->product_id)?>"><?=$product->name?></a></h2>
                           <div class="product-price">
                             <span id="typespgst<?=$product->id?>">₹<?=$type_row->spgst?></span>
                             <del id="typemrp<?=$product->id?>">₹<?=$type_row->mrp?></del>
@@ -316,7 +316,7 @@
                           <?} ?>
                         </div>
                         <div class="product-info">
-                          <h2 class="product-title"><a href="<?=base_url()?>Home/product_detail/<?=base64_encode($type_row->product_id)?>"><?=$feature->name?></a></h2>
+                          <h2 class="product-title text"><a href="<?=base_url()?>Home/product_detail/<?=base64_encode($type_row->product_id)?>"><?=$feature->name?></a></h2>
                           <div class="product-price">
                             <span id="typespgst<?="Ft".$feature->id?>">₹<?=$type_row->spgst?></span>
                             <del id="typemrp<?="Ft".$feature->id?>">₹<?=$type_row->mrp?></del>
