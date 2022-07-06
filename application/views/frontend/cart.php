@@ -22,22 +22,25 @@
                 </div>
                 <div class="col-8 col-md-8 col-lg-8 col-sm-8 " style="justify-content: space-around;">
                     <ul class="p-0">
-                        <li style="text-align:right; padding-bottom:0px;">
-                            <p style="font-size:20px; color:green; cursor: pointer;" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" onclick="deleteCartOnline(this)">X</p>
+                        <li style="text-align:right;">
+                            <p style="font-size:20px; color:green; cursor: pointer; margin-bottom:0px" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" onclick="deleteCartOnline(this)">X</p>
                         </li>
                         <li>
                             <h4><?=$product_data->name;?></h4>
                             <h6>Type: <?=$type_data->name;?></h6>
+                              <h6>Unit Price : ₹<?=$type_data->spgst?> </h6>
                               <div class="cart-plus-minus p-0">
                             <div class="dec qtybutton" onclick="incdeec(<?=$type_data->id?>,1); updateCartOnline(<?=$type_data->id?>)">-</div>
                             <input type="text" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" value="<?=$cart->quantity?>"  id="quantity<?=$type_data->id?>" readonly name="qtybutton" class="cart-plus-minus-box">
                             <div class="inc qtybutton" onclick="incdeec(<?=$type_data->id?>,2); updateCartOnline(<?=$type_data->id?>)">+</div>
                           </div>
                         </li>
-                        <li style="display:flex; font-size:20px;"><span>Price:-&nbsp</span>
-                            <div>
-                                <h5 class="mt-2" id="price<?=$type_data->id?>" style="font-size:20px; margin-left:5px;">₹<?=$type_data->spgst*$cart->quantity?></h5>
-                            </div>
+                        <li style="display:flex; font-size:20px;">
+                          <h6 >Price : <span id="price<?=$type_data->id?>">₹<?=$type_data->spgst*$cart->quantity?></span> </h6>
+                            <!-- <div>
+                              <h6>Unit Price : ₹<?=$type_data->spgst?> </h6>
+                                <h5 class="mt-2" id="price<?=$type_data->id?>" style="font-size:20px; margin-left:5px;">Price:-&nbsp₹<?=$type_data->spgst*$cart->quantity?></h5>
+                            </div> -->
                         </li>
                     </ul>
                 </div>
@@ -130,7 +133,7 @@ function updateCartOnline(i) {
           },
           offset: 20,
           spacing: 10,
-          z_index: 1031,
+          z_index: 9999,
           delay: 5000,
           animate: {
             enter: 'animated fadeInDown',
@@ -171,7 +174,7 @@ function updateCartOnline(i) {
           },
           offset: 20,
           spacing: 10,
-          z_index: 1031,
+          z_index: 9999,
           delay: 5000,
           animate: {
             enter: 'animated fadeInDown',

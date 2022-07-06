@@ -269,7 +269,7 @@
                         <span class="mini-cart-item-delete" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" onclick="deleteCartOnline(this)"><i class="icon-cancel"></i></span>
                     </div>
                     <div class="mini-cart-info">
-                        <h6><a href=""><?=$product_data->name?></a><br /><?=$type_data->name?></h6>
+                        <h6><a href="">Type: <?=$product_data->name?></a><br /><?=$type_data->name?></h6>
                         <span class="mini-cart-quantity"><?=$cart->quantity?> x ₹<?=$type_data->spgst?></span>
                     </div>
                 </div>
@@ -327,7 +327,7 @@
                           <span class="mini-cart-item-delete" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" onclick="deleteCartOffline(this)"><i class="icon-cancel"></i></span>
                       </div>
                       <div class="mini-cart-info">
-                          <h6><a href="javascript:;"><?=$product_data->name?></a><br /><?=$type_data->name?></h6>
+                          <h6><a href="javascript:;">Type: <?=$product_data->name?></a><br /><?=$type_data->name?></h6>
                           <span class="mini-cart-quantity"><?=$cart['quantity']?> x ₹<?=$type_data->spgst?></span>
                       </div>
                   </div>
