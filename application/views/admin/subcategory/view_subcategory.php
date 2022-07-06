@@ -43,6 +43,7 @@
                       <th>#</th>
                       <th>Category Name</th>
                       <th>Name</th>
+                      <th>Our Products</th>
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
@@ -59,7 +60,13 @@
                                                       echo $category_data->name;?></td>
 
                       <td><?php echo $data->name ?></td>
-
+                      <td><?php
+                       if($data->our_product==1){
+                        echo"yes";
+                      }else{
+                          echo"No";
+                         }
+                       ?></td>
 
                       <td><?php if ($data->is_active==1) { ?>
                         <p class="label bg-green">Active</p>

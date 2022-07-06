@@ -59,7 +59,14 @@
                         <input type="text" name="name" class="form-control" placeholder="" required value="<?=$subcategory->name?>" />
                       </td>
                     </tr>
-
+                    <tr>
+                      <td> <strong>Our Products</strong> <span style="color:red;"></span></strong> </td>
+                      <td>
+                        <select name="our_product"  class="form-control">
+                          <option <?if($subcategory->our_product=="0"){echo "selected";}?> value="0">No</option>
+                          <option <?if($subcategory->our_product=="1"){echo "selected";}?> value="1">Yes</option>
+                      </td>
+                    </tr>
                     <tr>
                       <td colspan="2">
                         <input type="submit" class="btn btn-success" value="save">

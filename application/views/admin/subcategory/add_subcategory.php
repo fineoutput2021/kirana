@@ -59,6 +59,14 @@
                       </td>
                     </tr>
                     <tr>
+                      <td> <strong>Our Products</strong> <span style="color:red;"></span></strong> </td>
+                      <td>
+                        <select name="our_product"  class="form-control">
+                          <option value="0">No</option>
+                          <option value="1">Yes</option>
+                      </td>
+                    </tr>
+                    <tr>
                       <td colspan="2">
                         <input type="submit" class="btn btn-success" value="save">
                       </td>
