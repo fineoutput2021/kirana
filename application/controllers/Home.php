@@ -22,14 +22,8 @@ class Home extends CI_Controller
         $this->db->select('*');
         $this->db->from('tbl_banner');
         $this->db->where('is_active', 1);
-        $this->db->order_by('id', 'aesc');
-        $data['banner_data1']= $this->db->get()->row();
+        $data['banner_data']= $this->db->get()->row();
 
-        $this->db->select('*');
-        $this->db->from('tbl_banner');
-        $this->db->where('is_active', 1);
-        $this->db->order_by('id', 'desc');
-        $data['banner_data2']= $this->db->get()->row();
 
         $this->db->select('*');
         $this->db->from('tbl_category');

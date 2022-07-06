@@ -111,13 +111,6 @@
     </div>
     <!-- CATEGORY AREA END -->
 
-    <!--===================================-banner image===========================---->
-    <?if (!empty($banner_data1)) {?>
-    <div class="container-fluid p-0 text-center ">
-      <img src="<?=base_url().$banner_data1->image?>" class="img-fluid">
-    </div>
-    <?}?>
-    <!---=================================================================================-->
 
     <!--============================================ PRODUCT TAB AREA START (product-item-3) ======================================-->
     <!-- PRODUCT TAB AREA START (product-item-3) -->
@@ -131,6 +124,7 @@
             <div class="ltn__tab-menu ltn__tab-menu-2 ltn__tab-menu-top-right-- text-uppercase text-center">
               <div class="nav">
                 <?$s = 1; foreach ($subcategory->result() as $subcat) {
+                  if($subcat->our_product==1){
                                 $this->db->select('*');
                                 $this->db->from('tbl_category');
                                 $this->db->where('id', $subcat->category_id);
@@ -141,11 +135,12 @@
                 <a <?if ($s==1) { echo "class='active show'" ; } ?> data-toggle="tab" href="#liton<?=$subcat->id?>"><?=$subcat->name; ?></a>
                 <?$s++;
                                 }
-                            }?>
+                            }}?>
               </div>
             </div>
             <div class="tab-content">
               <?$s = 1; foreach ($subcategory->result() as $subcat) {
+                  if($subcat->our_product==1){
                                 $this->db->select('*');
                                 $this->db->from('tbl_category');
                                 $this->db->where('id', $subcat->category_id);
@@ -237,7 +232,7 @@
               </div>
               <?$s++;
                                 }
-                            }?>
+                            }}?>
             </div>
           </div>
         </div>
@@ -247,12 +242,14 @@
 
     <!---==============================================================================================================-->
 
-    <!--===================================-banner image===========================---->
-    <?if (!empty($banner_data2)) {?>
-    <div class="container-fluid p-0 mt-5">
-      <img src="<?=base_url().$banner_data2->image?>" class="img-fluid">
-    </div>
-    <?}?>
+        <!--===================================-banner image===========================---->
+        <?if (!empty($banner_data)) {?>
+        <div class="container-fluid p-0 text-center ">
+          <a href="<?=$banner_data->link?>" target="_blank" rel="noopener noreferrer"><img src="<?=base_url().$banner_data->image?>" class="img-fluid"></a>
+        </div>
+        <?}?>
+        <!---=================================================================================-->
+
     <!--============================================slider2============================================================-->
 
 
@@ -368,13 +365,12 @@
     <!---=================================================================================-->
 
     <!-- PRODUCT TAB AREA END -->
-    <!--==============banner========================-->
-
-
+    <!--===================================-banner image===========================---->
+    <?if (!empty($banner_data)) {?>
     <div class="container-fluid p-0 mt-5">
-      <img src="<?=base_url()?>assets/frontend/img\bg\2.jpg" class="img-fluid">
+        <a href="<?=$banner_data->link2?>" target="_blank" rel="noopener noreferrer"><img src="<?=base_url().$banner_data->image2?>" class="img-fluid"></a>
     </div>
-
+    <?}?>
     <!--==============banner========================-->
 
     <!-- TESTIMONIAL AREA START (testimonial-4) -->

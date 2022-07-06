@@ -201,6 +201,8 @@ class Type extends CI_finecontrol
 
             if ($this->load->get_var('position')=="Super Admin") {
                 $zapak=$this->db->delete('tbl_type', array('id' => $id));
+                $zapak1=$this->db->delete('tbl_cart', array('type_id' => $id));
+                $zapak2=$this->db->delete('tbl_wishlist', array('type_id' => $id));
                 if ($zapak!=0) {
                     $this->session->set_flashdata('smessage', 'Data deleted successfully');
                     redirect("dcadmin/type/view_type/".base64_encode($type_data->product_id), "refresh");
@@ -238,6 +240,8 @@ class Type extends CI_finecontrol
                 $this->db->where('id', $id);
                 $zapak=$this->db->update('tbl_type', $data_update);
                 $this->session->set_flashdata('smessage', 'Data updated successfully');
+                $zapak1=$this->db->delete('tbl_cart', array('type_id' => $id));
+                $zapak1=$this->db->delete('tbl_wishlist', array('type_id' => $id));
 
                 if ($zapak!=0) {
                     redirect("dcadmin/type/view_type/".base64_encode($type_data->product_id), "refresh");

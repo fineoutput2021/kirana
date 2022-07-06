@@ -345,6 +345,8 @@ class Product extends CI_finecontrol
 
             if ($this->load->get_var('position')=="Super Admin") {
                 $zapak=$this->db->delete('tbl_product', array('id' => $id));
+                $zapak1=$this->db->delete('tbl_cart', array('product_id' => $id));
+                $zapak1=$this->db->delete('tbl_wishlist', array('product_id' => $id));
                 if ($zapak!=0) {
                     $this->session->set_flashdata('smessage', 'Data deleted successfully');
                     redirect("dcadmin/product/view_product", "refresh");
@@ -380,6 +382,9 @@ class Product extends CI_finecontrol
 
                 $this->db->where('id', $id);
                 $zapak=$this->db->update('tbl_product', $data_update);
+                $zapak1=$this->db->delete('tbl_cart', array('product_id' => $id));
+                $zapak1=$this->db->delete('tbl_wishlist', array('product_id' => $id));
+
 
                 $this->session->set_flashdata('smessage', 'Data updated successfully');
 

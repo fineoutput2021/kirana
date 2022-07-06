@@ -537,6 +537,7 @@ function __construct()
                 }
                 //---------move to cart--------
                 elseif ($status=="move") {
+									// echo "hi";die();
                               $this->db->select('*');
                   $this->db->from('tbl_cart');
                   $this->db->where('user_id',$wishcheck->user_id);
@@ -544,16 +545,6 @@ function __construct()
                   $this->db->where('type_id',$wishcheck->type_id);
                   $wish_check= $this->db->get()->row();
                   if(empty($wish_check)){
-										//-----------inventory check-----------------------
-	                  $this->db->select('*');
-	                  $this->db->from('tbl_inventory');
-	                  $this->db->where('type_id',$wishcheck->type_id);
-	                  $inventory= $this->db->get()->row();
-	                  //-----check inventory------
-	                  if (!empty($inventory->quantity)) {
-
-	                      if ($inventory->quantity >= 1) {
-
                     $cart_insert = array('user_id'=>$wishcheck->user_id,
                           'product_id'=>$wishcheck->product_id,
                           'type_id'=>$wishcheck->type_id,
@@ -563,6 +554,7 @@ function __construct()
                           );
 
                     $cart_id=$this->base_model->insert_table("tbl_cart", $cart_insert, 1) ;
+										// echo $cart_id;die();
 										if (!empty($cart_id)) {
                         $delete=$this->db->delete('tbl_wishlist', array('user_id' => $user_id,'product_id'=>$product_id));
                         $respone['data'] = true;
@@ -573,17 +565,6 @@ function __construct()
                         $respone['data_message'] ='Some error occured';
                         echo json_encode($respone);
                     }
-									}else{
-										$respone['data'] = false;
-	                  $respone['data_message'] ='Product is out of stock';
-	                  echo json_encode($respone);
-									}
-								}else{
-									$respone['data'] = false;
-                  $respone['data_message'] ='Product is out of stock';
-                  echo json_encode($respone);
-								}
-
                 }else{
                   $respone['data'] = false;
                   $respone['data_message'] ='Product is already in your cart';

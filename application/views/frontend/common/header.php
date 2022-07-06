@@ -212,15 +212,19 @@
                                             </a>
                                         </div>
                                         <?if(!empty($this->session->userdata('user_data'))){
-                                          $this->db->select('*');
-                                          $this->db->from('tbl_wishlist');
-                                          $this->db->where('user_id', $this->session->userdata('user_id'));
-                                          $wishcount = $this->db->count_all_results();
+
                                           ?>
                                         <div class="mini-cart-icon">
                                             <a href="<?=base_url()?>Home/wishlist" class="">
+                                              <span id="wish_count">
+                                                <?  $this->db->select('*');
+                                                  $this->db->from('tbl_wishlist');
+                                                  $this->db->where('user_id', $this->session->userdata('user_id'));
+                                                  $wishcount = $this->db->count_all_results();
+                                                  ?>
                                                 <i class="fa fa-heart"></i>
                                                 <sup><?=$wishcount?></sup>
+                                                </span>
                                             </a>
                                         </div>
                                         <?}?>

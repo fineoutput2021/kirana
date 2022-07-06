@@ -734,6 +734,11 @@ function wishlist(obj) {
             $( "#wishlist" ).load(window.location.href + " #wishlist > *" );
             $( "#prod_det_heart" ).load(window.location.href + " #prod_det_heart > *" );
             $( "#add_wish" ).load(window.location.href + " #add_wish > *" );
+            $( "#wish_count" ).load(window.location.href + " #wish_count > *" );
+            $( "#here" ).load(window.location.href + " #here > *" );
+            $( "#sideCartWeb" ).load(window.location.href + " #sideCartWeb > *" );
+            $( "#cartDiv" ).load(window.location.href + " #cartDiv > *" );
+            $( "#cartIcon" ).load(window.location.href + " #cartIcon > *" );
 
 
       } else if (response.data == false) {
