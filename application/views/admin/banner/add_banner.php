@@ -42,15 +42,27 @@
 
 
                     <tr>
-                      <td> <strong>Image</strong> <span style="color:red;">*</span></strong> </td>
+                      <td> <strong>Image1</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
                         <input type="file" name="image" class="form-control" placeholder=""required value="" />
                       </td>
                     </tr>
                     <tr>
-                      <td> <strong>Link</strong> <span style="color:red;">*</span></strong> </td>
+                      <td> <strong>Image2</strong> <span style="color:red;">*</span></strong> </td>
+                      <td>
+                        <input type="file" name="image2" class="form-control" placeholder=""required value="" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> <strong>Link-1</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
                         <input type="url" name="link" class="form-control" placeholder=""required value="" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> <strong>Link-2</strong> <span style="color:red;">*</span></strong> </td>
+                      <td>
+                        <input type="url" name="link2" class="form-control" placeholder=""required value="" />
                       </td>
                     </tr>
                     <tr>
