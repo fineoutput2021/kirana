@@ -49,28 +49,27 @@
                     <tr>
                       <td> <strong>MRP</strong> <span style="color:red;"></span></strong> </td>
                       <td>
-                        <input type="number" name="mrp" class="form-control" placeholder=""required value="<?=$type->mrp?>" />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td> <strong>Selling Price</strong> <span style="color:red;"></span></strong> </td>
-                      <td>
-                        <input type="number" name="sp" id="sp" class="form-control" placeholder=""required value="<?=$type->sp?>" />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td> <strong>GST(%)</strong> <span style="color:red;"></span></strong> </td>
-                      <td>
-                        <input type="number" name="gst" id="gst" class="form-control" placeholder=""required value="<?=$type->gst?>" />
+                        <input type="number" id="mrp" name="mrp" class="form-control" placeholder=""required value="<?=$type->mrp?>" />
                       </td>
                     </tr>
                     <tr>
                       <td> <strong>Selling price with(GST)</strong> <span style="color:red;"></span></strong> </td>
                       <td>
-                        <input type="number" readonly id="spgst" name="spgst" class="form-control" placeholder=""required value="<?=$type->spgst?>" />
+                        <input type="number" id="spgst" name="spgst" class="form-control" placeholder=""required value="<?=$type->spgst?>" />
                       </td>
                     </tr>
-
+                    <tr>
+                      <td> <strong>GST(%)</strong> <span style="color:red;"></span></strong> </td>
+                      <td>
+                        <input type="number" name="gst" readonly id="gst" class="form-control" placeholder=""required value="<?=$type->gst?>" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> <strong>Selling Price</strong> <span style="color:red;"></span></strong> </td>
+                      <td>
+                        <input type="number" name="sp" readonly id="sp" class="form-control" placeholder=""required value="<?=$type->sp?>" />
+                      </td>
+                    </tr>
                     <tr>
                       <td colspan="2">
                         <input type="submit" class="btn btn-success" value="save">
@@ -96,12 +95,15 @@
 </script>
 <script>
   $(document).ready(function() {
-    $('#gst, #sp').keyup(function(ev) {
-      var sp = $('#sp').val() * 1;
-      var gst = $('#gst').val() * 1;
-      var gst_price = (gst / 100) * sp;
-      var spgst = sp + gst_price;
-      $("#spgst").val(spgst)
+    $('#spgst, #mrp').keyup(function(ev) {
+      var mrp = $('#mrp').val() * 1;
+      var spgst = $('#spgst').val() * 1;
+      var gst = ((spgst-mrp) / spgst) * 100;
+      gst = Math.round(gst)
+      var sp = mrp + ((spgst-mrp) / spgst);
+      sp = Math.round(sp)
+      $("#sp").val(sp)
+      $("#gst").val(gst)
     });
   });
 </script>

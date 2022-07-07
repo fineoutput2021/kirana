@@ -13,15 +13,101 @@ class Product extends CI_finecontrol
         $this->load->model("admin/base_model");
         $this->load->library('user_agent');
     }
+
+public function view_category(){
+
+                 if(!empty($this->session->userdata('admin_data'))){
+
+
+                   $data['user_name']=$this->load->get_var('user_name');
+
+                   // echo SITE_NAME;
+                   // echo $this->session->userdata('image');
+                   // echo $this->session->userdata('position');
+                   // exit;
+                   $this->db->select('*');
+                   $this->db->from('tbl_category');
+                   $data['category_data']= $this->db->get();
+
+
+                   $this->load->view('admin/common/header_view',$data);
+                   $this->load->view('admin/product/view_category');
+                   $this->load->view('admin/common/footer_view');
+
+               }
+               else{
+
+                  redirect("login/admin_login","refresh");
+               }
+
+               }
+
+
+
+public function view_subcategory($idd){
+
+                 if(!empty($this->session->userdata('admin_data'))){
+
+
+                   $data['user_name']=$this->load->get_var('user_name');
+
+                   // echo SITE_NAME;
+                   // echo $this->session->userdata('image');
+                   // echo $this->session->userdata('position');
+                   // exit;
+                  $id=base64_decode($idd);
+                   $data['id']=$idd;
+                   $this->db->select('*');
+                   $this->db->from('tbl_subcategory');
+                   $this->db->where('category_id', $id);
+                   $data['subcategory_data']= $this->db->get();
+
+                   $this->db->select('*');
+                   $this->db->from('tbl_category');
+                   $this->db->where('id', $id);
+                   $category_data = $this->db->get()->row();
+                   $data['category_name'] = $category_data->name;
+
+
+                   $this->load->view('admin/common/header_view',$data);
+                   $this->load->view('admin/product/view_subcategory');
+                   $this->load->view('admin/common/footer_view');
+
+               }
+               else{
+
+                  redirect("login/admin_login","refresh");
+               }
+
+               }
+
+
+
+
     //===========================view_product==========================\\
-    public function view_product()
+    public function view_product($idd)
     {
         if (!empty($this->session->userdata('admin_data'))) {
             $data['user_name']=$this->load->get_var('user_name');
+             $id=base64_decode($idd);
+            $data['id']=$idd;
+            
             $this->db->select('*');
             $this->db->from('tbl_product');
-
+            $this->db->where('subcategory_id', $id);
             $data['product_data']= $this->db->get();
+
+            $this->db->select('*');
+            $this->db->from('tbl_subcategory');
+            $this->db->where('id', $id);
+            $subcategory_data = $this->db->get()->row();
+            $data['subcategory_name'] = $subcategory_data->name;
+
+            $this->db->select('*');
+            $this->db->from('tbl_category');
+            $this->db->where('id', $subcategory_data->category_id);
+            $category = $this->db->get()->row();
+            $data['category_name'] = $category->name;
 
 
             $this->load->view('admin/common/header_view', $data);
