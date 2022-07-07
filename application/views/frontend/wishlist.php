@@ -62,7 +62,8 @@
                   <del>₹<?=$type->mrp?></del>
                 </div>
                 <div class="row justify-content-center">
-                  <a href="javascript:;" product_id="<?=base64_encode($type->product_id)?>" type_id="<?=base64_encode($type->id)?>" id="addToCart<?=$type->id?>" quantity=1 onclick="addToCartOnline(this)"><button class="btn theme-btn-1 btn-effect-1"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Add to cart</i></button></a>
+                  <a href="javascript:;" title="Move" onclick="wishlist(this)" product_id="<?=base64_encode($wish->product_id)?>" type_id="<?=base64_encode($wish->type_id)?>" id="move_wish" status="move" user_id="<?=base64_encode($this->session->userdata('user_id'))?>"><button class="btn theme-btn-1 btn-effect-1">
+                    <i class="fas fa-shopping-cart">&nbsp;&nbsp;Move to cart</i></button></a>
                 </div>
               </div>
             </div>

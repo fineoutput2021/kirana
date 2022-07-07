@@ -41,13 +41,13 @@
                   <table class="table table-hover">
 
                     <tr>
-                      <td> <strong>User Name</strong> <span style="color:red;"></span></strong> </td>
+                      <td> <strong>User Name</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
                         <input type="text" name="name" class="form-control" placeholder="" required value="" />
                       </td>
                     </tr>
                     <tr>
-                      <td> <strong>Review</strong> <span style="color:red;"></span></strong> </td>
+                      <td> <strong>Review</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
                         <input type="text" name="text" class="form-control" placeholder="" required value="" />
                       </td>
@@ -55,7 +55,7 @@
                     <tr>
                       <td> <strong>Image</strong> <span style="color:red;"></span></strong> </td>
                       <td>
-                        <input type="file" name="image" class="form-control" placeholder="" required value="" />
+                        <input type="file" name="image" class="form-control" placeholder="" value="" />
                       </td>
                     </tr>
                     <tr>

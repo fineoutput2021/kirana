@@ -1,18 +1,18 @@
 <div class="content-wrapper">
   <section class="content-header">
     <h1>
-      Product
+      <?=$category_name." > ".$subcategory_name?>
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="<?php echo base_url() ?>dcadmin/product/view_product"><i class="fa fa-dashboard"></i> view product </a></li>
+      <li><a href="<?php echo base_url() ?>dcadmin/Product/view_product"><i class="fa fa-dashboard"></i> view product </a></li>
       <!-- <li class="active"></li> -->
     </ol>
   </section>
   <section class="content">
     <div class="row">
       <div class="col-lg-12">
-        <a class="btn custom_btn" href="<?php echo base_url() ?>dcadmin/product/add_product" role="button" style="margin-bottom:12px;"> Add product</a>
+        <a class="btn custom_btn" href="<?php echo base_url() ?>dcadmin/Product/add_product" role="button" style="margin-bottom:12px;"> Add product</a>
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>View product</h3>
@@ -48,7 +48,7 @@
                       <th>Image2</th>
                       <th>Image3</th>
                       <th>Image4</th>
-                      <th>Feature Product</th>
+                      <th>Trending Product</th>
                       <th>Description</th>
                       <th>Status</th>
                       <th>Action</th>
@@ -104,7 +104,7 @@
                        if($data->feature==1){
                         echo"yes";
                       }else{
-                          echo"no";
+                          echo"No";
                          }
                        ?></td>
                       <td><?php echo $data->description ?></td>

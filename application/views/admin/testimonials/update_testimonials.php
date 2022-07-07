@@ -56,7 +56,11 @@
                       <td> <strong>Image</strong> <span style="color:red;"></span></strong> </td>
                       <td>
                         <input type="file" name="image" class="form-control" placeholder=""/>
+                        <?if(!empty($testimonials->image)){?>
                         <img id="slide_img_path" height=50 width=100 src="<?php echo base_url().$testimonials->image?>">
+                        <?}else{?>
+                          Sorry No image Found 
+                          <?}?>
                       </td>
                     </tr>
                     <tr>

@@ -58,9 +58,11 @@ class Banner extends CI_finecontrol
                 // print_r($this->input->post());
                 // exit;
                 $this->form_validation->set_rules('link', 'link', 'required|xss_clean|trim');
+                $this->form_validation->set_rules('link2', 'link2', 'required|xss_clean|trim');
 
                 if ($this->form_validation->run()== true) {
                     $link=$this->input->post('link');
+                    $link2=$this->input->post('link2');
 
                     $ip = $this->input->ip_address();
                     date_default_timezone_set("Asia/Calcutta");
@@ -103,9 +105,47 @@ class Banner extends CI_finecontrol
                               // echo json_encode($file_info);
                           }
                       }
+
+                  //============================image_upload==========================\\
+                  $this->load->library('upload');
+                  $image2="";
+                  $img2='image2';
+
+                  $file_check=($_FILES['image2']['error']);
+                  if ($file_check!=4) {
+                      $image_upload_folder = FCPATH . "assets/uploads/banner/";
+                      if (!file_exists($image_upload_folder)) {
+                          mkdir($image_upload_folder, DIR_WRITE_MODE, true);
+                      }
+                      $new_file_name="banner2".date("Ymdhms");
+                      $this->upload_config = array(
+                'upload_path'   => $image_upload_folder,
+                'file_name' => $new_file_name,
+                'allowed_types' =>'jpg|jpeg|png',
+                'max_size'      => 25000
+                );
+                      $this->upload->initialize($this->upload_config);
+                      if (!$this->upload->do_upload($img2)) {
+                          $upload_error = $this->upload->display_errors();
+                          // echo json_encode($upload_error);
+                          $this->session->set_flashdata('emessage', $upload_error);
+                          //echo $upload_error;
+                          redirect($_SERVER['HTTP_REFERER']);
+                      } else {
+                          $file_info = $this->upload->data();
+
+                          $videoNAmePath = "assets/uploads/banner/".$new_file_name.$file_info['file_ext'];
+                          $image2=$videoNAmePath;
+
+                          // echo json_encode($file_info);
+                      }
+                  }
+
                         $data_insert = array(
                                                         'image'=>$image,
+                                                        'image2'=>$image2,
                                                     'link'=>$link,
+                                                    'link2'=>$link2,
                                                     'ip' =>$ip,
                                                     'added_by' =>$addedby,
                                                     'is_active' =>1,
@@ -161,13 +201,63 @@ class Banner extends CI_finecontrol
                             }
                         }
                       }
+
+
+                      $image2="";
+                      $img2='image2';
+
+                      $file_check=($_FILES['image2']['error']);
+                      if ($file_check!=4) {
+                          $image_upload_folder = FCPATH . "assets/uploads/banner/";
+                          if (!file_exists($image_upload_folder)) {
+                              mkdir($image_upload_folder, DIR_WRITE_MODE, true);
+                          }
+                          $new_file_name="banner2".date("Ymdhms");
+                          $this->upload_config = array(
+                    'upload_path'   => $image_upload_folder,
+                    'file_name' => $new_file_name,
+                    'allowed_types' =>'jpg|jpeg|png',
+                    'max_size'      => 25000
+                    );
+                          $this->upload->initialize($this->upload_config);
+                          if (!$this->upload->do_upload($img2)) {
+                              $upload_error = $this->upload->display_errors();
+                              // echo json_encode($upload_error);
+                              $this->session->set_flashdata('emessage', $upload_error);
+                              //echo $upload_error;
+                              redirect($_SERVER['HTTP_REFERER']);
+                          } else {
+                              $file_info = $this->upload->data();
+
+                              $videoNAmePath = "assets/uploads/banner/".$new_file_name.$file_info['file_ext'];
+                              $image2=$videoNAmePath;
+
+                              // echo json_encode($file_info);
+                          }
+                      }
+
+
+                                  $this->db->select('*');
+                      $this->db->from('tbl_banner');
+                      $this->db->where('id',$idw);
+                      $slider_data= $this->db->get()->row();
+                      if (empty($image)) {
+                        $image= $slider_data->image;
+                      }
+                      if(empty($image2)){
+                          $image2= $slider_data->image2;
+                      }
                         if (!empty($image)) {
                             $data_insert = array('link'=>$link,
-                                                                     'image'=>$image,
+                            'link2'=>$link2,
+                            'image'=>$image,
+                            'image2'=>$image2,
 
                                                                      );
                         } else {
-                            $data_insert = array('link'=>$link,
+                            $data_insert = array(
+                              'link'=>$link,
+                              'link2'=>$link2,
                                      );
                         }
 
@@ -176,7 +266,6 @@ class Banner extends CI_finecontrol
                         $last_id=$this->db->update('tbl_banner', $data_insert);
                         if ($last_id!=0) {
                             $this->session->set_flashdata('smessage', 'Data updated successfully');
-
                             redirect("dcadmin/banner/view_banner", "refresh");
                         } else {
                             $this->session->set_flashdata('emessage', 'Sorry error occured');
@@ -198,6 +287,8 @@ class Banner extends CI_finecontrol
             redirect("login/admin_login", "refresh");
         }
     }
+
+
     //======================update_banner===================\\
 
     public function update_banner($idd)

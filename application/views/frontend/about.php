@@ -131,7 +131,11 @@
             <div class="col-lg-12">
                 <div class="ltn__testimonial-item ltn__testimonial-item-4">
                     <div class="ltn__testimoni-img">
-                        <img src="<?=base_url().$testimonials->image?>" alt="#">
+                      <?if(!empty($testimonials->image)){?>
+                      <img src="<?=base_url().$testimonials->image?>" alt="#">
+                      <?}else{?>
+                        <img src="<?=base_url()?>assets/frontend/img/user.jpg" alt="#">
+                        <?}?>
                     </div>
                     <div class="ltn__testimoni-info">
                       <p><?=$testimonials->text?></p>

@@ -42,7 +42,7 @@
 
 
                     <tr>
-                      <td> <strong>Image</strong> <span style="color:red;"></span></strong> </td>
+                      <td> <strong>Image</strong> <span style="color:red;"><br />1665X400px</span></strong> </td>
                       <td>
                         <input type="file" name="image" class="form-control" placeholder="" value="<?=$banner->image?>" />
                         <?php if ($banner->image!="") {  ?>
@@ -53,10 +53,28 @@
                       </td>
                     </tr>
                     <tr>
-                      <td> <strong>Link</strong> <span style="color:red;">*</span></ strong>
+                      <td> <strong>Image2</strong> <span style="color:red;"><br />1665X400px</span></strong> </td>
+                      <td>
+                        <input type="file" name="image2" class="form-control" placeholder="" value="<?=$banner->image2?>" />
+                        <?php if ($banner->image2!="") {  ?>
+                        <img id="slide_img_path" height=50 width=100 src="<?php echo base_url().$banner->image2 ?>">
+                        <?php } else {  ?>
+                        Sorry No image Found
+                        <?php } ?>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> <strong>Link-1</strong> <span style="color:red;">*</span></ strong>
                       </td>
                       <td>
                         <input type="url" name="link" class="form-control" placeholder=""required value="<?=$banner->link?>" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> <strong>Link-2</strong> <span style="color:red;">*</span></ strong>
+                      </td>
+                      <td>
+                        <input type="url" name="link2" class="form-control" placeholder=""required value="<?=$banner->link2?>" />
                       </td>
                     </tr>
                     <tr>

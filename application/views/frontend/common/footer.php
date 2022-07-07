@@ -66,7 +66,7 @@
                        <div class="footer-menu">
                            <ul>
 
-                               <li><a href="<?=base_url()?>Home/term_and_condition">Terms & Conditions</a></li><br>
+                               <li><a href="javascript:;">Terms & Conditions</a></li><br>
                                <li><a href="#">Privacy & Policy</a></li>
 
                            </ul>
@@ -221,7 +221,7 @@ function loadSuccessNotify(succ_message){
              },
              offset: 20,
              spacing: 10,
-             z_index: 9999,
+             z_index: 999999,
              delay: 1000,
              animate: {
                  enter: 'animated fadeInDown',
@@ -259,7 +259,7 @@ function loadSuccessNotify(succ_message){
                  },
                  offset: 20,
                  spacing: 10,
-                 z_index: 9999,
+                 z_index: 999999,
                  delay: 1000,
                  animate: {
                      enter: 'animated fadeInDown',
@@ -313,7 +313,7 @@ function loadSuccessNotify(succ_message){
                             },
                             offset: 20,
                             spacing: 10,
-                            z_index: 9999,
+                            z_index: 999999,
                             delay: 5000,
                             animate: {
                                 enter: 'animated fadeInDown',
@@ -330,6 +330,7 @@ function loadSuccessNotify(succ_message){
                         });
                         // window.setTimeout(function(){location.reload()},2000)
                         $( "#cartIcon" ).load(window.location.href + " #cartIcon > *" );
+                        $( "#sideCartWeb" ).load(window.location.href + " #sideCartWeb > *" );
                             $( "#collapsibleNavbar" ).load(window.location.href + " #collapsibleNavbar > *" );
 
            }else if(response.data == false){
@@ -352,7 +353,7 @@ function loadSuccessNotify(succ_message){
                                },
                                offset: 20,
                                spacing: 10,
-                               z_index: 9999,
+                               z_index: 999999,
                                delay: 5000,
                                animate: {
                                    enter: 'animated fadeInDown',
@@ -413,7 +414,7 @@ function loadSuccessNotify(succ_message){
                             },
                             offset: 20,
                             spacing: 10,
-                            z_index: 9999,
+                            z_index: 999999,
                             delay: 5000,
                             animate: {
                                 enter: 'animated fadeInDown',
@@ -430,6 +431,7 @@ function loadSuccessNotify(succ_message){
                         });
                         // window.setTimeout(function(){location.reload()},2000)
                         $( "#cartIcon" ).load(window.location.href + " #cartIcon > *" );
+                        $( "#sideCartWeb" ).load(window.location.href + " #sideCartWeb > *" );
                             $( "#collapsibleNavbar" ).load(window.location.href + " #collapsibleNavbar > *" );
 
 
@@ -452,7 +454,7 @@ function loadSuccessNotify(succ_message){
                                },
                                offset: 20,
                                spacing: 10,
-                               z_index: 9999,
+                               z_index: 999999,
                                delay: 5000,
                                animate: {
                                    enter: 'animated fadeInDown',
@@ -513,7 +515,7 @@ function loadSuccessNotify(succ_message){
             },
             offset: 20,
             spacing: 10,
-            z_index: 9999,
+            z_index: 999999,
             delay: 1000,
             animate: {
               enter: 'animated fadeInDown',
@@ -529,8 +531,8 @@ function loadSuccessNotify(succ_message){
           });
 
           $( "#sideCartWeb" ).load(window.location.href + " #sideCartWeb > *" );
-          $( "#cartCount" ).load(window.location.href + " #cartCount > *" );
           $( "#cartDiv" ).load(window.location.href + " #cartDiv > *" );
+          $( "#cartIcon" ).load(window.location.href + " #cartIcon > *" );
 
 
         } else if (response.data == false) {
@@ -551,7 +553,7 @@ function loadSuccessNotify(succ_message){
             },
             offset: 20,
             spacing: 10,
-            z_index: 9999,
+            z_index: 999999,
             delay: 5000,
             animate: {
               enter: 'animated fadeInDown',
@@ -568,6 +570,7 @@ function loadSuccessNotify(succ_message){
           $( "#here" ).load(window.location.href + " #here > *" );
           $( "#sideCartWeb" ).load(window.location.href + " #sideCartWeb > *" );
           $( "#cartDiv" ).load(window.location.href + " #cartDiv > *" );
+          $( "#cartIcon" ).load(window.location.href + " #cartIcon > *" );
 
         }
       }
@@ -608,7 +611,7 @@ function loadSuccessNotify(succ_message){
             },
             offset: 20,
             spacing: 10,
-            z_index: 1031,
+            z_index: 999999,
             delay: 1000,
             animate: {
               enter: 'animated fadeInDown',
@@ -626,6 +629,7 @@ function loadSuccessNotify(succ_message){
           $( "#cartDiv" ).load(window.location.href + " #cartDiv > *" );
           $( "#sideCartWeb" ).load(window.location.href + " #sideCartWeb > *" );
           $( "#cartCount" ).load(window.location.href + " #cartCount > *" );
+          $( "#cartIcon" ).load(window.location.href + " #cartIcon > *" );
 
         } else if (response.data == false) {
           $.notify({
@@ -645,7 +649,7 @@ function loadSuccessNotify(succ_message){
             },
             offset: 20,
             spacing: 10,
-            z_index: 1031,
+            z_index: 999999,
             delay: 5000,
             animate: {
               enter: 'animated fadeInDown',
@@ -662,6 +666,7 @@ function loadSuccessNotify(succ_message){
           $( "#here" ).load(window.location.href + " #here > *" );
           $( "#sideCartWeb" ).load(window.location.href + " #sideCartWeb > *" );
           $( "#cartDiv" ).load(window.location.href + " #cartDiv > *" );
+          $( "#cartIcon" ).load(window.location.href + " #cartIcon > *" );
 
 
 
@@ -709,7 +714,7 @@ function wishlist(obj) {
           },
           offset: 20,
           spacing: 10,
-          z_index: 9999,
+          z_index: 999999,
           delay: 1000,
           animate: {
             enter: 'animated fadeInDown',
@@ -728,7 +733,12 @@ function wishlist(obj) {
             $( "#collapsibleNavbar" ).load(window.location.href + " #collapsibleNavbar > *" );
             $( "#wishlist" ).load(window.location.href + " #wishlist > *" );
             $( "#prod_det_heart" ).load(window.location.href + " #prod_det_heart > *" );
-            // $( "#add_wish" ).load(window.location.href + " #add_wish > *" );
+            $( "#add_wish" ).load(window.location.href + " #add_wish > *" );
+            $( "#wish_count" ).load(window.location.href + " #wish_count > *" );
+            $( "#here" ).load(window.location.href + " #here > *" );
+            $( "#sideCartWeb" ).load(window.location.href + " #sideCartWeb > *" );
+            $( "#cartDiv" ).load(window.location.href + " #cartDiv > *" );
+            $( "#cartIcon" ).load(window.location.href + " #cartIcon > *" );
 
 
       } else if (response.data == false) {
@@ -749,7 +759,7 @@ function wishlist(obj) {
           },
           offset: 20,
           spacing: 10,
-          z_index: 9999,
+          z_index: 999999,
           delay: 5000,
           animate: {
             enter: 'animated fadeInDown',
@@ -776,6 +786,21 @@ function wishlist(obj) {
   });
 }
 
+    </script>
+    <script>
+    // --------------force close cart menu--------------------
+    function closeCart(){
+      var $ltn__utilizeToggle = $('.ltn__utilize-toggle'),
+          $ltn__utilize = $('.ltn__utilize'),
+          $ltn__utilizeOverlay = $('.ltn__utilize-overlay'),
+          $mobileMenuToggle = $('.mobile-menu-toggle');
+          $body = $('body');
+      // e.preventDefault();
+      $body.removeClass('ltn__utilize-open');
+      $ltn__utilize.removeClass('ltn__utilize-open');
+      $ltn__utilizeOverlay.fadeOut();
+      $mobileMenuToggle.find('a').removeClass('close');
+    }
     </script>
 
 

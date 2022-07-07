@@ -1,15 +1,12 @@
     <!-- ========================================================SLIDER AREA START======================================== (slider-3) -->
     <!-- Carousel -->
     <div id="demo" class="carousel slide" data-bs-ride="carousel">
-
-
-
       <!-- The slideshow/carousel -->
       <div class="carousel-inner">
         <?$i=1; foreach ($slider_data->result() as $slider) {?>
         <div class="carousel-item <?if ($i==1) {
     echo " active"; }?>">
-          <img src="<?=base_url().$slider->image?>" alt="" class="d-block" style="width:100%">
+          <a href="<?=$slider->link?>" target="_blank" rel="noopener noreferrer"><img src="<?=base_url().$slider->image?>" alt="" class="d-block" style="width:100%"></a>
         </div>
         <?$i++;}?>
       </div>
@@ -114,11 +111,6 @@
     </div>
     <!-- CATEGORY AREA END -->
 
-    <!--===================================-banner image===========================---->
-    <div class="container-fluid p-0 text-center ">
-      <img src="<?=base_url()?>assets/frontend/img\bg\2.jpg" class="img-fluid">
-    </div>
-    <!---=================================================================================-->
 
     <!--============================================ PRODUCT TAB AREA START (product-item-3) ======================================-->
     <!-- PRODUCT TAB AREA START (product-item-3) -->
@@ -131,29 +123,48 @@
             </div>
             <div class="ltn__tab-menu ltn__tab-menu-2 ltn__tab-menu-top-right-- text-uppercase text-center">
               <div class="nav">
-                <?$s = 1; foreach ($subcategory->result() as $subcat) {?>
-                <a <?if ($s==1) { echo "class='active show'" ; }?> data-toggle="tab" href="#liton<?=$subcat->id?>"><?=$subcat->name;?></a>
-                <?$s++;}?>
+                <?$s = 1; foreach ($subcategory->result() as $subcat) {
+                  if($subcat->our_product==1){
+                                $this->db->select('*');
+                                $this->db->from('tbl_category');
+                                $this->db->where('id', $subcat->category_id);
+                                $this->db->where('is_active', 1);
+                                $cat_data= $this->db->get()->row();
+                                if (!empty($cat_data)) {
+                                    ?>
+                <a <?if ($s==1) { echo "class='active show'" ; } ?> data-toggle="tab" href="#liton<?=$subcat->id?>"><?=$subcat->name; ?></a>
+                <?$s++;
+                                }
+                            }}?>
               </div>
             </div>
             <div class="tab-content">
               <?$s = 1; foreach ($subcategory->result() as $subcat) {
+                  if($subcat->our_product==1){
                                 $this->db->select('*');
-                                $this->db->from('tbl_product');
+                                $this->db->from('tbl_category');
+                                $this->db->where('id', $subcat->category_id);
                                 $this->db->where('is_active', 1);
-                                $this->db->where('subcategory_id', $subcat->id);
-                                $product_data = $this->db->get(); ?>
+                                $cat_data= $this->db->get()->row();
+                                if (!empty($cat_data)) {
+                                    $this->db->select('*');
+                                    $this->db->from('tbl_product');
+                                    $this->db->where('is_active', 1);
+                                    $this->db->where('subcategory_id', $subcat->id);
+                                    $product_data = $this->db->get(); ?>
               <div class="tab-pane fade  <?if ($s==1) {
-                                    echo " active show"; } ?> " id="liton<?=$subcat->id?>">
+                                        echo " active show"; } ?> " id="liton<?=$subcat->id?>">
                 <div class="ltn__product-tab-content-inner">
                   <div class="row ltn__tab-product-slider-one-active slick-arrow-1">
                     <?foreach ($product_data->result() as $product) {
-                                    $this->db->select('*');
-                                    $this->db->from('tbl_type');
-                                    $this->db->where('is_active', 1);
-                                    $this->db->where('product_id', $product->id);
-                                    $type_data = $this->db->get();
-                                    $type_row = $type_data->row(); ?>
+                                        $this->db->select('*');
+                                        $this->db->from('tbl_type');
+                                        $this->db->where('is_active', 1);
+                                        $this->db->where('product_id', $product->id);
+                                        $type_data = $this->db->get();
+                                        $type_row = $type_data->row();
+                                        if (!empty($type_row)) {
+                                            ?>
                     <!-- ltn__product-item -->
                     <div class="col-lg-12">
                       <div class="ltn__product-item ltn__product-item-3 text-center">
@@ -168,11 +179,11 @@
                                 $this->db->where('user_id', $this->session->userdata('user_id'));
                                 $wishlist_data= $this->db->get()->row();
                                 if (empty($wishlist_data)) {?>
-                              <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="add_wish" status="add"
+                              <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" status="add"
                                   user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
                                   <i class="far fa-heart iconn"></i></a></li>
                               <?} else {?>
-                              <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="add_wish" status="remove"
+                              <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" status="remove"
                                   user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
                                   <i class="far fa-heart iconn"></i></a></li>
                               <?}?>
@@ -181,7 +192,7 @@
                           <?} ?>
                         </div>
                         <div class="product-info">
-                          <h2 class="product-title"><a href="<?=base_url()?>Home/product_detail/<?=base64_encode($type_row->product_id)?>"><?=$product->name?></a></h2>
+                          <h2 class="product-title text"><a href="<?=base_url()?>Home/product_detail/<?=base64_encode($type_row->product_id)?>"><?=$product->name?></a></h2>
                           <div class="product-price">
                             <span id="typespgst<?=$product->id?>">₹<?=$type_row->spgst?></span>
                             <del id="typemrp<?=$product->id?>">₹<?=$type_row->mrp?></del>
@@ -212,14 +223,16 @@
                       </div>
                     </div>
                     <?
-                                } ?>
+                                        }
+                                    } ?>
 
                     <!--  -->
                   </div>
                 </div>
               </div>
               <?$s++;
-                            }?>
+                                }
+                            }}?>
             </div>
           </div>
         </div>
@@ -229,10 +242,14 @@
 
     <!---==============================================================================================================-->
 
-    <!--===================================-banner image===========================---->
-    <div class="container-fluid p-0 mt-5">
-      <img src="<?=base_url()?>assets/frontend/img\bg\2.jpg" class="img-fluid">
-    </div>
+        <!--===================================-banner image===========================---->
+        <?if (!empty($banner_data)) {?>
+        <div class="container-fluid p-0 text-center ">
+          <a href="<?=$banner_data->link?>" target="_blank" rel="noopener noreferrer"><img src="<?=base_url().$banner_data->image?>" class="img-fluid"></a>
+        </div>
+        <?}?>
+        <!---=================================================================================-->
+
     <!--============================================slider2============================================================-->
 
 
@@ -253,70 +270,85 @@
                   <div class="row ltn__tab-product-slider-one-active slick-arrow-1 col-md-12">
                     <!-- ltn__product-item -->
                     <?php $i=1; foreach ($feature_data->result() as $feature) {
+                      $this->db->select('*');
+                      $this->db->from('tbl_category');
+                      $this->db->where('id', $feature->category_id);
+                      $this->db->where('is_active', 1);
+                      $cat_data= $this->db->get()->row();
+                      $this->db->select('*');
+                      $this->db->from('tbl_subcategory');
+                      $this->db->where('id', $feature->subcategory_id);
+                      $this->db->where('is_active', 1);
+                      $sub_data= $this->db->get()->row();
+
+                      if (!empty($cat_data) && !empty($sub_data)) {
                                 $this->db->select('*');
                                 $this->db->from('tbl_type');
                                 $this->db->where('is_active', 1);
                                 $this->db->where('product_id', $feature->id);
                                 $type_data = $this->db->get();
-                                $type_row = $type_data->row(); ?>
-                                <div class="col-lg-12">
-                                  <div class="ltn__product-item ltn__product-item-3 text-center">
-                                    <div class="product-img">
-                                      <a href="<?=base_url()?>Home/product_detail/<?=base64_encode($feature->id)?>"><img src="<?=base_url().$feature->image1?>" alt="#"></a>
-                                      <?if (!empty($this->session->userdata('user_data'))) {?>
-                                      <div class="product-badge">
-                                        <ul>
-                                          <?$this->db->select('*');
+                                $type_row = $type_data->row();
+                                if (!empty($type_row)) {
+                                    ?>
+                    <div class="col-lg-12">
+                      <div class="ltn__product-item ltn__product-item-3 text-center">
+                        <div class="product-img">
+                          <a href="<?=base_url()?>Home/product_detail/<?=base64_encode($feature->id)?>"><img src="<?=base_url().$feature->image1?>" alt="#"></a>
+                          <?if (!empty($this->session->userdata('user_data'))) {?>
+                          <div class="product-badge">
+                            <ul>
+                              <?$this->db->select('*');
                                             $this->db->from('tbl_wishlist');
                                             $this->db->where('type_id', $type_row->id);
                                             $this->db->where('user_id', $this->session->userdata('user_id'));
                                             $wishlist_data= $this->db->get()->row();
                                             if (empty($wishlist_data)) {?>
-                                          <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="add_wish" status="add"
-                                              user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
-                                              <i class="far fa-heart iconn"></i></a></li>
-                                          <?} else {?>
-                                          <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="add_wish" status="remove"
-                                              user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
-                                              <i class="far fa-heart iconn"></i></a></li>
-                                          <?}?>
-                                        </ul>
-                                      </div>
-                                      <?} ?>
-                                    </div>
-                                    <div class="product-info">
-                                      <h2 class="product-title"><a href="<?=base_url()?>Home/product_detail/<?=base64_encode($type_row->product_id)?>"><?=$feature->name?></a></h2>
-                                      <div class="product-price">
-                                        <span id="typespgst<?="Ft".$feature->id?>">₹<?=$type_row->spgst?></span>
-                                        <del id="typemrp<?="Ft".$feature->id?>">₹<?=$type_row->mrp?></del>
-                                        <div class="row justify-content-center" style="padding:0px 0px;">
-                                          <div class="cart-plus-minus p-0">
-                                            <div class="dec qtybutton" onclick="incdeec('<?="Ft".$feature->id?>',1)">-</div>
-                                            <input type="text" value="1" id="quantity<?="Ft".$feature->id?>" readonly name="qtybutton" class="cart-plus-minus-box">
-                                            <div class="inc qtybutton" onclick="incdeec('<?="Ft".$feature->id?>',2)">+</div>
-                                          </div>
-                                          <select class="select ml-3" id="myselect" changes="<?="Ft".$feature->id?>" onchange="type_change(this)">
-                                            <?foreach ($type_data->result() as $type) {?>
-                                            <option value="<?=base64_encode($type->id)?>"><?=$type->name?></option>
-                                            <?} ?>
-                                          </select>
-                                        </div>
+                              <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" status="add"
+                                  user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
+                                  <i class="far fa-heart iconn"></i></a></li>
+                              <?} else {?>
+                              <li class="sale-badge"><a href="javascript:;" title="Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" status="remove"
+                                  user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
+                                  <i class="far fa-heart iconn"></i></a></li>
+                              <?}?>
+                            </ul>
+                          </div>
+                          <?} ?>
+                        </div>
+                        <div class="product-info">
+                          <h2 class="product-title text"><a href="<?=base_url()?>Home/product_detail/<?=base64_encode($type_row->product_id)?>"><?=$feature->name?></a></h2>
+                          <div class="product-price">
+                            <span id="typespgst<?="Ft".$feature->id?>">₹<?=$type_row->spgst?></span>
+                            <del id="typemrp<?="Ft".$feature->id?>">₹<?=$type_row->mrp?></del>
+                            <div class="row justify-content-center" style="padding:0px 0px;">
+                              <div class="cart-plus-minus p-0">
+                                <div class="dec qtybutton" onclick="incdeec('<?="Ft".$feature->id?>',1)">-</div>
+                                <input type="text" value="1" id="quantity<?="Ft".$feature->id?>" readonly name="qtybutton" class="cart-plus-minus-box">
+                                <div class="inc qtybutton" onclick="incdeec('<?="Ft".$feature->id?>',2)">+</div>
+                              </div>
+                              <select class="select ml-3" id="myselect" changes="<?="Ft".$feature->id?>" onchange="type_change(this)">
+                                <?foreach ($type_data->result() as $type) {?>
+                                <option value="<?=base64_encode($type->id)?>"><?=$type->name?></option>
+                                <?} ?>
+                              </select>
+                            </div>
 
-                                      </div>
-                                      <div class="row justify-content-center">
-                                        <?if (empty($this->session->userdata('user_data'))) {?>
-                                        <a href="javascript:void(0)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="addToCart<?="Ft".$feature->id?>" quantity=1 onclick="addToCartOffline(this)"><button
-                                            class="btn theme-btn-1 btn-effect-1"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Add to cart</i></button></a>
-                                        <?} else {?>
-                                        <a href="javascript:void(0)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="addToCart<?="Ft".$feature->id?>" quantity=1 onclick="addToCartOnline(this)"><button
-                                            class="btn theme-btn-1 btn-effect-1"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Add to cart</i></button></a>
-                                        <?} ?>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
+                          </div>
+                          <div class="row justify-content-center">
+                            <?if (empty($this->session->userdata('user_data'))) {?>
+                            <a href="javascript:void(0)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="addToCart<?="Ft".$feature->id?>" quantity=1 onclick="addToCartOffline(this)"><button
+                                class="btn theme-btn-1 btn-effect-1"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Add to cart</i></button></a>
+                            <?} else {?>
+                            <a href="javascript:void(0)" product_id="<?=base64_encode($type_row->product_id)?>" type_id="<?=base64_encode($type_row->id)?>" id="addToCart<?="Ft".$feature->id?>" quantity=1 onclick="addToCartOnline(this)"><button
+                                class="btn theme-btn-1 btn-effect-1"><i class="fas fa-shopping-cart">&nbsp;&nbsp;Add to cart</i></button></a>
+                            <?} ?>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <?
-                            }?>
+                                }
+                            }}?>
 
 
                   </div>
@@ -333,13 +365,12 @@
     <!---=================================================================================-->
 
     <!-- PRODUCT TAB AREA END -->
-    <!--==============banner========================-->
-
-
+    <!--===================================-banner image===========================---->
+    <?if (!empty($banner_data)) {?>
     <div class="container-fluid p-0 mt-5">
-      <img src="<?=base_url()?>assets/frontend/img\bg\2.jpg" class="img-fluid">
+        <a href="<?=$banner_data->link2?>" target="_blank" rel="noopener noreferrer"><img src="<?=base_url().$banner_data->image2?>" class="img-fluid"></a>
     </div>
-
+    <?}?>
     <!--==============banner========================-->
 
     <!-- TESTIMONIAL AREA START (testimonial-4) -->
@@ -358,7 +389,11 @@
           <div class="col-lg-12">
             <div class="ltn__testimonial-item ltn__testimonial-item-4">
               <div class="ltn__testimoni-img">
-                <img src="<?=base_url().$testimonials->image?>?>" alt="#">
+                <?if(!empty($testimonials->image)){?>
+                <img src="<?=base_url().$testimonials->image?>" alt="#">
+                <?}else{?>
+                  <img src="<?=base_url()?>assets/frontend/img/user.jpg" alt="#">
+                  <?}?>
               </div>
               <div class="ltn__testimoni-info">
                 <p><?=$testimonials->text?></p>

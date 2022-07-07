@@ -26,7 +26,7 @@
   <style>
   /* ==============================Custom theme=========================================== */
   .custom_btn{
-    color: black;
+    color: white;
     background-color: #84c34d;
   }
   .custom_btn:hover{

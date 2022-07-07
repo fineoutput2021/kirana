@@ -43,6 +43,60 @@
 <div class="ltn__checkout-area mb-105">
     <div class="container">
       <div class="col-md-12 mt-3">
+        <div class="col-lg-12">
+            <div class="ltn__checkout-inner">
+                <div class="ltn__checkout-single-content mt-50">
+                    <h4 class="title-2">Billing Details</h4>
+                    <div class="ltn__checkout-single-content-info">
+                            <h6>Personal Information</h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-name ltn__custom-icon">
+                                        <input type="text" required name="name" id="name" placeholder="Name" onkeyup='saveValue(this);'>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-email ltn__custom-icon">
+                                        <input type="email" required name="email" id="email" placeholder="Email" onkeyup='saveValue(this);'>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-phone ltn__custom-icon">
+                                        <input type="text" maxlength="10" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" name="phone" id="phone" placeholder="Phone" onkeyup='saveValue(this);'>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="order" name="order_id" value="<?=$this->session->userdata('order_id')?>">
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-name ltn__custom-icon">
+                                        <input type="text" maxlength="6" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" name="lastname" required id="pincode" placeholder="Pincode" onkeyup='saveValue(this);'>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <input type="hidden" name="payment_method" id="payment_method" value="1"  />
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h6>Address</h6>
+                                            <div class="input-item">
+                                                <input type="text" id="address" required onkeyup='saveValue(this);' placeholder="House number and street name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h6>State</h6>
+                                            <div class="input-item">
+                                                <input type="text" required id="state" placeholder="State" onkeyup='saveValue(this);'>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
           <div class="col-md-6">
           <div class="ltn__coupon-code-form">
               <p>If you have a coupon code, please apply it below.</p>
@@ -132,20 +186,24 @@
                       $product_data = $this->db->get()->row();
                       ?>
                       <tr>
-                          <td><?=$product_data->name."(".$type_data->name.")";?> <strong>× <?=$order2->quantity;?></strong></td>
+                          <td><?=$product_data->name."(".$type_data->name.")";?> <strong>×<?=$order2->quantity;?></strong></td>
                           <td>₹<?=$order2->total_amount?></td>
                       </tr>
                       <?}?>
+                      <tr>
+                          <td><b>Total</b></td>
+                          <td>₹<?=$order_data->total_amount?></td>
+                      </tr>
                       <tr id="promoDis">
                         <?if(!empty($order_data->promo_discount)){?>
-                          <td>Promocode</td>
+                          <td><b>Promocode</b></td>
                           <td>- ₹<?=$order_data->promo_discount?></td>
                           <?}?>
                       </tr>
-                      <!-- <tr>
-                          <td>Shipping and Handing</td>
-                          <td>₹15.00</td>
-                      </tr> -->
+                      <tr>
+                          <td><b>Shipping</b></td>
+                          <td>₹50.00</td>
+                      </tr>
                       <tr>
                           <td><strong>Order Total</strong></td>
                           <td id="finalAmt"><strong>₹<?=$order_data->final_amount?></strong></td>
@@ -159,62 +217,14 @@
 
         <div class="row">
           <form action="javascript:void;" id="pay" >
-            <div class="col-lg-12">
-                <div class="ltn__checkout-inner">
-                    <div class="ltn__checkout-single-content mt-50">
-                        <h4 class="title-2">Billing Details</h4>
-                        <div class="ltn__checkout-single-content-info">
-                                <h6>Personal Information</h6>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="input-item input-item-name ltn__custom-icon">
-                                            <input type="text" required name="name" id="name" placeholder="Name">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="input-item input-item-email ltn__custom-icon">
-                                            <input type="email" required name="email" id="email" placeholder="Email">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="input-item input-item-phone ltn__custom-icon">
-                                            <input type="text" maxlength="10" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" name="phone" id="phone" placeholder="Phone">
-                                        </div>
-                                    </div>
-                                    <input type="hidden" id="order" name="order_id" value="<?=$this->session->userdata('order_id')?>">
-                                    <div class="col-md-6">
-                                        <div class="input-item input-item-name ltn__custom-icon">
-                                            <input type="text" maxlength="6" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" name="lastname" required id="pincode" placeholder="Pincode">
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <input type="hidden" name="payment_method" id="payment_method" value="1"  />
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <h6>Address</h6>
-                                                <div class="input-item">
-                                                    <input type="text" id="address" required placeholder="House number and street name">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h6>State</h6>
-                                                <div class="input-item">
-                                                    <input type="text" required id="state" placeholder="State">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+                  <input type="hidden" name="name"  id="h_name"value="">
+                  <input type="hidden" name="email" id="h_email" value="">
+                  <input type="hidden" name="phone" id="h_phone" value="">
+                  <input type="hidden" name="address" id="h_address" value="">
+                  <input type="hidden" name="pincode" id="h_pincode" value="">
+                  <input type="hidden" name="state" id="h_state" value="">
             <div class="ltn__payment-note mt-30 mb-30">
-                <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
+                <p>Your order will be delivered to you within 24 hours.</p>
             </div>
             <a href="javascript:;"><button class="btn theme-btn-1 btn-effect-1 text-uppercase"  onclick="checkout()">Place order</button></a>
               </form>
@@ -222,6 +232,54 @@
     </div>
 </div>
 <!-- WISHLIST AREA START -->
+
+<script>
+document.getElementById("name").value = getSavedValue("name");
+document.getElementById("email").value = getSavedValue("email");
+document.getElementById("phone").value = getSavedValue("phone");
+document.getElementById("address").value = getSavedValue("address");
+document.getElementById("pincode").value = getSavedValue("pincode");
+document.getElementById("state").value = getSavedValue("state");
+document.getElementById("h_name").value = getSavedValue("name");
+document.getElementById("h_email").value = getSavedValue("email");
+document.getElementById("h_phone").value = getSavedValue("phone");
+document.getElementById("h_address").value = getSavedValue("address");
+document.getElementById("h_state").value = getSavedValue("state");
+
+function saveValue(e){
+// alert(e.id)
+var id = e.id;  // get the sender's id to save it .
+var val = e.value; // get the value.
+localStorage.setItem(id, val);// Every time user writing something, the localStorage's value will override .
+document.getElementById("h_name").value = getSavedValue("name");
+document.getElementById("h_phone").value = getSavedValue("phone");
+document.getElementById("h_email").value = getSavedValue("email");
+document.getElementById("h_address").value = getSavedValue("address");
+document.getElementById("h_pincode").value = getSavedValue("pincode");
+document.getElementById("h_state").value = getSavedValue("state");
+if(!validateEmail(document.getElementById("email").value)){
+document.getElementById('email_alert').innerHTML = "Please enter valid email address";
+document.getElementById("h_email").value = "";
+}else{
+  document.getElementById("h_email").value = getSavedValue("email");
+  document.getElementById('email_alert').innerHTML = "";
+
+
+}
+}
+
+function getSavedValue  (v){
+if (!localStorage.getItem(v)) {
+return "";// You can change this to your defualt value.
+}
+return localStorage.getItem(v);
+}
+
+function validateEmail($email) {
+  var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+  return emailReg.test( $email );
+}
+</script>
 <script>
 $(document).ready(function() {
   var subtotal = $("#subtotal").val()
@@ -425,20 +483,20 @@ $(document).ready(function() {
 $(document).ready(function () {
  $('#pay').on('submit',function(e){
     e.preventDefault();
-    var name = $("#name").val()
-    var email = $("#email").val()
-    var phone = $("#phone").val()
+    var name = $("#h_name").val()
+    var email = $("#h_email").val()
+    var phone = $("#h_phone").val()
     var payment_method = $("#payment_method").val()
     // var payment_method = $(".payment_type:checked").val();
 
     var formData = {
-      name: $("#name").val(),
-      email: $("#email").val(),
-      phone: $("#phone").val(),
+      name: $("#h_name").val(),
+      email: $("#h_email").val(),
+      phone: $("#h_phone").val(),
       order_id: $("#order").val(),
-      pincode: $("#pincode").val(),
+      pincode: $("#h_pincode").val(),
       state: $("#state").val(),
-      address: $("#address").val(),
+      address: $("#h_address").val(),
       payment_method: payment_method,
     };
     if(payment_method==1){

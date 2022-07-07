@@ -12,7 +12,7 @@
   <section class="content">
     <div class="row">
       <div class="col-lg-12">
-        <a class="btn custom_btn" href="<?php echo base_url() ?>dcadmin/banner/add_banner" role="button" style="margin-bottom:12px;"> Add banner</a>
+        <!-- <a class="btn custom_btn" href="<?php echo base_url() ?>dcadmin/banner/add_banner" role="button" style="margin-bottom:12px;"> Add banner</a> -->
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>View banner</h3>
@@ -41,8 +41,10 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Image</th>
-                      <th>Link</th>
+                      <th>Image1</th>
+                      <th>Image2</th>
+                      <th>Link-1</th>
+                      <th>Link-2</th>
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
@@ -58,7 +60,15 @@
                         Sorry No image Found
                         <?php } ?>
                       </td>
+                      <td>
+                        <?php if ($data->image2!="") {  ?>
+                        <img id="slide_img_path2" height=50 width=100 src="<?php echo base_url().$data->image2 ?>">
+                        <?php } else {  ?>
+                        Sorry No image Found
+                        <?php } ?>
+                      </td>
                       <td><?php echo $data->link ?> </td>
+                      <td><?php echo $data->link2 ?> </td>
 
 
                       <td><?php if ($data->is_active==1) { ?>
@@ -82,7 +92,7 @@
                               <li><a href="<?php echo base_url() ?>dcadmin/banner/updatebannerStatus/<?php echo base64_encode($data->id) ?>/active">Active</a></li>
                               <?php		}   ?>
                               <li><a href="<?php echo base_url() ?>dcadmin/banner/update_banner/<?php echo base64_encode($data->id) ?>">Edit</a></li>
-                              <li><a href="javascript:;" class="dCnf" mydata="<?php echo $i ?>">Delete</a></li>
+                              <!-- <li><a href="javascript:;" class="dCnf" mydata="<?php echo $i ?>">Delete</a></li> -->
                             </ul>
                           </div>
                         </div>

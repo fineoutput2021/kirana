@@ -59,11 +59,13 @@ class Subcategory extends CI_finecontrol
                 // exit;
                 $this->form_validation->set_rules('category_id', 'category_id', 'required|xss_clean|trim');
                 $this->form_validation->set_rules('name', 'name', 'required|xss_clean|trim');
+                $this->form_validation->set_rules('our_product', 'our_product', 'required|xss_clean|trim');
 
 
                 if ($this->form_validation->run()== true) {
                     $category_id=$this->input->post('category_id');
                     $name=$this->input->post('name');
+                    $our_product=$this->input->post('our_product');
 
                     $ip = $this->input->ip_address();
                     date_default_timezone_set("Asia/Calcutta");
@@ -75,6 +77,7 @@ class Subcategory extends CI_finecontrol
                     if ($typ==1) {
                         $data_insert = array('name'=>$name,
                                   'category_id'=>$category_id,
+                                  'our_product'=>$our_product,
                                   'ip' =>$ip,
                                   'added_by' =>$addedby,
                                   'is_active' =>1,
@@ -103,6 +106,7 @@ class Subcategory extends CI_finecontrol
 
                         $data_insert = array('name'=>$name,
                                   'category_id'=>$category_id,
+                                  'our_product'=>$our_product,
                                 );
                         $this->db->where('id', $idw);
                         $last_id=$this->db->update('tbl_subcategory', $data_insert);
@@ -168,7 +172,7 @@ class Subcategory extends CI_finecontrol
                 $zapak2=$this->db->delete('tbl_product', array('subcategory_id' => $id));
                 $this->session->set_flashdata('smessage', 'Data Deleted successfully');
                 redirect($_SERVER['HTTP_REFERER']);
-                
+
 
 
             } else {
