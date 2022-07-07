@@ -46,8 +46,8 @@
                                       $subcat_data = $this->db->get();
                                       foreach($subcat_data->result() as $subcat){
                                       ?>
-                                        <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="<?=base_url()?>Home/all_products/<?=base64_encode($subcat->id)?>"><?=$subcat->name;?></a>
-                                            <ul class="ltn__category-submenu-children">
+                                        <li class=" "><a href="<?=base_url()?>Home/all_products/<?=base64_encode($subcat->id)?>"><?=$subcat->name;?></a>
+                                            <!-- <ul class="ltn__category-submenu-children">
                                               <?$this->db->select('*');
                                               $this->db->from('tbl_product');
                                               $this->db->where('is_active', 1);
@@ -57,7 +57,7 @@
                                               ?>
                                                 <li><a href="<?=base_url()?>Home/product_detail/<?=base64_encode($pro->id)?>"><?=$pro->name;?> </a></li>
                                                 <?}?>
-                                            </ul>
+                                            </ul> -->
                                         </li>
                                         <?}?>
                                     </ul>
@@ -65,30 +65,6 @@
 <?}?>
 
 
-                                <!-- Show more menu -->
-                                <!-- <li class="ltn__category-menu-more-item-child">
-                                    <a href="#"><i class="icon-shopping-bags"></i>Apple Juice</a>
-                                    <ul class="ltn__category-submenu">
-                                        <li class="ltn__category-submenu-title ltn__category-menu-drop"><a href="javascript:void(0)">Handbags</a>
-                                            <ul class="ltn__category-submenu-children">
-                                                <li><a href="javascript:void(0)">Clutches</a></li>
-                                                <li><a href="javascript:void(0)">Cross Body</a></li>
-                                                <li><a href="javascript:void(0)">Satchels</a></li>
-                                                <li><a href="javascript:void(0)">Sholuder</a></li>
-                                                <li><a href="javascript:void(0)">Toter</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="ltn__category-menu-more-item-parent">
-                                    <a class="rx-default">
-                                        More categories <span class="cat-thumb  icon-plus"></span>
-                                    </a>
-                                    <a class="rx-show">
-                                        close menu <span class="cat-thumb  icon-remove"></span>
-                                    </a>
-                                </li> -->
-                                <!-- Single menu end -->
                             </ul>
                         </div>
                     </div>
@@ -113,8 +89,8 @@
                                   <option value="">Default Sorting</option>
                                   <option value="AZ">Sort by A-Z</option>
                                   <option value="ZA">Sort by Z-A</option>
-                                  <option value="NA">Sort by New Arrivals</option>
-                                  <option value="FP">Sort by Trending Products</option>
+                                  <!-- <option value="NA">Sort by New Arrivals</option>
+                                  <option value="FP">Sort by Trending Products</option> -->
 
                               </select>
                           </div>
