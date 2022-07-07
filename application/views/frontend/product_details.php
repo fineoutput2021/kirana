@@ -36,35 +36,43 @@
                       <img src="<?=base_url().$product_data->image1?>" alt="Image">
                     </a>
                   </div>
+                  <?if(!empty($product_data->image2)){?>
                   <div class="single-large-img">
                     <a href="<?=base_url().$product_data->image2?>" data-rel="lightcase:myCollection">
                       <img src="<?=base_url().$product_data->image2?>" alt="Image">
                     </a>
                   </div>
+                  <?} if(!empty($product_data->image3)){?>
                   <div class="single-large-img">
                     <a href="<?=base_url().$product_data->image3?>" data-rel="lightcase:myCollection">
                       <img src="<?=base_url().$product_data->image3?>" alt="Image">
                     </a>
                   </div>
+                  <?} if(!empty($product_data->image4)){?>
                   <div class="single-large-img">
                     <a href="<?=base_url().$product_data->image4?>" data-rel="lightcase:myCollection">
                       <img src="<?=base_url().$product_data->image4?>" alt="Image">
                     </a>
                   </div>
+                  <?}?>
                 </div>
                 <div class="ltn__shop-details-small-img slick-arrow-2">
                   <div class="single-small-img">
                     <img src="<?=base_url().$product_data->image1?>" alt="Image">
                   </div>
+                  <?if(!empty($product_data->image2)){?>
                   <div class="single-small-img">
                     <img src="<?=base_url().$product_data->image2?>" alt="Image">
                   </div>
+                  <?} if(!empty($product_data->image3)){?>
                   <div class="single-small-img">
                     <img src="<?=base_url().$product_data->image3?>" alt="Image">
                   </div>
+                  <?} if(!empty($product_data->image4)){?>
                   <div class="single-small-img">
                     <img src="<?=base_url().$product_data->image4?>" alt="Image">
                   </div>
+                  <?}?>
                 </div>
               </div>
             </div>
