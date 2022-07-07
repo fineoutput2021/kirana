@@ -58,10 +58,16 @@ class Order extends CI_Controller
                         $user_id = $this->session->userdata('user_id');
                         $final_amount = $total ;
                     }
+                    if($final_amount < 1000){
+                      $this->session->set_flashdata('emessage', 'Total cart amount should be greater than ₹1000');
+                      redirect($_SERVER['HTTP_REFERER']);
+                      exit;
+                    }
+                    $final_amount = $final_amount + 50;
                     //------order1 entry-------------
                     $order1_insert = array('user_id'=>$user_id,
                         'total_amount'=>$total,
-                        'final_amount'=>round($final_amount),
+                        'final_amount'=>round($final_amount, 2),
                         'payment_status'=>0,
                         'order_status'=>0,
                         'ip' =>$ip,
