@@ -238,7 +238,9 @@
     <?if(!empty($this->session->userdata('user_data'))){?>
     <div id="ltn__utilize-cart-menu" class="ltn__utilize ltn__utilize-cart-menu">
       <div class="ltn__utilize-menu-inner ltn__scrollbar" id="sideCartWeb">
-        <div class="ltn__utilize-menu-head">
+        <div class="ltn__utilize-menu-head" style="position: sticky;
+    top: 0;
+    background: #fff; z-index:9999;">
           <span class="ltn__utilize-menu-title">Cart</span>
           <button class="ltn__utilize-close" onclick="closeCart()">×</button>
         </div>
@@ -259,7 +261,7 @@
               $this->db->where('id', $cart->type_id);
               $type_data = $this->db->get()->row();
             ?>
-        <div class="mini-cart-product-area ltn__scrollbar">
+        <div class="mini-cart-product-area">
           <div class="mini-cart-item clearfix">
             <div class="mini-cart-img">
               <a href="#"><img src="<?=base_url().$product_data->image1?>" alt="Image"></a>
@@ -299,7 +301,9 @@
     <?}else{?>
     <div id="ltn__utilize-cart-menu" class="ltn__utilize ltn__utilize-cart-menu">
       <div class="ltn__utilize-menu-inner ltn__scrollbar" id="sideCartWeb">
-        <div class="ltn__utilize-menu-head">
+        <div class="ltn__utilize-menu-head" style="position: sticky;
+    top: 0;
+    background: #fff; z-index:9999;">
           <span class="ltn__utilize-menu-title">Cart</span>
           <button class="ltn__utilize-close" onclick="closeCart()">×</button>
         </div>
@@ -317,7 +321,7 @@
                 $this->db->where('id', $cart['type_id']);
                 $type_data = $this->db->get()->row();
               ?>
-        <div class="mini-cart-product-area ltn__scrollbar">
+        <div class="mini-cart-product-area ">
           <div class="mini-cart-item clearfix">
             <div class="mini-cart-img">
               <a href="javascript:;"><img src="<?=base_url().$product_data->image1?>" alt="Image"></a>
@@ -332,7 +336,9 @@
         <?
             $totalCart = $totalCart + ($cart['quantity'] * $type_data->spgst);
             }?>
-        <div class="mini-cart-footer">
+        <div class="mini-cart-footer" style="position: sticky;
+    bottom: 0;
+    background: #fff;">
           <div class="mini-cart-sub-total">
             <h5>Subtotal: <span>₹<?=$totalCart;?></span></h5>
           </div>

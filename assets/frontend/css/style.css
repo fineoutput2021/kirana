@@ -4073,7 +4073,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
   opacity: 0;
   visibility: hidden;
   text-align: left;
-  z-index: 999;
+  /* z-index: 999; */
   border-top: 5px solid var(--ltn__secondary-color);
 
    }
