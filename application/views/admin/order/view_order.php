@@ -46,6 +46,7 @@
 <th>Promocode</th>
 <th>Total Amount</th>
 <th>Promocode Discount</th>
+<th>Shippping Charges</th>
 <th>Final Amount</th>
 <th>Payment Type</th>
 <th>Name</th>
@@ -93,6 +94,7 @@
 <!-- <td><?php ?> </td> -->
 <td><?php echo "₹".$data->total_amount ?></td>
 <td><?php if(!empty($data->promocode)){ echo "₹".$data->promo_discount;}else{ echo "NA";} ?></td>
+<td><? if(!empty($data->shipping)){ echo "₹".$data->shipping;} else { echo "NA"; }?></td>
 <td><?php echo "₹".$data->final_amount ?></td>
 <td>
 <?php if ($data->payment_type== 1) {

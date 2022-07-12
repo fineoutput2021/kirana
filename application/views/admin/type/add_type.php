@@ -65,9 +65,8 @@
                     </tr>
                     <tr>
                       <td> <strong>Selling price with(GST)</strong> <span style="color:red;">*</span></strong> </td>
-                    </tr>
                       <td>
-                        <input type="number" id="spgst" name="spgst" class="form-control" placeholder="" required value="" />
+                        <input type="text" id="spgst" name="spgst" class="form-control" placeholder="" required value="" />
                       </td>
                     </tr>
                     <tr>

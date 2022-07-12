@@ -46,6 +46,7 @@ class Type extends CI_finecontrol
             $this->db->from('tbl_product');
             $this->db->where('id',$id);
             $product_data = $this->db->get()->row();
+            // $data['product_data'] = $product_data->id;
             $data['productName'] = $product_data->name;
 
             $this->db->select('*');

@@ -91,7 +91,7 @@ public function view_subcategory($idd){
             $data['user_name']=$this->load->get_var('user_name');
              $id=base64_decode($idd);
             $data['id']=$idd;
-            
+
             $this->db->select('*');
             $this->db->from('tbl_product');
             $this->db->where('subcategory_id', $id);
@@ -101,6 +101,7 @@ public function view_subcategory($idd){
             $this->db->from('tbl_subcategory');
             $this->db->where('id', $id);
             $subcategory_data = $this->db->get()->row();
+            $data['subcategory_id'] = $subcategory_data->id;
             $data['subcategory_name'] = $subcategory_data->name;
 
             $this->db->select('*');
@@ -356,26 +357,18 @@ public function view_subcategory($idd){
              'feature' =>$feature,
              'description' =>$description,
 
-
              );
-
-
-
-
 
                         $this->db->where('id', $idw);
                         $last_id=$this->db->update('tbl_product', $data_insert);
                         if ($last_id!=0) {
                             $this->session->set_flashdata('smessage', 'Data updated successfully');
-
-                            redirect("dcadmin/product/view_product", "refresh");
+                            redirect("dcadmin/product/view_product/".base64_encode($subcategory_id), "refresh");
                         } else {
                             $this->session->set_flashdata('emessage', 'Sorry error occured');
                             redirect($_SERVER['HTTP_REFERER']);
                         }
                     }
-
-
 
                 } else {
                     $this->session->set_flashdata('emessage', validation_errors());
@@ -455,8 +448,9 @@ public function view_subcategory($idd){
         if (!empty($this->session->userdata('admin_data'))) {
             $data['user_name']=$this->load->get_var('user_name');
 
+ $id=base64_decode($idd);
 
-            $id=base64_decode($idd);
+
 
             if ($t=="active") {
                 $data_update = array(
@@ -465,21 +459,20 @@ public function view_subcategory($idd){
                             );
 
                 $this->db->where('id', $id);
-                $zapak=$this->db->update('tbl_product', $data_update);
                 $zapak1=$this->db->delete('tbl_cart', array('product_id' => $id));
                 $zapak1=$this->db->delete('tbl_wishlist', array('product_id' => $id));
-
-
+                $zapak=$this->db->update('tbl_product', $data_update);
                 $this->session->set_flashdata('smessage', 'Data updated successfully');
-
                 if ($zapak!=0) {
-                    redirect("dcadmin/product/view_product", "refresh");
+                  redirect($_SERVER['HTTP_REFERER']);
+
                 } else {
                     echo "Error";
                     exit;
                 }
             }
             if ($t=="inactive") {
+
                 $data_update = array(
                             'is_active'=>0
 
@@ -488,9 +481,9 @@ public function view_subcategory($idd){
                 $this->db->where('id', $id);
                 $zapak=$this->db->update('tbl_product', $data_update);
                   $this->session->set_flashdata('smessage', 'Data updated successfully');
-
                 if ($zapak!=0) {
-                    redirect("dcadmin/product/view_product", "refresh");
+                  redirect($_SERVER['HTTP_REFERER']);
+
                 } else {
                     $data['e']="Error Occured";
                     // exit;

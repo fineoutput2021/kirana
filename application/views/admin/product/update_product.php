@@ -129,7 +129,7 @@
                     <tr>
                       <td> <strong>Description</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
-                        <input type="text" name="description" class="form-control" placeholder=""required value="<?=$product->description?>" />
+                  <textarea id="editor1" name="description"><?=$product->description?></textarea>
                       </td>
                     </tr>
                     <tr>
@@ -184,6 +184,11 @@
     });
   });
 </script>
+<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+      <script>
+        CKEDITOR.replace('editor1');
+      </script>
+
 
 <script type="text/javascript" src="<?php echo base_url() ?>assets/slider/ajaxupload.3.5.js"></script>
 <link href="<?php echo base_url() ?>assets/cowadmin/css/jqvmap.css" rel='stylesheet' type='text/css' />

@@ -6,7 +6,7 @@
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
       <!-- <li><a href="<?php echo base_url() ?>dcadmin/Type/view_type"><i class="fa fa-dashboard"></i> view Type </a></li> -->
-      <li><a href="<?php echo base_url() ?>dcadmin/Product/view_product"><i class="fa fa-dashboard"></i> view Product </a></li>
+      <li><a href="<?php echo base_url() ?>dcadmin/product/view_product"><i class="fa fa-dashboard"></i> view Product </a></li>
   </section>
   <section class="content">
     <div class="row">
