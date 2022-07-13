@@ -70,6 +70,7 @@ class Order extends CI_Controller
                         'final_amount'=>round($final_amount, 2),
                         'payment_status'=>0,
                         'order_status'=>0,
+                        'shipping'=>50,
                         'ip' =>$ip,
                         'date'=>$cur_date
                         );

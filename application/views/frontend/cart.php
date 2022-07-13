@@ -80,6 +80,7 @@
                     <a href="<?=base_url()?>Order/calculate" class="theme-btn-1 btn btn-effect-1">Proceed to checkout</a>
                     <?}else{?>
                       <a href="javascript:;" class="theme-btn-1 btn btn-effect-1">Proceed to checkout</a>
+                      <br /><span style="color: red; font-size: 14px">Please add products in your cart to proceed.</span>
                       <?}?>
                 </div>
             </div>

@@ -75,7 +75,7 @@
                         <div class="ltn__feature-icon">
                             <span><img src="<?=base_url()?>assets/frontend/img/icons/icon-img/21.png" alt="#"></span>
                         </div>
-                        <h3><a href="service-details.html">All Kind Brand</a></h3>
+                        <h3><a href="javascript:;">All Kind Brand</a></h3>
                     </div>
                     <div class="ltn__feature-info">
                         <p>Lorem ipsum dolor sit ame it, consectetur adipisicing elit, sed do eiusmod te mp or
@@ -89,7 +89,7 @@
                         <div class="ltn__feature-icon">
                             <span><img src="<?=base_url()?>assets/frontend/img/icons/icon-img/22.png" alt="#"></span>
                         </div>
-                        <h3><a href="service-details.html">Curated Products</a></h3>
+                        <h3><a href="javascript:;">Curated Products</a></h3>
                     </div>
                     <div class="ltn__feature-info">
                         <p>Lorem ipsum dolor sit ame it, consectetur adipisicing elit, sed do eiusmod te mp or
@@ -103,7 +103,7 @@
                         <div class="ltn__feature-icon">
                             <span><img src="<?=base_url()?>assets/frontend/img/icons/icon-img/23.png" alt="#"></span>
                         </div>
-                        <h3><a href="service-details.html">Pesticide Free Goods</a></h3>
+                        <h3><a href="javascript:;">Pesticide Free Goods</a></h3>
                     </div>
                     <div class="ltn__feature-info">
                         <p>Lorem ipsum dolor sit ame it, consectetur adipisicing elit, sed do eiusmod te mp or
@@ -160,7 +160,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="call-to-action-inner call-to-action-inner-5 text-center">
-                    <h2 class="white-color text-decoration">24/7 Availability, Make <a href="contact.html">An
+                    <h2 class="white-color text-decoration">24/7 Availability, Make <a href="<?=base_url()?>Home/contact">An
                             Appointment</a></h2>
                 </div>
             </div>
@@ -335,7 +335,7 @@
                 <aside class="sidebar-area ltn__right-sidebar mt-60">
                     <!-- Banner Widget -->
                     <div class="widget ltn__banner-widget">
-                        <a href="shop.html"><img src="<?=base_url()?>assets/frontend/img/bg/12.png" alt="Banner Image"></a>
+                        <a href="javascript:;"><img src="<?=base_url()?>assets/frontend/img/bg/12.png" alt="Banner Image"></a>
                     </div>
                 </aside>
             </div>
@@ -373,7 +373,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title-area ltn__section-title-2 text-center">
-                    <h1 class="section-title white-color---">Leatest Blog</h1>
+                    <h1 class="section-title white-color---">Latest Blog</h1>
                 </div>
             </div>
         </div>
@@ -382,7 +382,7 @@
             <div class="col-lg-12">
                 <div class="ltn__blog-item ltn__blog-item-3">
                     <div class="ltn__blog-img">
-                        <a href="blog-details.html"><img src="<?=base_url()?>assets/frontend/img/blog/1.jpg" alt="#"></a>
+                        <a href="javascript:;"><img src="<?=base_url()?>assets/frontend/img/blog/1.jpg" alt="#"></a>
                     </div>
                     <div class="ltn__blog-brief">
                         <div class="ltn__blog-meta">
@@ -395,7 +395,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <h3 class="ltn__blog-title"><a href="blog-details.html">Common Engine Oil Problems and
+                        <h3 class="ltn__blog-title"><a href="javascript:;">Common Engine Oil Problems and
                                 Solutions</a></h3>
                         <div class="ltn__blog-meta-btn">
                             <div class="ltn__blog-meta">
@@ -405,7 +405,7 @@
                                 </ul>
                             </div>
                             <div class="ltn__blog-btn">
-                                <a href="blog-details.html">Read more</a>
+                                <a href="javascript:;">Read more</a>
                             </div>
                         </div>
                     </div>
@@ -415,7 +415,7 @@
             <div class="col-lg-12">
                 <div class="ltn__blog-item ltn__blog-item-3">
                     <div class="ltn__blog-img">
-                        <a href="blog-details.html"><img src="<?=base_url()?>assets/frontend/img/blog/2.jpg" alt="#"></a>
+                        <a href="javascript:;"><img src="<?=base_url()?>assets/frontend/img/blog/2.jpg" alt="#"></a>
                     </div>
                     <div class="ltn__blog-brief">
                         <div class="ltn__blog-meta">
@@ -428,7 +428,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <h3 class="ltn__blog-title"><a href="blog-details.html">How and when to replace brake
+                        <h3 class="ltn__blog-title"><a href="javascript:;">How and when to replace brake
                                 rotors</a></h3>
                         <div class="ltn__blog-meta-btn">
                             <div class="ltn__blog-meta">
@@ -438,7 +438,7 @@
                                 </ul>
                             </div>
                             <div class="ltn__blog-btn">
-                                <a href="blog-details.html">Read more</a>
+                                <a href="javascript:;">Read more</a>
                             </div>
                         </div>
                     </div>
@@ -448,7 +448,7 @@
             <div class="col-lg-12">
                 <div class="ltn__blog-item ltn__blog-item-3">
                     <div class="ltn__blog-img">
-                        <a href="blog-details.html"><img src="<?=base_url()?>assets/frontend/img/blog/3.jpg" alt="#"></a>
+                        <a href="javascript:;"><img src="<?=base_url()?>assets/frontend/img/blog/3.jpg" alt="#"></a>
                     </div>
                     <div class="ltn__blog-brief">
                         <div class="ltn__blog-meta">
@@ -461,7 +461,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <h3 class="ltn__blog-title"><a href="blog-details.html">Elenance, Servicing &
+                        <h3 class="ltn__blog-title"><a href="javascript:;">Elenance, Servicing &
                                 Repairs</a></h3>
                         <div class="ltn__blog-meta-btn">
                             <div class="ltn__blog-meta">
@@ -471,7 +471,7 @@
                                 </ul>
                             </div>
                             <div class="ltn__blog-btn">
-                                <a href="blog-details.html">Read more</a>
+                                <a href="javascript:;">Read more</a>
                             </div>
                         </div>
                     </div>
@@ -481,7 +481,7 @@
             <div class="col-lg-12">
                 <div class="ltn__blog-item ltn__blog-item-3">
                     <div class="ltn__blog-img">
-                        <a href="blog-details.html"><img src="<?=base_url()?>assets/frontend/img/blog/4.jpg" alt="#"></a>
+                        <a href="javascript:;"><img src="<?=base_url()?>assets/frontend/img/blog/4.jpg" alt="#"></a>
                     </div>
                     <div class="ltn__blog-brief">
                         <div class="ltn__blog-meta">
@@ -494,7 +494,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <h3 class="ltn__blog-title"><a href="blog-details.html">He for your First Track Day!</a>
+                        <h3 class="ltn__blog-title"><a href="javascript:;">He for your First Track Day!</a>
                         </h3>
                         <div class="ltn__blog-meta-btn">
                             <div class="ltn__blog-meta">
@@ -504,7 +504,7 @@
                                 </ul>
                             </div>
                             <div class="ltn__blog-btn">
-                                <a href="blog-details.html">Read more</a>
+                                <a href="javascript:;">Read more</a>
                             </div>
                         </div>
                     </div>
@@ -514,7 +514,7 @@
             <div class="col-lg-12">
                 <div class="ltn__blog-item ltn__blog-item-3">
                     <div class="ltn__blog-img">
-                        <a href="blog-details.html"><img src="<?=base_url()?>assets/frontend/img/blog/5.jpg" alt="#"></a>
+                        <a href="javascript:;"><img src="<?=base_url()?>assets/frontend/img/blog/5.jpg" alt="#"></a>
                     </div>
                     <div class="ltn__blog-brief">
                         <div class="ltn__blog-meta">
@@ -527,7 +527,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <h3 class="ltn__blog-title"><a href="blog-details.html">How te Your Tires Last
+                        <h3 class="ltn__blog-title"><a href="javascript:;">How te Your Tires Last
                                 Longer</a></h3>
                         <div class="ltn__blog-meta-btn">
                             <div class="ltn__blog-meta">
@@ -537,7 +537,7 @@
                                 </ul>
                             </div>
                             <div class="ltn__blog-btn">
-                                <a href="blog-details.html">Read more</a>
+                                <a href="javascript:;">Read more</a>
                             </div>
                         </div>
                     </div>

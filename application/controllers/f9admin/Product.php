@@ -480,6 +480,8 @@ public function view_subcategory($idd){
 
                 $this->db->where('id', $id);
                 $zapak=$this->db->update('tbl_product', $data_update);
+                $zapak1=$this->db->delete('tbl_cart', array('product_id' => $id));
+                $zapak1=$this->db->delete('tbl_wishlist', array('product_id' => $id));
                   $this->session->set_flashdata('smessage', 'Data updated successfully');
                 if ($zapak!=0) {
                   redirect($_SERVER['HTTP_REFERER']);

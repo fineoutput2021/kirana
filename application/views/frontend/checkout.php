@@ -67,7 +67,7 @@
                                 </div>
                                 <input type="hidden" id="order" name="order_id" value="<?=$this->session->userdata('order_id')?>">
                                 <div class="col-md-6">
-                                    <div class="input-item input-item-name ltn__custom-icon">
+                                    <!-- <div class="input-item input-item-name ltn__custom-icon"> -->
                                         <input type="text" maxlength="6" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" name="lastname" required id="pincode" placeholder="Pincode" onkeyup='saveValue(this);'>
                                     </div>
                                 </div>

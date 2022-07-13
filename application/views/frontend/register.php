@@ -33,10 +33,10 @@
             <div class="col-lg-6 offset-lg-3">
                 <div class="account-login-inner">
                     <form action="<?=base_url()?>User/register_process"method="POST" enctype="application/x-www-form-urlencoded">
-                        <input type="text" name="name" placeholder="First Name">
-                        <input type="text" name="last" placeholder="Last Name">
-                        <input type="text" name="email" placeholder="Email*">
-                        <input type="password" name="password" placeholder="Password*">
+                        <input type="text" name="name" placeholder="First Name" required value="">
+                        <input type="text" name="last" placeholder="Last Name" required value="">
+                        <input type="email" name="email" placeholder="Email*" required value="">
+                        <input type="password" name="password" placeholder="Password*" required value="">
                         <!-- <input type="password" name="confirmpassword" placeholder="Confirm Password*"> -->
                         <!-- <label class="checkbox-inline">
                             <input type="checkbox" value="">

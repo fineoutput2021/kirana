@@ -29,7 +29,7 @@
               <h4 style="color:grey;">Your order is confirmed. You will receive an order confirmation email / SMS <br> shortly within the expected delivery date for your item. </h4>
               <div class="btn-wrapper">
                   <a href="<?=base_url()?>Home" class="theme-btn-1 btn btn-effect-1">Continue Shopping</a>
-                  <a href="<?=base_url()?>Home/my_profile" class="theme-btn-1 btn btn-effect-1">View Order</a>
+                  <a href="<?=base_url()?>Home/my_profile/liton_tab_1_2" class="theme-btn-1 btn btn-effect-1">View Order</a>
               </div>
       </div>
       </div>

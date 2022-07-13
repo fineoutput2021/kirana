@@ -78,6 +78,8 @@
                 </table>
                 <div class="btn-wrapper text-center" style="position:sticky;top:o;">
                     <a href="<?=base_url()?>Home/sign_in" class="theme-btn-1 btn btn-effect-1">Proceed To Checkout</a>
+                    <br /><span style="color: red; font-size: 14px">Please add products in your cart to proceed.</span>
+
                 </div>
             </div>
         </div><!-- //side div end -->
