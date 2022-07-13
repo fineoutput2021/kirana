@@ -7,6 +7,7 @@ function __construct()
 			$this->load->model("login_model");
 			$this->load->model("admin/base_model");
 			$this->load->library('user_agent');
+			// $this->load->library('upload');
 		}
 
 
@@ -223,8 +224,6 @@ echo "hiiii";
 			 		 if($this->form_validation->run()== TRUE)
 			 		 {
 
-
-
 						$name=$this->input->post('name');
 					$phone=$this->input->post('phone');
 					$address=$this->input->post('address');
@@ -233,7 +232,7 @@ echo "hiiii";
 							$service=$this->input->post('service');
 						$services=$this->input->post('services');
 $password=$this->input->post('password');
-							$img1='fileToUpload1';
+
 							if(empty($service) && empty($services)){
 								$this->session->set_flashdata('emessage','select services to proceed');
 								 redirect($_SERVER['HTTP_REFERER']);
@@ -245,62 +244,43 @@ if($service==999){
 else{
 	$ser=json_encode($services);
 }
-
-
 					// exit;
-$file_check=($_FILES['fileToUpload1']['error']);
-if($file_check!=4){
+					$img1='image';
+					$nnnn = '';
 
-					$image_upload_folder = FCPATH . "assets/uploads/team/";
-						if (!file_exists($image_upload_folder))
-						{
-							mkdir($image_upload_folder, DIR_WRITE_MODE, true);
-						}
-						$new_file_name="team".date("Ymdhms");
-						$this->upload_config = array(
-								'upload_path'   => $image_upload_folder,
-								'file_name' => $new_file_name,
-								'allowed_types' =>'jpg|jpeg|png',
-								'max_size'      => 25000
-						);
-						$this->upload->initialize($this->upload_config);
-						if (!$this->upload->do_upload($img1))
-						{
-							$upload_error = $this->upload->display_errors();
-							// echo json_encode($upload_error);
+					$file_check=($_FILES['image']['error']);
+					if ($file_check!=4) {
+							$image_upload_folder = FCPATH . "assets/uploads/team/";
+							if (!file_exists($image_upload_folder)) {
+									mkdir($image_upload_folder, DIR_WRITE_MODE, true);
+							}
+							$new_file_name="team".date("Ymdhms");
+							$this->upload_config = array(
+											'upload_path'   => $image_upload_folder,
+											'file_name' => $new_file_name,
+											'allowed_types' =>'jpg|jpeg|png',
+											'max_size'      => 25000
+							);
+							$this->upload->initialize($this->upload_config);
+							if (!$this->upload->do_upload($img1)) {
+									$upload_error = $this->upload->display_errors();
+									// echo json_encode($upload_error);
+									// echo $upload_error;
+									$this->session->set_flashdata('emessage', $upload_error);
+									redirect($_SERVER['HTTP_REFERER']);
+							} else {
+									$file_info = $this->upload->data();
 
-							$this->session->set_flashdata('emessage',$upload_error);
-							 redirect($_SERVER['HTTP_REFERER']);
-
-						}
-						else
-						{
-
-							$file_info = $this->upload->data();
-
-							$videoNAmePath = "assets/uploads/team/".$new_file_name.$file_info['file_ext'];
-							$file_info['new_name']=$videoNAmePath;
-							// $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
-							$nnnn=$file_info['file_name'];
-							// echo json_encode($file_info);
-						}
-
-}
+									$videoNAmePath = "assets/uploads/team/".$new_file_name.$file_info['file_ext'];
+									$nnnn=$videoNAmePath;
+							}
+					}
 							$ip = $this->input->ip_address();
 	date_default_timezone_set("Asia/Calcutta");
 							$cur_date=date("Y-m-d H:i:s");
 
 							$addedby=$this->session->userdata('admin_id');
-
-							// $addedby=1;
 $pass=md5($password);
-
-if(!empty($nnnn)){
-	$nnn=$nnnn;
-}
-else{
-	$nnn="";
-}
 
 
 								$data_insert = array('name'=>$name,
@@ -310,7 +290,7 @@ else{
 													'password'=>$pass,
 													'power'=>$position,
 													'services'=>$ser,
-													'image'=>$nnn,
+													'image'=>$nnnn,
 													'ip' =>$ip,
 													'added_by' =>$addedby,
 													'is_active' =>1,
@@ -323,7 +303,7 @@ else{
 
 
 					$last_id=$this->base_model->insert_table("tbl_team",$data_insert,1) ;
-				
+
 					if($last_id!=0){
 
 					redirect("dcadmin/system/view_team","refresh");

@@ -108,8 +108,7 @@
 												<td>
 
 
-													<input type="file" name="fileToUpload1"></input>
-
+													<input type="file" name="image"  class="form-control" placeholder="" value="" 
 														</div>
 												</td>
 											</tr>

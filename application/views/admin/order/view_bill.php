@@ -136,12 +136,8 @@ Pincode: <?php echo $pincode;?><br>
         <th>Qty</th>
         <th>GST(%)</th>
         <th>Selling Price</th>
-  <th style="padding:3px;" colspan="2">C/S/IGST</th>
         <th>Total Amount</th>
-        <tr>
-        <td>Rate</td>
-        <td>Amount</td>
-      </tr>
+
     </thead>
     <tbody>
   <?php
@@ -191,19 +187,6 @@ echo $product_name= $product_data->name;
   <?php $i++;} }?>\
   </tr>
   <tr>
-  <tr>
-          <td class="a1"></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
       <tr>
         <th>Total</th>
         <th class="product_table" ><?php if(!empty($order1_data)){ echo ""; }?></th>
@@ -211,11 +194,6 @@ echo $product_name= $product_data->name;
 
         <th class="product_table"><?php if(!empty($order1_data)){ echo "₹".$order1_data->total_amount; }?></th>
       </tr>
-      <tr>
-              <td colspan="7" class="a2"><b>Bank Details</b></td>
-              <td colspan="3"><b>Total CGST: <br>Total SGST: <br>Total IGST: <br>Total CESS: </b></td>
-              <td><?if($order1_data->state=='Rajasthan [RJ]'){ $igst=0;  foreach($order2_data->result() as $order2){ $igst = ($order2->gst/100)*$order2->selling_price*$order2->quantity + $igst;} $igst = $igst/2; echo "₹".$igst; }else{echo "₹0.00";}?><br><?if($order1_data->state=='Rajasthan [RJ]'){ echo "₹".$igst;}else{echo "₹0.00";}?><br><?if($order1_data->state!='Rajasthan [RJ]'){ $igst = 0; foreach($order2_data->result() as $order2){ $igst = ($order2->gst/100)*$order2->selling_price*$order2->quantity + $igst;} echo "₹".$igst; }else{echo "₹0.00";}?><br>₹0.00</td>
-            </tr>
 
       <?php if(!empty($order1_data->promocode) && $order1_data->promocode != "Apply coupon" ){
                     $this->db->select('*');
