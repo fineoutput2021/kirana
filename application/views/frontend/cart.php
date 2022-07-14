@@ -3,7 +3,7 @@
 <!--=============================mobile_cart=====================================-->
 
 <!-- mobile cart end  -->
-<div class="container mt-3 ">
+<div class="container mt-3 mb-3 ">
     <div class="row" id="cartDiv">
         <div class="col-12 col-md-8 col-lg-8 ">
           <? $totalCart = 0; foreach($cart_data->result() as $cart){

@@ -64,14 +64,12 @@ class Order extends CI_Controller
                 redirect($_SERVER['HTTP_REFERER']);
                 exit;
             }
-            $final_amount = $final_amount + 50;
             //------order1 entry-------------
             $order1_insert = array('user_id'=>$user_id,
                         'total_amount'=>$total,
-                        'final_amount'=>round($final_amount, 2),
                         'payment_status'=>0,
                         'order_status'=>0,
-                        'shipping'=>50,
+                        'shipping'=>SHIPPING,
                         'ip' =>$ip,
                         'date'=>$cur_date
                         );
@@ -247,7 +245,7 @@ class Order extends CI_Controller
                     }
 
 
-                    $final_amount = $order_data->total_amount - $discount;
+                    // $final_amount = $order_data->total_amount - $discount +50;
 
 
                     //-------table_order1 entry-------
@@ -277,7 +275,7 @@ class Order extends CI_Controller
           // );
 
                         $respone['data'] = true;
-                        $respone['data_message'] = 'success';
+                        $respone['data_message'] = 'Promocode applied successfully';
                         echo json_encode($respone);
                     } else {
                         $respone['data'] = false;
@@ -298,7 +296,7 @@ class Order extends CI_Controller
                 $respone['data_message'] = validation_errors();
                 echo json_encode($respone);
                 return;
-                
+
             }
         } else {
             $respone['data'] = false;
@@ -328,11 +326,10 @@ class Order extends CI_Controller
                 $this->db->where('id', $order_id);
                 $orderdata= $this->db->get()->row();
 
-                $final_amount = $orderdata->final_amount + $orderdata->promo_discount;
+                // $final_amount = $orderdata->final_amount + $orderdata->promo_discount;
 
                 $data_update = array('promocode'=>"",
             'promo_discount'=>"",
-            'final_amount'=>$final_amount
           );
                 $this->db->where('id', $order_id);
                 $zapak=$this->db->update('tbl_order1', $data_update);
@@ -395,7 +392,11 @@ class Order extends CI_Controller
                     $user_data = $this->db->get()->row();
                     if (!empty($user_data)) {
                         if ($user_data->is_active==1) {
-
+                          $this->db->select('*');
+                          $this->db->from('tbl_order1');
+                          $this->db->where('id', $order_id);
+                          $order_data= $this->db->get()->row();
+                          $final_amount = $order_data->total_amount - $order_data->promo_discount +  $order_data->shipping;
                     //----------order1 entry-------------
                             $order1_update = array(
                                 'name'=>$name,
@@ -404,6 +405,7 @@ class Order extends CI_Controller
                                 'address'=>$address,
                                 'state'=>$state,
                                 'pincode'=>$pincode,
+                                'final_amount'=>$final_amount,
                                 'payment_status'=>1,
                                 'payment_type'=>1,
                                 'order_status'=>1,

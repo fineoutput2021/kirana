@@ -67,7 +67,7 @@
                                 </div>
                                 <input type="hidden" id="order" name="order_id" value="<?=$this->session->userdata('order_id')?>">
                                 <div class="col-md-6">
-                                    <!-- <div class="input-item input-item-name ltn__custom-icon"> -->
+                                    <div class="input-item input-item-textarea ltn__custom-icon">
                                         <input type="text" maxlength="6" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" name="pincode" required id="pincode" placeholder="Pincode" onkeyup='saveValue(this);'>
                                     </div>
                                 </div>
@@ -202,11 +202,11 @@
                       </tr>
                       <tr>
                           <td><b>Shipping</b></td>
-                          <td>₹50.00</td>
+                          <td>₹<?=$order_data->shipping?></td>
                       </tr>
                       <tr>
                           <td><strong>Order Total</strong></td>
-                          <td id="finalAmt"><strong>₹<?=$order_data->final_amount?></strong></td>
+                          <td id="finalAmt"><strong>₹<?=$order_data->total_amount - $order_data->promo_discount+ $order_data->shipping?></strong></td>
                       </tr>
                   </tbody>
               </table>
