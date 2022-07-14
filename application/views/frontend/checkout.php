@@ -68,13 +68,13 @@
                                 <input type="hidden" id="order" name="order_id" value="<?=$this->session->userdata('order_id')?>">
                                 <div class="col-md-6">
                                     <!-- <div class="input-item input-item-name ltn__custom-icon"> -->
-                                        <input type="text" maxlength="6" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" name="lastname" required id="pincode" placeholder="Pincode" onkeyup='saveValue(this);'>
+                                        <input type="text" maxlength="6" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" name="pincode" required id="pincode" placeholder="Pincode" onkeyup='saveValue(this);'>
                                     </div>
                                 </div>
 
                             </div>
                             <input type="hidden" name="payment_method" id="payment_method" value="1"  />
-                            <div class="row">
+                            <div class="row mt-3">
                                 <div class="col-lg-12 col-md-12">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -243,6 +243,7 @@ document.getElementById("state").value = getSavedValue("state");
 document.getElementById("h_name").value = getSavedValue("name");
 document.getElementById("h_email").value = getSavedValue("email");
 document.getElementById("h_phone").value = getSavedValue("phone");
+document.getElementById("h_pincode").value = getSavedValue("pincode");
 document.getElementById("h_address").value = getSavedValue("address");
 document.getElementById("h_state").value = getSavedValue("state");
 
