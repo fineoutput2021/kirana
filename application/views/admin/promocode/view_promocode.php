@@ -42,6 +42,7 @@ Promocode
         <tr>
           <th>#</th>
           <th>Promocode</th>
+          <th>Promocode Type</th>
           <th>Gift(%)</th>
           <th>Expiry_date</th>
           <th>Minimum Order amount</th>
@@ -55,6 +56,7 @@ Promocode
         <tr>
           <td><?php echo $i ?> </td>
           <td><?php echo $data->promocode ?></td>
+           <td><?php if($data->ptype==1){echo 'One Time';}else{echo 'Every Time';}  ?></td>
           <td><?php echo $data->giftpercent ?></td>
           <td><?php echo $data->expiry ?></td>
           <td><?php echo $data->minorder ?></td>

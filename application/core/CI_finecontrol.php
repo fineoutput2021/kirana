@@ -15,7 +15,6 @@ class CI_finecontrol extends CI_Controller
             $image=$this->session->userdata('image');
             $postion=$this->session->userdata('position');
             $user_d=$this->session->userdata('admin_id');
-
             $this->db->select('*');
             $this->db->from('tbl_team');
             $this->db->where('id', $user_d);

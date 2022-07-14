@@ -59,6 +59,7 @@ class Promocode extends CI_finecontrol
                 // print_r($this->input->post());
                 // exit;
                 $this->form_validation->set_rules('promocode', 'promocode', 'required|xss_clean|trim');
+                  $this->form_validation->set_rules('ptype', 'ptype', '');
                 $this->form_validation->set_rules('giftpercent', 'giftpercent', 'required|xss_clean|trim');
                 $this->form_validation->set_rules('expiry', 'expiry', 'required|xss_clean|trim');
                 $this->form_validation->set_rules('minorder', 'minorder', 'required|xss_clean|trim');
@@ -66,6 +67,7 @@ class Promocode extends CI_finecontrol
 
                 if ($this->form_validation->run()== true) {
                     $promocode=$this->input->post('promocode');
+                    $ptype=$this->input->post('ptype');
                     $expiry=$this->input->post('expiry');
                     $giftpercent=$this->input->post('giftpercent');
                     $minorder=$this->input->post('minorder');
@@ -80,6 +82,7 @@ class Promocode extends CI_finecontrol
                     $typ=base64_decode($t);
                     if ($typ==1) {
                         $data_insert = array('promocode'=>$promocode,
+                        'ptype'=>$ptype,
                               'giftpercent'=>$giftpercent,
                               'expiry'=>$expiry,
                               'minorder'=>$minorder,
@@ -110,6 +113,7 @@ class Promocode extends CI_finecontrol
 
 
                         $data_insert = array('promocode'=>$promocode,
+                        'ptype'=>$ptype,
                               'expiry'=>$expiry,
                               'giftpercent'=>$giftpercent,
                               'minorder'=>$minorder,
