@@ -215,7 +215,7 @@
       </div>
       </div>
 
-        <div class="row">
+        <div class="col-md-12">
           <form action="javascript:void;" id="pay" >
                   <input type="hidden" name="name"  id="h_name"value="">
                   <input type="hidden" name="email" id="h_email" value="">
