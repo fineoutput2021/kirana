@@ -116,13 +116,7 @@ Pincode: <?php echo $pincode;?><br>
 </div>
 </div>
 
-
-
-
-
-
 <div class="container">
-
   <table class="table table-black">
     <thead class="product_table">
 
@@ -135,7 +129,10 @@ Pincode: <?php echo $pincode;?><br>
         <th>MRP</th>
         <th>Qty</th>
         <th>GST(%)</th>
-        <th>Selling Price</th>
+        <th>Net Amount</th>
+        <th>Tax Rate</th>
+        <th>Tax Type</th>
+        <th>Tax Amount</th>
         <th>Total Amount</th>
 
     </thead>
@@ -176,21 +173,51 @@ echo $product_name= $product_data->name;
         <td ><?php if(!empty($type)){echo "₹".$type->sp;} ?></td>
         <td ><?php echo $data->quantity;?></td>
         <td ><?php if(!empty($type)){echo $type->gst."%";}?></td>
-        <td><? if(!empty($type)){echo "₹".$product_sp= $type->spgst;}?> </td>
+        <td><? if(!empty($type)){echo "₹".$product_sp= $type->sp;}?> </td>
         <!-- <td>9%</td>
         <td>CGST</td>
         <td>200</td> -->
         <?php
         ?>
-        <td><?php echo "₹".$data->total_amount;?></td>
+        <?php if($order1_data->state == 'Rajasthan'){?>
+    <td><span> <?php  $half= $data->gst/2; echo $half."%"; ?>  </span> <br> <span> <?php  $half= $data->gst/2; echo $half."%"; ?> </span></td>
+      <?php }else{?>
+    <td><?php echo $data->gst."%";?></td>
+      <?php }?>
+      <?php if($order1_data->state == 'Rajasthan'){?>
+
+      <td><span> CGST  </span> <br> <span>  SGST </span></td>
+  <?php }else{?>
+    <td>IGST</td>
+  <?php }?>
+  <?php if($order1_data->state == 'Rajasthan'){?>
+    <td>
+  <span> <?php
+$total_gst = $data->total_amount * $data->gst /100;
+   $total_gst_amount=$total_gst * $data->quantity;
+    $half_P= $total_gst_amount/2; echo "₹".$half_P;?>
+  </span>
+    <br>
+     <span> <?php  $total_gst_amount=$total_gst * $data->quantity;
+    $half_P= $total_gst_amount/2; echo "₹".$half_P;?>
+   </span>
+ </td>
+  <?php }else{?>
+
+  <td><?php echo "₹".$total_gst_amount=$data->gst * $data->quantity;?></td>
+
+  <?php }?>
+  <td><?php
+        $total = $data->total_amount+$total_gst_amount;
+         echo "₹".round($total,2);?></td>
       </tr>
-  <?php $i++;} }?>\
+  <?php $i++;} }?>
   </tr>
   <tr>
       <tr>
         <th>Total</th>
         <th class="product_table" ><?php if(!empty($order1_data)){ echo ""; }?></th>
-        <th class="product_table" colspan="5"><?php if(!empty($order1_data)){ echo ""; }?></th>
+        <th class="product_table" colspan="8"><?php if(!empty($order1_data)){ echo ""; }?></th>
 
         <th class="product_table"><?php if(!empty($order1_data)){ echo "₹".$order1_data->total_amount; }?></th>
       </tr>
@@ -210,7 +237,7 @@ echo $product_name= $product_data->name;
         }
         ?>
         <tr>
-          <th colspan="6">Promocode: <?=$promocode_name;?> </th>
+          <th colspan="9">Promocode: <?=$promocode_name;?> </th>
           <th class="product_table"><?php if(!empty($order1_data)){ echo " "; }?></th>
           <th class="product_table"><?php if(!empty($order1_data->promocode)){
                       $this->db->select('*');
@@ -238,13 +265,13 @@ echo $product_name= $product_data->name;
       <tr>
         <th>Shipping</th>
         <th class="product_table" ><?php if(!empty($order1_data)){ echo ""; }?></th>
-        <th class="product_table" colspan="5"><?php if(!empty($order1_data)){ echo ""; }?></th>
+        <th class="product_table" colspan="8"><?php if(!empty($order1_data)){ echo ""; }?></th>
 
         <th class="product_table"><?php if(!empty($order1_data)){ echo "₹50.00"; }?></th>
       </tr>
 
       <tr>
-        <th colspan="7">SubTotal</th>
+        <th colspan="10">SubTotal</th>
         <th class="product_table"><?php if(!empty($order1_data)){ echo "₹".$order1_data->final_amount; }?></th>
 
       </tr>

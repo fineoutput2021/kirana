@@ -92,6 +92,8 @@ class Order extends CI_Controller
                         'type_id'=>$cart2->type_id,
                         'quantity'=>$cart2->quantity,
                         'mrp'=>$pro_data->mrp,
+                        'gst'=>$pro_data->gst,
+                        'spwgst'=>$pro_data->sp,
                         'selling_price'=>$pro_data->spgst,
                         'total_amount'=>$total,
                         'date'=>$cur_date
@@ -379,7 +381,7 @@ class Order extends CI_Controller
                     $phone=$this->input->post('phone');
                     $address=$this->input->post('address');
                     $pincode=$this->input->post('pincode');
-                    $state=$this->input->post('state');
+                    $state=ucwords($this->input->post('state'));
                     $payment_method=$this->input->post('payment_method');
                     $user_id=$this->session->userdata('user_id');
                     // exit;
