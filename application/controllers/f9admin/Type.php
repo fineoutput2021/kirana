@@ -25,7 +25,13 @@ class Type extends CI_finecontrol
             $this->db->where('product_id', $id);
             $data['type_data']= $this->db->get();
 
+            $this->db->select('*');
+            $this->db->from('tbl_product');
+            $this->db->where('is_active', 1);
+            $this->db->where('id', $id);
+            $prodata= $this->db->get()->row();
 
+            $data['subcategory_id'] = $prodata->subcategory_id;
 
             $this->load->view('admin/common/header_view', $data);
             $this->load->view('admin/type/view_type');

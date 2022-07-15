@@ -406,6 +406,14 @@ public function view_subcategory($idd){
             $this->db->where('category_id', $data['product']->category_id);
             $data['subcategory_data']= $this->db->get();
 
+            $this->db->select('*');
+            $this->db->from('tbl_product');
+            $this->db->where('is_active', 1);
+            $this->db->where('id', $id);
+            $prodata= $this->db->get()->row();
+
+            $data['subcategory_id'] = $prodata->subcategory_id;
+
             $this->load->view('admin/common/header_view', $data);
             $this->load->view('admin/product/update_product');
             $this->load->view('admin/common/footer_view');
@@ -421,12 +429,21 @@ public function view_subcategory($idd){
             $id=base64_decode($idd);
 
             if ($this->load->get_var('position')=="Super Admin") {
-                $zapak=$this->db->delete('tbl_product', array('id' => $id));
+
                 $zapak1=$this->db->delete('tbl_cart', array('product_id' => $id));
                 $zapak1=$this->db->delete('tbl_wishlist', array('product_id' => $id));
+                $zapak=$this->db->delete('tbl_product', array('id' => $id));
                 if ($zapak!=0) {
+                  $this->db->select('*');
+                  $this->db->from('tbl_product');
+                  $this->db->where('is_active', 1);
+                  $this->db->where('id', $id);
+                  $prodata= $this->db->get()->row();
+
+                  $subcategory_id = $prodata->subcategory_id;
                     $this->session->set_flashdata('smessage', 'Data deleted successfully');
-                    redirect("dcadmin/product/view_product", "refresh");
+                    redirect($_SERVER['HTTP_REFERER']);
+
                 } else {
                     echo "Error";
                     exit;
@@ -459,9 +476,9 @@ public function view_subcategory($idd){
                             );
 
                 $this->db->where('id', $id);
-                $zapak1=$this->db->delete('tbl_cart', array('product_id' => $id));
-                $zapak1=$this->db->delete('tbl_wishlist', array('product_id' => $id));
                 $zapak=$this->db->update('tbl_product', $data_update);
+                $zapak1=$this->db->delete('tbl_cart', array('product_id' => $id));
+                $zapak2=$this->db->delete('tbl_wishlist', array('product_id' => $id));
                 $this->session->set_flashdata('smessage', 'Data updated successfully');
                 if ($zapak!=0) {
                   redirect($_SERVER['HTTP_REFERER']);
@@ -477,11 +494,10 @@ public function view_subcategory($idd){
                             'is_active'=>0
 
                             );
-
-                $this->db->where('id', $id);
-                $zapak=$this->db->update('tbl_product', $data_update);
+                  $this->db->where('id', $id);
+                  $zapak=$this->db->update('tbl_product', $data_update);
                 $zapak1=$this->db->delete('tbl_cart', array('product_id' => $id));
-                $zapak1=$this->db->delete('tbl_wishlist', array('product_id' => $id));
+                $zapak2=$this->db->delete('tbl_wishlist', array('product_id' => $id));
                   $this->session->set_flashdata('smessage', 'Data updated successfully');
                 if ($zapak!=0) {
                   redirect($_SERVER['HTTP_REFERER']);

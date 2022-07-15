@@ -432,7 +432,7 @@ public function delete_team($idd){
 		 $zapak=$this->db->delete('tbl_team', array('id' => $id));
 		 if($zapak!=0){
 	$this->session->set_flashdata('smessage','Successfully deleted');
-	 	redirect("admin/system/view_team","refresh");
+	 	redirect("dcadmin/System/view_team","refresh");
 	 					}
 	 					else
 	 					{
