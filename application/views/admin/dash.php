@@ -28,9 +28,9 @@
                 <div class="info-box-content">
                   <span class="info-box-text">Total Products</span>
                   <span class="info-box-number"><?            $this->db->select('*');
-                  $this->db->from('tbl_category');
+                  $this->db->from('tbl_product');
                   //$this->db->where('id',$usr);
-                  $category= $this->db->count_all_results(); echo $category;?></span>
+                  $product= $this->db->count_all_results(); echo $product;?></span>
                 </div><!-- /.info-box-content -->
               </div></a><!-- /.info-box -->
             </div><!-- /.col -->
