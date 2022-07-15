@@ -106,7 +106,15 @@ echo "online payment";
 <td><?php echo $data->name ?></td>
 <td><?php echo $data->phone ?></td>
 <td><?php echo $data->pincode ?></td>
-<td><?php echo $data->state ?></td>
+<td><?php $this->db->select('*');
+$this->db->from('all_states');
+$this->db->where('id',$data->state);
+$state= $this->db->get()->row();
+if(!empty($state)){
+echo $state->state_name;
+}else{
+  echo "No State Found";
+}?></td>
 <td><?php echo $data->email ?></td>
 <td><?php echo $data->address ?></td>
 <td><?php if ($data->order_status==1) {?>

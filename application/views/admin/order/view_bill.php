@@ -95,8 +95,12 @@ if(!empty($address)){
 }
 ?> <br>
 
-Place of supply: <?=$order1_data->state;?><br>
-Place of delivery: <?=$order1_data->state;?><br>
+Place of delivery: <?
+            $this->db->select('*');
+$this->db->from('all_states');
+$this->db->where('id',$order1_data->state);
+$state= $this->db->get()->row();
+echo $state->state_name;?><br>
 Pincode: <?php echo $pincode;?><br>
 </div>
 </div>
@@ -170,7 +174,7 @@ echo $product_name= $product_data->name;
  ?>
 </td>
 
-        <td ><?php if(!empty($type)){echo "₹".$type->sp;} ?></td>
+        <td ><?php if(!empty($type)){echo "₹".$type->mrp;} ?></td>
         <td ><?php echo $data->quantity;?></td>
         <td ><?php if(!empty($type)){echo $type->gst."%";}?></td>
         <td><? if(!empty($type)){echo "₹".$product_sp= $type->sp;}?> </td>
@@ -179,18 +183,18 @@ echo $product_name= $product_data->name;
         <td>200</td> -->
         <?php
         ?>
-        <?php if($order1_data->state == 'Rajasthan'){?>
+        <?php if($order1_data->state == 29){?>
     <td><span> <?php  $half= $data->gst/2; echo $half."%"; ?>  </span> <br> <span> <?php  $half= $data->gst/2; echo $half."%"; ?> </span></td>
       <?php }else{?>
     <td><?php echo $data->gst."%";?></td>
       <?php }?>
-      <?php if($order1_data->state == 'Rajasthan'){?>
+      <?php if($order1_data->state == 29){?>
 
       <td><span> CGST  </span> <br> <span>  SGST </span></td>
   <?php }else{?>
     <td>IGST</td>
   <?php }?>
-  <?php if($order1_data->state == 'Rajasthan'){?>
+  <?php if($order1_data->state == 29){?>
     <td>
   <span> <?php
 $total_gst = $data->total_amount * $data->gst /100;
@@ -204,11 +208,11 @@ $total_gst = $data->total_amount * $data->gst /100;
  </td>
   <?php }else{?>
 
-  <td><?php echo "₹".$total_gst_amount=$data->gst * $data->quantity;?></td>
+  <td><?php echo "₹".$total_gst_amount=$type->sp * $data->gst/100 * $data->quantity;?></td>
 
   <?php }?>
   <td><?php
-        $total = $data->total_amount+$total_gst_amount;
+        $total = $data->total_amount;
          echo "₹".round($total,2);?></td>
       </tr>
   <?php $i++;} }?>

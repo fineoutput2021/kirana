@@ -130,6 +130,10 @@ class Order extends CI_Controller
             $this->db->where('id', base64_decode($this->session->userdata('order_id')));
             $data['order_data']= $this->db->get()->row();
 
+                        $this->db->select('*');
+            $this->db->from('all_states');
+            $data['state_data']= $this->db->get();
+
             $this->load->view('frontend/common/header', $data);
             $this->load->view('frontend/checkout');
             $this->load->view('frontend/common/footer');

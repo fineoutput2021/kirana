@@ -86,7 +86,12 @@
                                         <div class="col-md-6">
                                             <h6>State</h6>
                                             <div class="input-item">
-                                                <input type="text" required id="state" placeholder="State" onkeyup='saveValue(this);'>
+                                              <select class="select" required id="state" style="max-height:15rem">
+                                                <? $i = 1;foreach ($state_data->result() as $state) {?>
+                                                <option value="<?=$state->id?>"><?=$state->state_name?></option>
+                                                <?} ?>
+                                              </select>
+                                                <!-- <input type="text" required id="state" placeholder="State" onkeyup='saveValue(this);'> -->
                                             </div>
                                         </div>
                                     </div>
@@ -232,7 +237,12 @@
     </div>
 </div>
 <!-- WISHLIST AREA START -->
-
+<style>
+.list{
+  max-height: 14rem;
+  overflow-y: auto !important;
+}
+</style>
 <script>
 document.getElementById("name").value = getSavedValue("name");
 document.getElementById("email").value = getSavedValue("email");
