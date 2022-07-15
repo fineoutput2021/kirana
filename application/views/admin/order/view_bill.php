@@ -108,7 +108,7 @@ Pincode: <?php echo $pincode;?><br>
      $date = new DateTime($source);
      echo $date->format('F j, Y, g:i a');
   }?>
-	</div><br> <br>
+	<div><br> <br>
 
 
 
