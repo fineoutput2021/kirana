@@ -19,7 +19,7 @@
           <div class="row">
             <div class="col-md-3 col-sm-6 col-xs-12">
               <? if ($this->load->get_var('position')=="Super Admin") {?>
-              <a href="<?=base_url()?>dcadmin/Product/view_product">
+              <a href="<?=base_url()?>dcadmin/Product/view_category">
                 <?}else{?>
                   <a href="javascript:void(0);">
                   <?}?>
@@ -28,9 +28,9 @@
                 <div class="info-box-content">
                   <span class="info-box-text">Total Products</span>
                   <span class="info-box-number"><?            $this->db->select('*');
-                  $this->db->from('tbl_product');
+                  $this->db->from('tbl_category');
                   //$this->db->where('id',$usr);
-                  $product= $this->db->count_all_results(); echo $product;?></span>
+                  $category= $this->db->count_all_results(); echo $category;?></span>
                 </div><!-- /.info-box-content -->
               </div></a><!-- /.info-box -->
             </div><!-- /.col -->
