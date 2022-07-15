@@ -434,13 +434,6 @@ public function view_subcategory($idd){
                 $zapak1=$this->db->delete('tbl_wishlist', array('product_id' => $id));
                 $zapak=$this->db->delete('tbl_product', array('id' => $id));
                 if ($zapak!=0) {
-                  $this->db->select('*');
-                  $this->db->from('tbl_product');
-                  $this->db->where('is_active', 1);
-                  $this->db->where('id', $id);
-                  $prodata= $this->db->get()->row();
-
-                  $subcategory_id = $prodata->subcategory_id;
                     $this->session->set_flashdata('smessage', 'Data deleted successfully');
                     redirect($_SERVER['HTTP_REFERER']);
 
