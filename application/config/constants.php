@@ -93,4 +93,9 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 //======================== Shipping ==================================
-defined('SHIPPING')      OR define('SHIPPING', 50); // highest automatically-assigned error code
+defined('SHIPPING')      OR define('SHIPPING', 50);
+define('USER_NAME','info@fineoutput.co.in');
+define('PASSWORD','info@fineoutput2019');
+define('EMAIL','info@fineoutput.co.in');
+define('SMTP_HOST','mail.fineoutput.co.in');
+define('SMTP_PORT','587');

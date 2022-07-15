@@ -362,6 +362,18 @@ public function login(){
               		}
 
               	}
+public function forgot_password(){
+	if(empty($this->session->userdata('user_data'))){
+		$this->load->view('frontend/common/header');
+		$this->load->view('frontend/forgot_pass');
+		$this->load->view('frontend/common/footer');
+	}else{
+		redirect("/","refresh");
+	}
+}
+
+
+
 								//------form forgot password submit-----
 
 						    public function generateRandomString($length = 20)
