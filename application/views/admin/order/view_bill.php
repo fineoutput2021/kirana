@@ -197,7 +197,7 @@ echo $product_name= $product_data->name;
   <?php if($order1_data->state == 29){?>
     <td>
   <span> <?php
-$total_gst = $data->total_amount * $data->gst /100;
+$total_gst = $type->sp * $data->gst /100 ;
    $total_gst_amount=$total_gst * $data->quantity;
     $half_P= $total_gst_amount/2; echo "₹".$half_P;?>
   </span>
