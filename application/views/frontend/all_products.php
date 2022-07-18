@@ -19,7 +19,11 @@
     </div>
 </div>
 <!-- BREADCRUMB AREA END -->
-
+<style>
+.change_dis{
+  display:contents !important;
+}
+</style>
 
 <div class="ltn__slider-area ltn__slider-3---  section-bg-1--- mt-30">
     <div class="container">
@@ -30,7 +34,7 @@
                         <div class="ltn__category-menu-title">
                             <h2 class="section-bg-2--- ltn__secondary-bg text-color-white">categories</h2>
                         </div>
-                        <div class="ltn__category-menu-toggle ltn__one-line-active">
+                        <div class="ltn__category-menu-toggle ltn__one-line-active mb-3">
                             <ul>
 
 
@@ -38,7 +42,7 @@
                                 <!-- Submenu Column - unlimited -->
                                 <li class="ltn__category-menu-item ltn__category-menu-drop">
                                     <a href="javascript:void(0)"><i class="icon-shopping-bags"></i><?=$category->name?></a>
-                                    <ul class="ltn__category-submenu ltn__category-column-5">
+                                    <ul class="ltn__category-submenu ltn__category-column-5" style="width:200px">
                                       <?$this->db->select('*');
                                       $this->db->from('tbl_subcategory');
                                       $this->db->where('is_active', 1);
@@ -46,7 +50,7 @@
                                       $subcat_data = $this->db->get();
                                       foreach($subcat_data->result() as $subcat){
                                       ?>
-                                        <li class=" "><a href="<?=base_url()?>Home/all_products/<?=base64_encode($subcat->id)?>"><?=$subcat->name;?></a>
+                                        <li class="change_dis" style=""><a href="<?=base_url()?>Home/all_products/<?=base64_encode($subcat->id)?>"><?=$subcat->name;?></a>
                                             <!-- <ul class="ltn__category-submenu-children">
                                               <?$this->db->select('*');
                                               $this->db->from('tbl_product');
@@ -102,6 +106,19 @@
                         <div class="ltn__product-tab-content-inner ltn__product-grid-view">
                             <div class="row">
                               <?foreach($products_data->result() as $product){
+                                  if($product->is_active==1){
+                                    $this->db->select('*');
+                                    $this->db->from('tbl_category');
+                                    $this->db->where('id', $product->category_id);
+                                    $this->db->where('is_active', 1);
+                                    $cat_data= $this->db->get()->row();
+                                    $this->db->select('*');
+                                    $this->db->from('tbl_subcategory');
+                                    $this->db->where('id', $product->subcategory_id);
+                                    $this->db->where('is_active', 1);
+                                    $sub_data= $this->db->get()->row();
+
+                                    if (!empty($cat_data) && !empty($sub_data)) {
                                               $this->db->select('*');
                                               $this->db->from('tbl_type');
                                               $this->db->where('is_active', 1);
@@ -167,7 +184,7 @@
                                     </div>
                                   </div>
                                 </div>
-                                <?}}?>
+                                <?}}}}?>
                             </div>
                         </div>
                     </div>

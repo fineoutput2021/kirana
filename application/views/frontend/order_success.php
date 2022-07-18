@@ -25,8 +25,8 @@
       <div class="row">
           <div class="col-sm-12 text-center mt-4 mb-4">
               <img src="<?=base_url()?>assets/frontend/img/others/success.png" alt="success" width="100px" class="img-fluid">
-              <h2 style="font-size:35px;">Order Confirmed</h2>
-              <h4 style="color:grey;">Your order is confirmed. You will receive an order confirmation email / SMS <br> shortly within the expected delivery date for your item. </h4>
+              <h2 style="font-size:35px;">Order Confirmed !</h2>
+              <h4 style="color:grey;">Order ID #<?=$order_id?> with Amount of ₹<?=$amount?>.</h4>
               <div class="btn-wrapper">
                   <a href="<?=base_url()?>Home" class="theme-btn-1 btn btn-effect-1">Continue Shopping</a>
                   <a href="<?=base_url()?>Home/my_profile/order" class="theme-btn-1 btn btn-effect-1">View Order</a>
