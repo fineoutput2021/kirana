@@ -105,7 +105,8 @@
                     <div class="tab-pane fade active show" id="liton_product_grid">
                         <div class="ltn__product-tab-content-inner ltn__product-grid-view">
                             <div class="row">
-                              <?foreach($products_data->result() as $product){
+                              <?$i=0;
+                              foreach($products_data->result() as $product){
                                   if($product->is_active==1){
                                     $this->db->select('*');
                                     $this->db->from('tbl_category');
@@ -126,6 +127,8 @@
                                               $type_data = $this->db->get();
                                               $type_row = $type_data->row();
                                               if(!empty($type_row)){
+                                                $i++;
+
                                                ?>
                                 <!-- ltn__product-item -->
                                 <div class="col-xl-4 col-sm-6 col-6">
@@ -184,7 +187,14 @@
                                     </div>
                                   </div>
                                 </div>
-                                <?}}}}?>
+                                <?}}}}
+                              ?>
+                              <?
+                              if($i==0){?>
+                                <div class="text-center">
+                                  <h5>No Data Found</h5>
+                                </div>
+                                <?}?>
                             </div>
                         </div>
                     </div>
