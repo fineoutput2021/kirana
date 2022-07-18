@@ -35,7 +35,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="account-login-inner">
-                      <form action="<?=base_url()?>User/login_process"method="POST" enctype="application/x-www-form-urlencoded">
+                      <form action="<?=base_url()?>User/login_process_page"method="POST" enctype="application/x-www-form-urlencoded">
                         <input type="text" name="email" placeholder="Email*">
                         <input type="password" name="password" placeholder="Password*">
                         <div class="btn-wrapper mt-0">

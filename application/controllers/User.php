@@ -168,7 +168,7 @@ public function login(){
 						                  $this->session->unset_userdata('cart_data');
 	    												$this->session->set_userdata('user_data',1);
 	    												$this->session->set_userdata('user_id',$db_id);
-	    												$this->session->set_userdata('user_name', $db_first_name);
+	    												$this->session->set_userdata('customer_name', $db_first_name);
 	                            $this->session->set_userdata('user_email', $db_email);
 
 	    											//	redirect("home","refresh");
