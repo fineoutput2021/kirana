@@ -27,7 +27,6 @@ class Type extends CI_finecontrol
 
             $this->db->select('*');
             $this->db->from('tbl_product');
-            $this->db->where('is_active', 1);
             $this->db->where('id', $id);
             $prodata= $this->db->get()->row();
 
